@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Struct Qnn_Tensor_t &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Struct Qnn_Version_t" href="structQnn__Version__t.html" />
+    <link rel="prev" title="Struct Qnn_ScaleOffset_t" href="structQnn__ScaleOffset__t.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../general/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quantization.html">Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../general/api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general/api_overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/api_usage_guidelines.html">Usage Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/api_version_history.html">Version History</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/api.html#operation-definitions">Operation Definitions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../general/api.html#c">C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="unabridged_api.html">Full API</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="unabridged_api.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#enums">Enums</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#unions">Unions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#variables">Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#defines">Defines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../general/api_error_codes.html">Error Codes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../general/glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../general/api.html">API</a> &raquo;</li>
+        
+          <li><a href="unabridged_api.html">Full API</a> &raquo;</li>
+        
+      <li>Struct Qnn_Tensor_t</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="struct-qnn-tensor-t">
+<span id="exhale-struct-structqnn-tensor-t"></span><h1>Struct Qnn_Tensor_t<a class="headerlink" href="#struct-qnn-tensor-t" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_QnnTypes.h.html#file-include-qnntypes-h"><span class="std std-ref">File QnnTypes.h</span></a></p></li>
+</ul>
+<div class="section" id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nested-types">
+<h3>Nested Types<a class="headerlink" href="#nested-types" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="unionQnn__Tensor__t_1_1unnamed.html#exhale-union-unionqnn-tensor-t-1-1unnamed"><span class="std std-ref">Union Qnn_Tensor_t::unnamed</span></a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="struct-documentation">
+<h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="_CPPv412Qnn_Tensor_t">
+<span id="_CPPv312Qnn_Tensor_t"></span><span id="_CPPv212Qnn_Tensor_t"></span><span id="Qnn_Tensor_t"></span><span class="target" id="structQnn__Tensor__t"></span><em class="property">struct </em><code class="sig-name descname">Qnn_Tensor_t</code><br /></dt>
+<dd><p>A struct which describes the properties of a tensor. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t2idE">
+<span id="_CPPv3N12Qnn_Tensor_t2idE"></span><span id="_CPPv2N12Qnn_Tensor_t2idE"></span><span id="Qnn_Tensor_t::id__uint32_t"></span><span class="target" id="structQnn__Tensor__t_1a96f4feac4e1ff74eb213a3a4fd404790"></span>uint32_t <code class="sig-name descname">id</code><br /></dt>
+<dd><p>Unique integer identifier for a tensor. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t4typeE">
+<span id="_CPPv3N12Qnn_Tensor_t4typeE"></span><span id="_CPPv2N12Qnn_Tensor_t4typeE"></span><span id="Qnn_Tensor_t::type__Qnn_TensorType_t"></span><span class="target" id="structQnn__Tensor__t_1ae8d3393a842365fed5576ad4876f2e44"></span><a class="reference internal" href="enum_QnnTypes_8h_1aedf2127d917e35605f466d7d02f28f25.html#_CPPv416Qnn_TensorType_t" title="Qnn_TensorType_t">Qnn_TensorType_t</a> <code class="sig-name descname">type</code><br /></dt>
+<dd><p>Tensor type (Activation vs Static; User-provided vs native, etc) </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t10dataFormatE">
+<span id="_CPPv3N12Qnn_Tensor_t10dataFormatE"></span><span id="_CPPv2N12Qnn_Tensor_t10dataFormatE"></span><span id="Qnn_Tensor_t::dataFormat__Qnn_TensorDataFormat_t"></span><span class="target" id="structQnn__Tensor__t_1a12a0d8ba5bf90caedea3dca398270384"></span><a class="reference internal" href="file_include_QnnTypes.h.html#_CPPv422Qnn_TensorDataFormat_t" title="Qnn_TensorDataFormat_t">Qnn_TensorDataFormat_t</a> <code class="sig-name descname">dataFormat</code><br /></dt>
+<dd><p>Tensor data formatting in memory (refer to definition type for info) </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t8dataTypeE">
+<span id="_CPPv3N12Qnn_Tensor_t8dataTypeE"></span><span id="_CPPv2N12Qnn_Tensor_t8dataTypeE"></span><span id="Qnn_Tensor_t::dataType__Qnn_DataType_t"></span><span class="target" id="structQnn__Tensor__t_1aab0f60fd6dd5c07736888d4c7d1451af"></span><a class="reference internal" href="enum_QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534.html#_CPPv414Qnn_DataType_t" title="Qnn_DataType_t">Qnn_DataType_t</a> <code class="sig-name descname">dataType</code><br /></dt>
+<dd><p>Tensor data type (e.g: UINT8, FLOAT) </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t14quantizeParamsE">
+<span id="_CPPv3N12Qnn_Tensor_t14quantizeParamsE"></span><span id="_CPPv2N12Qnn_Tensor_t14quantizeParamsE"></span><span id="Qnn_Tensor_t::quantizeParams__Qnn_QuantizeParams_t"></span><span class="target" id="structQnn__Tensor__t_1a3e0a6265d5bd0e47b331a2594325008d"></span><a class="reference internal" href="file_include_QnnTypes.h.html#_CPPv420Qnn_QuantizeParams_t" title="Qnn_QuantizeParams_t">Qnn_QuantizeParams_t</a> <code class="sig-name descname">quantizeParams</code><br /></dt>
+<dd><p>Tensor quantization params. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t4rankE">
+<span id="_CPPv3N12Qnn_Tensor_t4rankE"></span><span id="_CPPv2N12Qnn_Tensor_t4rankE"></span><span id="Qnn_Tensor_t::rank__uint32_t"></span><span class="target" id="structQnn__Tensor__t_1adc5933d49fd3c818895e35e7fe76ad6a"></span>uint32_t <code class="sig-name descname">rank</code><br /></dt>
+<dd><p>Rank of both max and current dimensions. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t13maxDimensionsE">
+<span id="_CPPv3N12Qnn_Tensor_t13maxDimensionsE"></span><span id="_CPPv2N12Qnn_Tensor_t13maxDimensionsE"></span><span id="Qnn_Tensor_t::maxDimensions__uint32_tP"></span><span class="target" id="structQnn__Tensor__t_1aaef8976bd8afcb81aab75d0cd5bc4790"></span>uint32_t *<code class="sig-name descname">maxDimensions</code><br /></dt>
+<dd><p>Maximum tensor dimensions; Size is rank. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t17currentDimensionsE">
+<span id="_CPPv3N12Qnn_Tensor_t17currentDimensionsE"></span><span id="_CPPv2N12Qnn_Tensor_t17currentDimensionsE"></span><span id="Qnn_Tensor_t::currentDimensions__uint32_tP"></span><span class="target" id="structQnn__Tensor__t_1a73e804e2294bdfe66d5c8f1b89bff5a5"></span>uint32_t *<code class="sig-name descname">currentDimensions</code><br /></dt>
+<dd><p>Current tensor dimensions; Size is rank. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t7memTypeE">
+<span id="_CPPv3N12Qnn_Tensor_t7memTypeE"></span><span id="_CPPv2N12Qnn_Tensor_t7memTypeE"></span><span id="Qnn_Tensor_t::memType__Qnn_TensorMemType_t"></span><span class="target" id="structQnn__Tensor__t_1a7f8c69a656416cb2dca99ce407a1d7e8"></span><a class="reference internal" href="enum_QnnTypes_8h_1a8aa5af24d0ef672c240438f6f1db1a00.html#_CPPv419Qnn_TensorMemType_t" title="Qnn_TensorMemType_t">Qnn_TensorMemType_t</a> <code class="sig-name descname">memType</code><br /></dt>
+<dd><p>Tensor memory type. </p>
+</dd></dl>
+
+</div>
+<dl class="union">
+<dt id="_CPPv4N12Qnn_Tensor_t7unnamedE">
+<span id="_CPPv3N12Qnn_Tensor_t7unnamedE"></span><span id="_CPPv2N12Qnn_Tensor_t7unnamedE"></span><span class="target" id="unionQnn__Tensor__t_1_1unnamed"></span><em class="property">union </em><code class="sig-name descname">unnamed</code><br /></dt>
+<dd><p>Actual data contained in the tensor. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t7unnamed9clientBufE">
+<span id="_CPPv3N12Qnn_Tensor_t7unnamed9clientBufE"></span><span id="_CPPv2N12Qnn_Tensor_t7unnamed9clientBufE"></span><span id="Qnn_Tensor_t::unnamed::clientBuf__Qnn_ClientBuffer_t"></span><span class="target" id="unionQnn__Tensor__t_1_1unnamed_1aa334d7da6bf8c2b0d2208beb2d2fa690"></span><a class="reference internal" href="file_include_QnnTypes.h.html#_CPPv418Qnn_ClientBuffer_t" title="Qnn_ClientBuffer_t">Qnn_ClientBuffer_t</a> <code class="sig-name descname">clientBuf</code><br /></dt>
+<dd><p>Tensor data provided by client as a pointer to raw memory. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t7unnamed9memHandleE">
+<span id="_CPPv3N12Qnn_Tensor_t7unnamed9memHandleE"></span><span id="_CPPv2N12Qnn_Tensor_t7unnamed9memHandleE"></span><span id="Qnn_Tensor_t::unnamed::memHandle__Qnn_MemHandle_t"></span><span class="target" id="unionQnn__Tensor__t_1_1unnamed_1aacdf6d32c61cb7b47f2da983f0a0ef81"></span><a class="reference internal" href="file_include_QnnCommon.h.html#_CPPv415Qnn_MemHandle_t" title="Qnn_MemHandle_t">Qnn_MemHandle_t</a> <code class="sig-name descname">memHandle</code><br /></dt>
+<dd><p>Tensor data shared via a memory handle. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="structQnn__Version__t.html" class="btn btn-neutral float-right" title="Struct Qnn_Version_t" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="structQnn__ScaleOffset__t.html" class="btn btn-neutral float-left" title="Struct Qnn_ScaleOffset_t" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

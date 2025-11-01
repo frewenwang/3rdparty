@@ -1,0 +1,617 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tutorial #4: Converting and executing a model with dynamic weights &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Migrating from Hexagon-nn" href="dsp/hexnn_migration.html" />
+    <link rel="prev" title="Tutorial #3: Converting and executing a CNN model with custom operations with QNN" href="tutorial3.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantization.html">Quantization</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tutorial1.html">Tutorial #1: Executing a shallow model using custom op package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial2.html">Tutorial #2: Converting and executing a CNN model with QNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial3.html">Tutorial #3: Converting and executing a CNN model with custom operations with QNN</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutorial #4: Converting and executing a model with dynamic weights</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modifying-the-framework-model">Modifying the Framework Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#converting-the-model">Converting the Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#executing-the-model">Executing the Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dsp/hexnn_migration.html">DSP Tutorial: Migrating from Hexagon-nn to QNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sample_app.html">Sample App Tutorial: Create and build a sample C++ application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saver/saver_tutorial.html">QNN Saver Tutorial: Save execution sequence with Saver and replay on a backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="htp/htp_shared_buffer_tutorial.html">QNN HTP Shared Buffer Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="tutorials.html">Tutorials</a> &raquo;</li>
+        
+      <li>Tutorial #4: Converting and executing a model with dynamic weights</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tutorial-4-converting-and-executing-a-model-with-dynamic-weights">
+<h1>Tutorial #4: Converting and executing a model with dynamic weights<a class="headerlink" href="#tutorial-4-converting-and-executing-a-model-with-dynamic-weights" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial will show the steps needed to take the publicly available SESR-XL
+super resolution model and modify it so that different sets of weights can be used
+with the model dynamically during execution. The tutorial will use an Onnx version
+of SESR-XL as an example. The code snippets below will be specific to this model
+and will need to be modified to fit other use cases.</p>
+<p>For further information on the QNN converter and qnn-net-run tools used in this
+tutorial see: <a class="reference internal" href="tools.html"><span class="doc">Tools</span></a> and <a class="reference internal" href="tools.html#qnn-net-run"><span class="std std-ref">qnn-net-run</span></a>
+pages.</p>
+<p>This tutorial assumes general setup instructions have been followed
+at <a class="reference internal" href="setup.html"><span class="doc">Setup</span></a>.</p>
+<p>A full script containing all the steps in this tutorial can be found at ${QNN_SDK_ROOT}/examples/Models/SESR/full_script.sh</p>
+<p>The sections of the tutorial are as follows:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#setup">Setup</a></p></li>
+<li><p><a class="reference internal" href="#modifying-the-framework-model">Modifying the Framework Model</a></p></li>
+<li><p><a class="reference internal" href="#converting-the-model">Converting the Model</a></p></li>
+<li><p><a class="reference internal" href="#executing-the-model">Executing the Model</a></p></li>
+</ol>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>SESR is publicly available at <a class="reference external" href="https://github.com/ARM-software/sesr">https://github.com/ARM-software/sesr</a>. For this tutorial, the tensorflow model will first be converted to an Onnx model.
+Clone the SESR repository and setup a python enviroment:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">python3</span><span class="o">-</span><span class="n">venv</span><span class="w"></span>
+<span class="n">python3</span><span class="w"> </span><span class="o">-</span><span class="n">m</span><span class="w"> </span><span class="n">venv</span><span class="w"> </span><span class="n">pyenv</span><span class="w"></span>
+<span class="n">source</span><span class="w"> </span><span class="n">pyenv</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">activate</span><span class="w"></span>
+<span class="n">python</span><span class="w"> </span><span class="o">-</span><span class="n">m</span><span class="w"> </span><span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">U</span><span class="w"> </span><span class="n">pip</span><span class="w"></span>
+<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">tensorflow</span><span class="w"></span>
+<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">tensorflow_datasets</span><span class="o">==</span><span class="mf">4.1</span><span class="w"></span>
+<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">tf2onnx</span><span class="w"></span>
+<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">packaging</span><span class="w"></span>
+
+<span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="c1">//github.com/ARM-software/sesr</span>
+<span class="n">cd</span><span class="w"> </span><span class="n">sesr</span><span class="o">/</span><span class="w"></span>
+<span class="n">git</span><span class="w"> </span><span class="n">apply</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">Models</span><span class="o">/</span><span class="n">SESR</span><span class="o">/</span><span class="n">sesr</span><span class="p">.</span><span class="n">patch</span><span class="w"></span>
+<span class="n">export</span><span class="w"> </span><span class="n">PYTHONPATH</span><span class="o">=</span><span class="nl">$PWD</span><span class="p">:</span><span class="n">$PYTHONPATH</span><span class="w"></span>
+<span class="n">cd</span><span class="w"> </span><span class="p">..</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a better demonstration, the original tensorflow model is altered to use Relu activations and to include biases for the convolutions.
+A git patch with these changes can be found in ${QNN_SDK_ROOT}/examples/Models/SESR/sesr.patch</p>
+</div>
+<p>The following script can be executed to generate the configuration for a x2 super resolution SESR-XL used in this tutorial and convert it into a onnx model:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>import tensorflow as tf
+from models import sesr, model_utils
+import utils
+import tf2onnx
+
+FLAGS = tf.compat.v1.flags.FLAGS
+FLAGS.__delattr__(&#39;int_features&#39;)
+tf.compat.v1.flags.DEFINE_string(&#39;model_name&#39;, &#39;SESR&#39;, &#39;Name of the model&#39;)
+tf.compat.v1.flags.DEFINE_bool(&#39;quant_W&#39;, False, &#39;Quantize weights&#39;)
+tf.compat.v1.flags.DEFINE_bool(&#39;quant_A&#39;, False, &#39;Quantize activations&#39;)
+tf.compat.v1.flags.DEFINE_bool(&#39;gen_tflite&#39;, True, &#39;Generate TFLITE&#39;)
+tf.compat.v1.flags.DEFINE_integer(&#39;tflite_height&#39;, 512, &#39;Height of LR image in TFLITE&#39;)
+tf.compat.v1.flags.DEFINE_integer(&#39;tflite_width&#39;, 512, &#39;Width of LR image in TFLITE&#39;)
+tf.compat.v1.flags.DEFINE_integer(&#39;int_features&#39;, 32, &#39;Number of intermediate features within SESR (parameter f in paper)&#39;)
+
+model = sesr.SESR(
+   m=11,
+   feature_size=64,
+   LinearBlock_fn=model_utils.LinearBlock_c,
+   quant_W=FLAGS.quant_W,
+   quant_A=FLAGS.quant_A,
+   gen_tflite=FLAGS.gen_tflite,
+   mode=&#39;infer&#39;)
+model.compile()
+
+input_image = tf.random.uniform([1, FLAGS.tflite_height, FLAGS.tflite_width, 1])
+temp = model(input_image)
+tf2onnx.convert.from_keras(model, output_path=&quot;original_model.onnx&quot;)
+</pre></div>
+</div>
+</div>
+<div class="section" id="modifying-the-framework-model">
+<h2>Modifying the Framework Model<a class="headerlink" href="#modifying-the-framework-model" title="Permalink to this headline">¶</a></h2>
+<p>The original model has a single input of <code class="docutils literal notranslate"><span class="pre">1x512x512x1</span></code> and a single output of <code class="docutils literal notranslate"><span class="pre">1x1024x1024x1</span></code>.
+The framework model will be modified by removing the static weights and biases from the graph and
+substituting them with additional inputs to the graph. SESR-XL has 26 sets of weights and biases. The
+modified graph will have a total of 27 inputs.</p>
+<p>Python script to modify the Onnx framework model as described:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>import onnx
+from onnx import helper, numpy_helper
+from onnx import AttributeProto, TensorProto, GraphProto
+
+onnx_model = onnx.load(&#39;original_model.onnx&#39;)
+
+nodes = onnx_model.graph.node
+inputs = onnx_model.graph.input
+weights = onnx_model.graph.initializer
+
+for i,node in enumerate(nodes):
+   if node.op_type == &quot;Conv&quot;:
+      weight_name = node.input[1]
+      bias_name = node.input[2]
+      new_weight_name = weight_name + &quot;_as_input&quot;
+      new_bias_name = bias_name + &quot;_as_input&quot;
+
+      [weights_tensor] = [w for w in weights if w.name == weight_name]
+      [biases_tensor] = [b for b in weights if b.name == bias_name]
+      weights_tensor = numpy_helper.to_array(weights_tensor)
+      biases_tensor = numpy_helper.to_array(biases_tensor)
+
+      # create new tensors to be used as graph inputs
+      weights_as_input = helper.make_tensor_value_info(new_weight_name, TensorProto.FLOAT, weights_tensor.shape)
+      biases_as_input = helper.make_tensor_value_info(new_bias_name, TensorProto.FLOAT, biases_tensor.shape)
+      inputs.append(weights_as_input)
+      inputs.append(biases_as_input)
+
+      # create new copy of conv node that uses graph inputs for weights/biases instead
+      new_conv_node = onnx.helper.make_node(
+            &#39;Conv&#39;,
+            name=node.name + &quot;_dynamic&quot;,
+            inputs=[node.input[0], new_weight_name, new_bias_name],
+            outputs=node.output
+      )
+
+      # copy over attribute data to new conv node
+      for attribute in node.attribute:
+         if (attribute.type == AttributeProto.INTS):
+            new_conv_node.attribute.append(helper.make_attribute(attribute.name, attribute.ints))
+         if (attribute.type == AttributeProto.INT):
+            new_conv_node.attribute.append(helper.make_attribute(attribute.name, attribute.i))
+
+      # replace old conv node in the node list
+      nodes.remove(node)
+      nodes.insert(i, new_conv_node)
+
+try:
+   onnx.checker.check_model(onnx_model)
+except onnx.checker.ValidationError as e:
+   print(&#39;The modified model is not valid: %s&#39; % e)
+else:
+   print(&#39;The modified model is valid&#39;)
+
+onnx.save(onnx_model, &#39;modified_model.onnx&#39;)
+</pre></div>
+</div>
+<p class="centered" id="sesr-graph-topology">
+<strong><strong>Original Graph topology</strong></strong></p><div class="figure align-default">
+<img alt="../_static/resources/qnn_tutorial_sesr_original_topology.png" src="../_static/resources/qnn_tutorial_sesr_original_topology.png" />
+</div>
+<p class="centered" id="modified-sesr-graph-topology">
+<strong><strong>Modified Graph topology</strong></strong></p><div class="figure align-default">
+<img alt="../_static/resources/qnn_tutorial_sesr_modified_topology.png" src="../_static/resources/qnn_tutorial_sesr_modified_topology.png" />
+</div>
+<p>The weights will need to be extracted from the model to be used later as inputs to the graph:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>import onnx
+from onnx import helper, numpy_helper
+
+onnx_model = onnx.load(&#39;original_model.onnx&#39;)
+
+nodes = onnx_model.graph.node
+inputs = onnx_model.graph.input
+weights = onnx_model.graph.initializer
+
+for i,node in enumerate(nodes):
+   if node.op_type == &quot;Conv&quot;:
+      weight_name = node.input[1]
+      bias_name = node.input[2]
+      new_weight_name = (weight_name + &quot;_as_input&quot;).replace(&quot;/&quot;, &quot;_&quot;).replace(&quot;:&quot;, &quot;_&quot;)
+      new_bias_name = (bias_name + &quot;_as_input&quot;).replace(&quot;/&quot;, &quot;_&quot;).replace(&quot;:&quot;, &quot;_&quot;)
+
+      [weights_tensor] = [w for w in weights if w.name == weight_name]
+      [biases_tensor] = [b for b in weights if b.name == bias_name]
+      weights_tensor = numpy_helper.to_array(weights_tensor)
+      biases_tensor = numpy_helper.to_array(biases_tensor)
+
+      weights_tensor.tofile(new_weight_name + &quot;.raw&quot;)
+      biases_tensor.tofile(new_bias_name + &quot;.raw&quot;)
+</pre></div>
+</div>
+</div>
+<div class="section" id="converting-the-model">
+<h2>Converting the Model<a class="headerlink" href="#converting-the-model" title="Permalink to this headline">¶</a></h2>
+<p>When converting the model into a QNN float model, the dimensions of each graph input tensor need to be
+specified. Since the modified model has 26 more inputs than the original model, the converter command
+will need to specify the input dimensions of those additional input tensors:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Original</span><span class="w"> </span><span class="nl">model</span><span class="p">:</span><span class="w"></span>
+<span class="n">qnn</span><span class="o">-</span><span class="n">onnx</span><span class="o">-</span><span class="n">converter</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_network</span><span class="w"> </span><span class="n">original_model</span><span class="p">.</span><span class="n">onnx</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_dim</span><span class="w"> </span><span class="n">input_1</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">512</span><span class="p">,</span><span class="mi">512</span><span class="p">,</span><span class="mi">1</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">output_path</span><span class="w"> </span><span class="n">float_original_model</span><span class="p">.</span><span class="n">cpp</span><span class="w"></span>
+
+<span class="n">Modified</span><span class="w"> </span><span class="nl">Model</span><span class="p">:</span><span class="w"></span>
+<span class="n">qnn</span><span class="o">-</span><span class="n">onnx</span><span class="o">-</span><span class="n">converter</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_network</span><span class="w"> </span><span class="n">modified_model</span><span class="p">.</span><span class="n">onnx</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_dim</span><span class="w"> </span><span class="n">input_1</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">512</span><span class="p">,</span><span class="mi">512</span><span class="p">,</span><span class="mi">1</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_dim</span><span class="w"> </span><span class="n">input_sesr</span><span class="o">/</span><span class="n">linear_block_c</span><span class="o">/</span><span class="n">Conv2D</span><span class="o">/</span><span class="nl">ReadVariableOp</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_dim</span><span class="w"> </span><span class="n">input_sesr</span><span class="o">/</span><span class="n">linear_block_c</span><span class="o">/</span><span class="n">BiasAdd</span><span class="o">/</span><span class="nl">ReadVariableOp</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="mi">32</span><span class="w"> </span>\
+<span class="w">   </span><span class="p">...</span><span class="w"></span>
+<span class="w">   </span><span class="o">--</span><span class="n">input_dim</span><span class="w"> </span><span class="n">input_sesr</span><span class="o">/</span><span class="n">linear_block_c_12</span><span class="o">/</span><span class="n">Conv2D</span><span class="o">/</span><span class="nl">ReadVariableOp</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_dim</span><span class="w"> </span><span class="n">input_sesr</span><span class="o">/</span><span class="n">linear_block_c_12</span><span class="o">/</span><span class="n">BiasAdd</span><span class="o">/</span><span class="nl">ReadVariableOp</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">output_path</span><span class="w"> </span><span class="n">float_modified_model</span><span class="p">.</span><span class="n">cpp</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For converting and quantizing a QNN quant model, on top of the input_dim flags, extra consideration is needed.
+The converter will need to be provided an input list text file with paths to input raws that it will use to determine
+quantization ranges for the model’s tensors.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Original</span><span class="w"> </span><span class="nl">model</span><span class="p">:</span><span class="w"></span>
+<span class="n">qnn</span><span class="o">-</span><span class="n">onnx</span><span class="o">-</span><span class="n">converter</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_network</span><span class="w"> </span><span class="n">original_model</span><span class="p">.</span><span class="n">onnx</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_list</span><span class="w"> </span><span class="n">input_list</span><span class="p">.</span><span class="n">txt</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_dim</span><span class="w"> </span><span class="n">input_1</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">512</span><span class="p">,</span><span class="mi">512</span><span class="p">,</span><span class="mi">1</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">output_path</span><span class="w"> </span><span class="n">quant_original_model</span><span class="p">.</span><span class="n">cpp</span><span class="w"></span>
+
+<span class="n">Modified</span><span class="w"> </span><span class="nl">Model</span><span class="p">:</span><span class="w"></span>
+<span class="n">qnn</span><span class="o">-</span><span class="n">onnx</span><span class="o">-</span><span class="n">converter</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_network</span><span class="w"> </span><span class="n">modified_model</span><span class="p">.</span><span class="n">onnx</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_list</span><span class="w"> </span><span class="n">input_list_dynamic</span><span class="p">.</span><span class="n">txt</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_dim</span><span class="w"> </span><span class="n">input_1</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">512</span><span class="p">,</span><span class="mi">512</span><span class="p">,</span><span class="mi">1</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_dim</span><span class="w"> </span><span class="n">input_sesr</span><span class="o">/</span><span class="n">linear_block_c</span><span class="o">/</span><span class="n">Conv2D</span><span class="o">/</span><span class="nl">ReadVariableOp</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_dim</span><span class="w"> </span><span class="n">input_sesr</span><span class="o">/</span><span class="n">linear_block_c</span><span class="o">/</span><span class="n">BiasAdd</span><span class="o">/</span><span class="nl">ReadVariableOp</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="mi">32</span><span class="w"> </span>\
+<span class="w">   </span><span class="p">...</span><span class="w"></span>
+<span class="w">   </span><span class="o">--</span><span class="n">input_dim</span><span class="w"> </span><span class="n">input_sesr</span><span class="o">/</span><span class="n">linear_block_c_12</span><span class="o">/</span><span class="n">Conv2D</span><span class="o">/</span><span class="nl">ReadVariableOp</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_dim</span><span class="w"> </span><span class="n">input_sesr</span><span class="o">/</span><span class="n">linear_block_c_12</span><span class="o">/</span><span class="n">BiasAdd</span><span class="o">/</span><span class="nl">ReadVariableOp</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">output_path</span><span class="w"> </span><span class="n">quant_modified_model</span><span class="p">.</span><span class="n">cpp</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The original model’s input_list.txt would look as follows:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">input_01</span><span class="p">.</span><span class="n">raw</span><span class="w"></span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">input_02</span><span class="p">.</span><span class="n">raw</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">input_0N</span><span class="p">.</span><span class="n">raw</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For the modified model, in addition to the input image the weights will need to be passed in as inputs.
+Notice that the same weights are repeated for each of the input images that are used to quantize the model.
+This is necessary since different input images with the same weights will produce varying intermediate and
+final outputs that will need to be considered when deciding a quantization range that works in all cases.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">input_01</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">conv1_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">conv1_bias</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">conv2_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">input_02</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">conv1_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">conv1_bias</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">conv2_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">input_0N</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">conv1_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">conv1_bias</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">conv2_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Since the intention is to use the modified model with multiple sets of weights, it is critical that the model
+is quantized with all the sets of weights it will be used with. It’s also important to match the set of weights
+with the correct input images for that use case. In this example, assume there are 2 sets of weights
+(<code class="docutils literal notranslate"><span class="pre">usecase_A</span></code> and <code class="docutils literal notranslate"><span class="pre">usecase_B</span></code>) that the model will be used with. The input list would look as follows:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">input_01</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv1_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv1_bias</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv2_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">input_02</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv1_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv1_bias</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv2_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">input_0N</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv1_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv1_bias</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv2_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_B</span><span class="o">/</span><span class="n">input_01</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_B</span><span class="o">/</span><span class="n">conv1_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_B</span><span class="o">/</span><span class="n">conv1_bias</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_B</span><span class="o">/</span><span class="n">conv2_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_B</span><span class="o">/</span><span class="n">input_02</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_B</span><span class="o">/</span><span class="n">conv1_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_B</span><span class="o">/</span><span class="n">conv1_bias</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_B</span><span class="o">/</span><span class="n">conv2_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_B</span><span class="o">/</span><span class="n">input_0N</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_B</span><span class="o">/</span><span class="n">conv1_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_B</span><span class="o">/</span><span class="n">conv1_bias</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_B</span><span class="o">/</span><span class="n">conv2_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Quantizing a model with multiple sets of weights can have reduced accuracy compared to quantizing separate models for each set of weights.
+The converter may need to expand the quantization range of some tensors to accommodate the different sets of weights which can lead to increased quantization loss.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For more information on QNN model quantization see <a class="reference internal" href="quantization.html"><span class="doc">Quantization</span></a></p>
+</div>
+</div>
+<div class="section" id="executing-the-model">
+<h2>Executing the Model<a class="headerlink" href="#executing-the-model" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial assumes general setup instructions have been followed
+at <a class="reference internal" href="setup.html"><span class="doc">Setup</span></a>.</p>
+<p>First the model will need to be built into a lib.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Original</span><span class="w"> </span><span class="nl">model</span><span class="p">:</span><span class="w"></span>
+<span class="n">qnn</span><span class="o">-</span><span class="n">model</span><span class="o">-</span><span class="n">lib</span><span class="o">-</span><span class="n">generator</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="n">quant_original_model</span><span class="p">.</span><span class="n">cpp</span><span class="w"> </span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="n">quant_original_model</span><span class="p">.</span><span class="n">bin</span><span class="w"></span>
+
+<span class="n">Modified</span><span class="w"> </span><span class="nl">model</span><span class="p">:</span><span class="w"></span>
+<span class="n">qnn</span><span class="o">-</span><span class="n">model</span><span class="o">-</span><span class="n">lib</span><span class="o">-</span><span class="n">generator</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="n">quant_modified_model</span><span class="p">.</span><span class="n">cpp</span><span class="w"> </span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="n">quant_modified_model</span><span class="p">.</span><span class="n">bin</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the modified SESR-XL model, no modified_model.bin will be generated by <code class="docutils literal notranslate"><span class="pre">qnn-onnx-converter</span></code> because there are no remaining static weights in the graph. It is not required to pass
+in the bin to <code class="docutils literal notranslate"><span class="pre">qnn-model-lib-generator</span></code> in this case.</p>
+</div>
+<p>Next will be creating an input list to be used during execution. This is only difference between the original and modified model when executing.
+The original model will only need the input images to be fed in:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">input_01</span><span class="p">.</span><span class="n">raw</span><span class="w"></span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">input_02</span><span class="p">.</span><span class="n">raw</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">input_0N</span><span class="p">.</span><span class="n">raw</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The modified model will need to be provided weights/biases alongside the input image. In this example, the model will be used for <code class="docutils literal notranslate"><span class="pre">usecase_A</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">input_01</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv1_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv1_bias</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv2_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">input_02</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv1_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv1_bias</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv2_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">input_0N</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv1_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv1_bias</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">usecase_A</span><span class="o">/</span><span class="n">conv2_weights</span><span class="p">.</span><span class="n">raw</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+</pre></div>
+</div>
+<p>With the appropriate input list, the model can be executed by using the following:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Original</span><span class="w"> </span><span class="nl">model</span><span class="p">:</span><span class="w"></span>
+<span class="n">qnn</span><span class="o">-</span><span class="n">net</span><span class="o">-</span><span class="n">run</span><span class="w"> </span><span class="o">--</span><span class="n">backend</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">clang</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libQnnHtp</span><span class="p">.</span><span class="n">so</span><span class="w"> </span><span class="o">--</span><span class="n">model</span><span class="w"> </span><span class="n">libquant_original_model</span><span class="p">.</span><span class="n">so</span><span class="w"> </span><span class="o">--</span><span class="n">input_list</span><span class="w"> </span><span class="n">input_list</span><span class="p">.</span><span class="n">txt</span><span class="w"> </span><span class="o">--</span><span class="n">config_file</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">Models</span><span class="o">/</span><span class="n">SESR</span><span class="o">/</span><span class="n">HtpConfigFile</span><span class="p">.</span><span class="n">json</span><span class="w"></span>
+
+<span class="n">Modified</span><span class="w"> </span><span class="nl">model</span><span class="p">:</span><span class="w"></span>
+<span class="n">qnn</span><span class="o">-</span><span class="n">net</span><span class="o">-</span><span class="n">run</span><span class="w"> </span><span class="o">--</span><span class="n">backend</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">clang</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libQnnHtp</span><span class="p">.</span><span class="n">so</span><span class="w"> </span><span class="o">--</span><span class="n">model</span><span class="w"> </span><span class="n">libquant_modified_model</span><span class="p">.</span><span class="n">so</span><span class="w"> </span><span class="o">--</span><span class="n">input_list</span><span class="w"> </span><span class="n">input_list_dynamic</span><span class="p">.</span><span class="n">txt</span><span class="w"> </span><span class="o">--</span><span class="n">config_file</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">Models</span><span class="o">/</span><span class="n">SESR</span><span class="o">/</span><span class="n">HtpConfigFile</span><span class="p">.</span><span class="n">json</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Modifying a model to dynamically feed weights during execution time may require a much larger execution time compared to static weights. Weights and biases are manipulated before being used.
+With static weights this is done during graph prepare and would be ready for use at inference time. Dynamic weights need to be manipulated during inference and for every inference.
+The performance impact will vary depending on the amount/size of the weights tensors and which type of convolution is used.
+It is not recommended to use dynamic weights with Depthwise Convolution and fp16 convolutions.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For more information see  <a class="reference internal" href="tools.html#qnn-model-lib-generator"><span class="std std-ref">qnn-model-lib-generator</span></a> and <a class="reference internal" href="tools.html#qnn-net-run"><span class="std std-ref">qnn-net-run</span></a></p>
+</div>
+<p>Execution time can be further improved by storing the weights in quantized form. This removes the need to quantize the weights during execution time.
+The weights stored in float32 raw files can be quantized using the quantization parameters generated by the converter in <code class="docutils literal notranslate"><span class="pre">quant_modified_model_net.json</span></code>.
+The following script quantizes the float weights based on quantization parameters detailed in the json, and stores the weights back into raw files.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">import</span><span class="w"> </span><span class="n">json</span><span class="w"></span>
+<span class="n">import</span><span class="w"> </span><span class="n">numpy</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">np</span><span class="w"></span>
+<span class="n">import</span><span class="w"> </span><span class="n">argparse</span><span class="w"></span>
+<span class="n">import</span><span class="w"> </span><span class="n">sys</span><span class="w"></span>
+
+<span class="cp"># qnn data types to numpy mapping</span>
+<span class="n">qnn_to_numpy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="mi">776</span><span class="o">:</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">int8</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="mi">790</span><span class="o">:</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">int16</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="mi">818</span><span class="o">:</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">int32</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="mi">1032</span><span class="o">:</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="mi">1046</span><span class="o">:</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">uint16</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="mi">1074</span><span class="o">:</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">uint32</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">quant_types</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">776</span><span class="p">,</span><span class="w"> </span><span class="mi">790</span><span class="p">,</span><span class="w"> </span><span class="mi">818</span><span class="p">,</span><span class="w"> </span><span class="mi">1032</span><span class="p">,</span><span class="w"> </span><span class="mi">1046</span><span class="p">,</span><span class="w"> </span><span class="mi">1074</span><span class="p">]</span><span class="w"></span>
+<span class="n">QNN_TENSOR_TYPE_APP_WRITE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="n">dynamic_weight_substring</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;_as_input&quot;</span><span class="w"></span>
+
+<span class="n">with</span><span class="w"> </span><span class="n">open</span><span class="p">(</span><span class="s">&quot;quant_modified_model_net.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;r&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="nl">json_file</span><span class="p">:</span><span class="w"></span>
+<span class="w">   </span><span class="n">quant_json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">json_file</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">for</span><span class="w"> </span><span class="n">tensor_name</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">quant_json</span><span class="p">[</span><span class="s">&quot;graph&quot;</span><span class="p">][</span><span class="s">&quot;tensors&quot;</span><span class="p">]</span><span class="o">:</span><span class="w"></span>
+<span class="w">      </span><span class="n">tensor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">quant_json</span><span class="p">[</span><span class="s">&quot;graph&quot;</span><span class="p">][</span><span class="s">&quot;tensors&quot;</span><span class="p">][</span><span class="n">tensor_name</span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="n">tensor_data_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tensor</span><span class="p">[</span><span class="s">&quot;data_type&quot;</span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="n">tensor_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tensor</span><span class="p">[</span><span class="s">&quot;type&quot;</span><span class="p">]</span><span class="w"></span>
+
+<span class="w">      </span><span class="cp"># find dynamic weight graph input</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tensor_type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">QNN_TENSOR_TYPE_APP_WRITE</span><span class="w"> </span><span class="n">and</span><span class="w"></span>
+<span class="w">            </span><span class="n">tensor_data_type</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">quant_types</span><span class="w"> </span><span class="n">and</span><span class="w"></span>
+<span class="w">            </span><span class="n">dynamic_weight_substring</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">tensor_name</span><span class="p">)</span><span class="o">:</span><span class="w"></span>
+<span class="w">            </span><span class="n">float_file_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;{}.raw&quot;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">tensor_name</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">quant_file_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;{}_quant.raw&quot;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">tensor_name</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">numpy_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qnn_to_numpy</span><span class="p">[</span><span class="n">tensor_data_type</span><span class="p">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="cp"># load float weights, quantize and store back out</span>
+<span class="w">            </span><span class="n">float_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">float_file_name</span><span class="p">,</span><span class="w"> </span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tensor</span><span class="p">[</span><span class="s">&quot;quant_params&quot;</span><span class="p">][</span><span class="s">&quot;scale_offset&quot;</span><span class="p">][</span><span class="s">&quot;scale&quot;</span><span class="p">]</span><span class="w"></span>
+<span class="w">            </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tensor</span><span class="p">[</span><span class="s">&quot;quant_params&quot;</span><span class="p">][</span><span class="s">&quot;scale_offset&quot;</span><span class="p">][</span><span class="s">&quot;offset&quot;</span><span class="p">]</span><span class="w"></span>
+<span class="w">            </span><span class="n">type_min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">numpy_type</span><span class="p">).</span><span class="n">min</span><span class="w"></span>
+<span class="w">            </span><span class="n">type_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">numpy_type</span><span class="p">).</span><span class="n">max</span><span class="w"></span>
+<span class="w">            </span><span class="n">quant_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">clip</span><span class="p">((</span><span class="n">float_data</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">scale</span><span class="p">).</span><span class="n">round</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="n">type_min</span><span class="p">,</span><span class="w"> </span><span class="n">type_max</span><span class="p">)).</span><span class="n">astype</span><span class="p">(</span><span class="n">numpy_type</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">quant_data</span><span class="p">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">quant_file_name</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>With quantized weights and inputs, the model can be run as follows:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">qnn</span><span class="o">-</span><span class="n">net</span><span class="o">-</span><span class="n">run</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_data_type</span><span class="w"> </span><span class="n">native</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">backend</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">clang</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libQnnHtp</span><span class="p">.</span><span class="n">so</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">model</span><span class="w"> </span><span class="n">libquant_modified_model</span><span class="p">.</span><span class="n">so</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">input_list</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">Models</span><span class="o">/</span><span class="n">SESR</span><span class="o">/</span><span class="n">input_list_dynamic_quant</span><span class="p">.</span><span class="n">txt</span><span class="w"> </span>\
+<span class="w">   </span><span class="o">--</span><span class="n">config_file</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">Models</span><span class="o">/</span><span class="n">SESR</span><span class="o">/</span><span class="n">HtpConfigFile</span><span class="p">.</span><span class="n">json</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dsp/hexnn_migration.html" class="btn btn-neutral float-right" title="Migrating from Hexagon-nn" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorial3.html" class="btn btn-neutral float-left" title="Tutorial #3: Converting and executing a CNN model with custom operations with QNN" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

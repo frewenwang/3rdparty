@@ -1,0 +1,1194 @@
+
+.. #=============================================================================
+   #
+   #  Copyright (c) 2020-2022 Qualcomm Technologies, Inc.
+   #  All Rights Reserved.
+   #  Confidential and Proprietary - Qualcomm Technologies, Inc.
+   #
+   #=============================================================================
+
+=============================
+QNN - Qualcomm Neural Network
+=============================
+
+QNN is a software development kit for building AI based applications.
+It provides tools and extensible per-accelerator libraries with uniform API,
+enabling flexible integration and efficient execution of machine/deep learning networks on Qualcomm chipsets.
+
+Contents
+--------
+
+- Converter tools to translate and optionally quantize source networks into sequence of QNN API calls.
+- Per-accelerator backend libraries implementing QNN API
+- OpPackage based backend extensibility
+- Test tools to exercise backend libraries and converted networks
+- Sample applications, OpPackage examples
+- QNN SDK Reference Guide
+
+Dependencies
+------------
+
+Point your web browser to ${QNN_SDK_ROOT}/docs/general/setup.html
+
+=============
+Release Notes
+=============
+
+
+1.15.0
+======
+
+**07/07/2022**
+
+QNN API version: v1.12.0
+
+- Op Definitions:
+   - Added GatherElements op definition.
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* OpDef:
+    - Added op definition for GatherElements.
+    - Updated Quantize Op to allow FxP16 datatype for output and DeQuantize Op to allow FxP16 datatype for input.
+* Tools:
+    Converters:
+      Onnx:
+        - Added support for the --batch and --define_symbol options which allow overriding all input batch dimensions and input dimensions which leverage variable names.
+      tflite:
+        - Add support for DetectionOutput.
+    Quantizer:
+      - Add support for float datatype in encoding json file. Also added --float_bw paramter to set float bit-width as 16/32 bits. 
+* HTA:
+   Op:
+    - added support for rounding mode param in Pool.
+* GPU:
+   - Move kernel repo to QNN Context config.
+   - Support QNN GPU OpPackage generator.
+* HTP:
+   - Improve performance of A16W8 softmax kernel.
+* SDK:
+   - Added tutorial for using zero-copy / shared buffer with HTP backend.
+
+
+Bugs
+~~~~
+* OpDef:
+    - Fix ReduceMax axes param shape.
+* HTP:
+   - fixed bug in per-channel tensors due to data type used.
+   - Transform sub to addsub even when input2 is exactly input1.
+   - Tile layernorm by batch.
+* Tools:
+    Quantizer:
+       - Added fix to enable Gather layer quantization parameter optimization.
+
+1.14.0
+======
+
+**06/03/2022**
+
+QNN API version: v1.12.0
+
+- Op Definitions:
+   - Added Resize op definition.
+   - LSTM: Add optional outputs.
+   - L2Pool2d, PoolAvg2d, MaxPool2d: Fix issue with incorrect rank for pooling op stride params and enforce value to be greater than zero.
+   - ScatterNd: Allow duplicate indices when reduction param in NONE.
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* OpDef:
+   - Add Resize op def.
+   - Add optional outputs to LSTM.
+* Tools:
+    Converters:
+         - Added support for Onnx GatherND translation in Converters.
+         - Added a check that the consumer is elementwise Op before expanding Constant tensor ranks.
+         - Added an optimization to squash ReduceL2 and Div Op into L2Norm Op.
+         - Added optimization to detect and squash a pattern of low-level Ops into Gelu Op.
+      Onnx:
+        - Reenabled converter command line input dtype to take precedence over model specified.
+        - Added support for GRU op unrolling.
+* DSP:
+     - Fixed FC performance issue of ETH AIB5 crnn model.
+   Op:
+    - support Nv12toRGB.
+* GPU:
+    - Added support for tensor type constraints in super node.
+* CPU:
+     - added support for optional gate outputs of the LSTM op.
+   Op:
+    - Added support for SoftPlus.
+    - Added support for GatherND
+* HTP:
+     - The MaxPool op example in OpPackage is updated with newer implementation that use Q6 function.  It shows how one can use Q6 functions in OpPackage.
+   Op:
+    - Added support for Elementwise And.
+    - Added support for Elementwise Atan.
+   SDK:
+    - Added tutorial about converting and executing a model with dynamic weights.
+
+Bugs
+~~~~
+* OpDef:
+      - Fix issue with incorrect rank for pooling op stride params and enforce value to be greater than zero.
+    ScatterNd:
+      - Allow duplicate indices when reduction param in NONE.
+* Tools:
+    Converters:
+      - Updated handling of coefficient shape in Prelu and fixed calculation of output shape when reshaping 4D Matmul to FC layer.
+      - Fixed the Constant activation tensor datatype for quantized models.
+      - Added change to use the correct weights and bias bitwidth when they are not static inputs to Conv/ConvTranspose Ops.
+      - Fixed the output shape calculation for SpacetoBatch and BatchToSpace Ops to return int instead of float.
+* HTP:
+    - fixed issue with threads stuck in PUASE state.
+    - Fix instance where some ElementWiseSub and ElementWiseAdd ops were not appearing in layer list when debug mode used.
+
+1.13.0
+======
+
+**05/10/2022**
+
+QNN API version: v1.12.0
+
+- Op Definitions:
+  - Added beta and threshold params to ElementWiseSoftplus.
+  - Added GatherNd op definition.
+  - Added PoolAvg3d op definition.
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+
+* OpDef:
+   - Added beta and threshold optional params to ElementWiseSoftplus.
+   - Added Op definition for PoolAvg3D.
+   - Added Op definition for GatherND.
+* Tools:
+    Converters:
+        - Added support for Relay IR's requantize op that can be seen in framework quantized models.
+        - Modified the error message reported when the conversion fails due to an unsupported op.
+        - Added 5D tensor annotations NCDHW and NDHWC support.
+        - Updated documentation to label Onnx Cast support.
+        - Fixes scale calculation for ONNX Resize Operator for align_corner mode.
+        - Overrides Resize input axis format as per source axis order.
+        - Updated the error message given when the input_list file provided for quantization was empty to provide more clarity.
+        - Added an optimization that merges low-level Ops into Prelu Op.
+      ONNX:
+        - Added support to resolve static ONNX Cast operation as Constant.
+        - Fixed implementation details for Conv1D and Pool1D Ops.
+* GPU:
+   - Support splitting across the batch dimension for rank=4 input.
+   - Support concatenation of rank=1 inputs and dimension > 16384.
+   - Added support for using GL buffers via context custom config.
+   - Added support for NV12toRGB Op.
+* HTA:
+   - Remove libQnnHta.so and libQnnHtaNetRunExtensions.so from x86 target.
+* HTP:
+   - Added API support which allows client to associate QNN context to one specific HTP core for SoC which has multiple HTPs. This feature is only supported for offline prepared graph.
+   - Optimized Transpose for better vtcm utilization.
+* DSP:
+    Op:
+      - Support for Lstm.
+* CPU:
+    Op:
+      - 5D tensor support for Relu op.
+      - Added support for Atan.
+
+Bugs
+~~~~
+* Tools:
+    Converters:
+        - Removed unnecessary .json artifact created when running converters.
+      TF:
+        - Fixed issue with translating explicit padding from Conv Op.
+* HTP:
+   - Fixed offline prepare issue related to VTCM for certain network configurations.
+   - Fixed VTCM size related graph prepare failure for certain network configurations.
+   - Fixed offline prepare failure on some networks quantized for 16bit activations.
+* HTA:
+   - Fixed QnnGraph_execute issue in some stress test validation scenarios.
+* CPU:
+   - Fix bug with the profiling event name.
+
+1.12.0
+======
+
+**03/31/2022**
+
+QNN API version: v1.12.0
+
+- Headers:
+  - Converted models must be recompiled.
+  - Added QnnContext_createFromBinaryWithConfig.
+
+- Op Definitions:
+  - Added Conv3d op definition.
+  - Added CumulativeSum op definition.
+  - Added ElementWiseAtan op definition.
+  - Added ElementWiseSoftplus op definition.
+  - Added TransposeConv3d op definition.
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* OpDef:
+    - Added Op definition for CumulativeSum.
+    - Added Op definition for Conv3D.
+    - Added Op definition for TransposeConv3D.
+* Op:
+    DSP:
+      - support Rsqrt.
+      - support SquaredDifference.
+    HTP:
+      - Added support for OneHot (int8, int16)
+* Tools:
+    Converters:
+        - Added override of datatype in Cast Op to clip the max float type to float32.
+        - Override datatype for float64 Constant tensors to be float32 as the max supported float datatype.
+        - Added new pattern to fold ReduceL2 + Div as L2Norm.
+      Onnx:
+        - Added ability in Onnx converter to run onnx simplifier with skipped optimizations in case the default simplification fails.
+        - Added an error if Resize/Upsample Op has dynamic scales or sizes input since it is unsupported by any backend.
+        - Enabled support of CumSum operator.
+      TF:
+        - Added translation for CumSum operator enabling conversion of the Op.
+      Caffe:
+        - Added support for Caffe Scale where the scale weights are of shape [batch,channels] and axis == 0
+    Quantizer: 
+        - Added performance optimizations for Convert operation used in mixed precision models.
+* HTP:
+    - Cumulative Sum op is supported in uint8.
+* HTP INT16:
+    - optimize short channel DepthToSpace at last layer.
+* CPU:
+     - Added support to execute the BIG model on CPU.
+    op: 
+      - Added cumulative sum op support
+    Ops:
+      - 5D tensor support for Gather op
+      - 5D tensor support for Slice op
+      - 5D tensor support for Concat op
+      - 5D tensor support for transpose op
+* DSP:
+    - Support rounding mode param in pool op.
+* HTA:
+    - Fix accuracy of HTA cubic activation nodes located right before ConCat node.
+
+Bugs
+~~~~
+* CPU:
+    - BIG Model support
+* DSP:
+    - fix a quantize op hookup issue.
+* HTP:
+    - Fixed Stability Issues.
+    - Fix failure in QnnGraph_finalize for certain custom graphs.
+* Tools:
+    Converters:
+        - Fixed bug in ONNX LSTM converter which ignored bias values between 1 and 0.
+        - Update the Constant Op tensor, for the Op that adds 1 to the  Detection out class output, as not quantizable.
+      Onnx: 
+        - Added support for combination of Nearest and Half_pixel modes for ResizeOp
+* HTP: 
+    - Improve execution performance of FP networks that use Prelu.
+
+1.11.2
+======
+
+**04/01/2022**
+
+QNN API version: v1.11.0
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* HTA:
+    - Fix accuracy of cubic activation nodes located right before Concat node. 
+
+Bugs
+~~~~
+
+
+
+1.11.0
+======
+
+**03/04/2022**
+
+QNN API version: v1.11.0
+
+- Headers:
+  - Added Qnn_ContextBinarySize_t typedef used in context caching APIs.
+
+- Op Definitions:
+  - PoolAvg2d / PoolMax2d: Added optional rounding_mode param.
+
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* OpDef:
+   1. Add new optional param for rounding mode (ceil/floor) to compute output dimensions from the Pool op.
+* API:
+   1. Added a typedef for Qnn_ContextBinarySize_t and usage in the relevant APIs and data structures.
+* CPU:
+   1. Added 5D tensor support for Elementwise Add op.
+   2. Added 5D tensor support for Elementwise Sub op.
+   3. Added 5D tensor support for Elementwise Mul.
+   4. Added int32 support for Gather Op input.
+   5. Added 5D tensor support for ScatterNd op.
+   6. Add 5D tensor support for Elementwise Div.
+   7. Added 5D tensor support for Reshape and Squeeze ops.
+* Op:
+   CPU:
+    1. Added support for Nv12ToRgb.
+* Tools:
+   Converters:
+    1. Updated converter command line input dtype to take precedence over model specified.
+    2. Updated Tensor quantization to based on dtype by default.
+    3. Enabled support for Onnx models exported from Keras which would have NHWC inputs.
+    4. Added a command line argument --input_layout to provide hints to the converter to enable such conversions.
+* HTA:
+   1. Added support for QnnBackend_validateOpConfig API.
+
+Bugs
+~~~~
+* Tools: 
+   Converter:
+    1. Fixed error where inputs for nms op were not all properly added during optimization.
+    2. Fixed RoiAlign infer output shape to use num rois for ImplodeBatch case.
+    3. Fixed axis format handling for multiple 3d tensor usecases.
+    4. Fixed output dtype for RangeOp to use input dtype per spec.
+    5. Fixed improper tensor quantization for non float usecases.
+* HTP:
+   1. Fixed issue with Cast op usage in certain configurations.
+
+
+1.10.0
+=====
+
+**01/31/2022**
+
+QNN API version: v1.10.0
+
+
+- Op Definitions:
+  - DepthToSpace: Added optional mode param. 
+
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* Op: Added support for new parameter in DepthToSpace that determines how the elements of the input tensor should be rearranged
+* Op:DSP: Support for ReduceSum
+* Op: DSP: Added support for keep_dims in FullyConnected
+* Op: DSP: Added support for ND in Batchnorm
+* Tools: ONNX Converter: Added support for ScatterND
+* CPU: Supported INT32 for add/mul/relu op
+* Tool: Converters: Deprecated broadcasting of MatMul operands
+* Op: CPU: Added support for broadcasting in MatMul
+* DSP: Renamed libQnnDspV65/V66StubRpc.so libs to libQnnDspV65/V66Stub.so. This effectively removes deprecated backend library.
+* Tools: ONNX Converter: Limited support for Expand operator when it can be interpreted as a noop from operator attributes
+* Tools: ONNX Converter: Resolves issue where Shape operator translation could fail if the input was part of the initializer list
+
+Bugs
+~~~~
+* Tool: ONNX Converter: Fixed handling of models with inputs of unknown shape 
+* Tool: Converter: Made adjustment to always have full path for model.cpp location in json similar to model.bin
+* Tools: Converter: Enabled broadcasting of weights and bias for BatchNorm layer to match channel dimensions
+* Tools: ONNX Converter: Resolves issue where the converter could fail to get info and data types of outputs tensors specified via the command line
+* Op:DSP: fixed support for SpaceToBatch
+* HTP: Fixed QnnGraph_execute to properly return error when execution fails on HTP skel side
+* CPU: Fixed variation in quantization encoding.
+
+
+
+1.9.0
+=====
+
+**12/23/2021**
+
+QNN API version: v1.9.0
+
+- Headers:
+  - QnnSystemContext: Introduce reflection API that provides info about contents of QNN
+                      context binaries, which can be utilized during execution of pre-cached contexts.
+  - QnnLog: Promote log level VERBOSE ahead of DEBUG. DEBUG logs are now reserved for
+            internal debugging, and setting level to DEBUG provides no more info than VERBOSE logs.
+  - QnnCommon: Add new error error code QNN_COMMON_ERROR_CONNECTION_RESET to indicate
+               HW-related failures that render all contexts and graphs invalid. Apps will require
+               resetting QNN objects constructed thus far to resume proper functioning.
+  - QnnCommon: Introduce new quantization encoding schemes to express variable bitwidths
+               within specified data types. This primarily enables expressing 4-bit quantized data.
+
+- Op Definitions:
+  - New Ops: ScatterND
+  - ElementWiseRSqrt: Clarify handling of negative elements in that the op behavior is
+                      undefined.
+
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* Op:DSP: support ElementWiseExp
+* Op:DSP: support ElementWiseAbs
+* Op:DSP: support Hv2DspOpExtractGlimpse
+* Op:DSP: support Hv2DspOpArgbToRgb
+* GPU: Allow multiple whitelisted super node data type constraints.
+* GPU: Support added for memory object layout and offsets in QnnGpuOpPackage.h.
+* Op:DSP: support GenerateProposals
+* HTP: AltPrep libraries are removed.  Please use libQnnHtp and libQnnHtpPrepare libraries instead. 
+* SDK: Update documentation to reflect QnnSystemContext usage
+* Tool: Converter: Updated inaccurate macs/params calculations for Ops
+* API: Lower DEBUG log level below that of VERBOSE in QnnLog_Level_t. Also, setting log level to DEBUG offers no more logs than those at VERBOSE level.
+* Tools: Harmonize command-line option for logging by replacing deprecated option '--verbose' with '--log_level'.
+* Op: HTP: Add FP16 support for ElementwiseFloor
+* Op: DSP: Add support for output_padding attribute for output_dim calculation in TransposeConv2d
+* Op: GPU: Improved performance of DetectionOutput 
+* Op: HTP: Add FP16 support for ElementWiseCeil
+* HTP: Removed non-rpc V68 libQnnHtp.so. Use libQnnHtpV68.so instead (introduced in 1.7.x release)
+* Op: Gpu: Add QNN_DATATYPE_INT_32 support (broadcast only) for ElementwiseAdd
+* Tool: Converter: Adds support for NV12 color conversion
+* Tool: Converter: Fixed axis tracking bug for permute when input is btf format. 
+* Tool: Converter: Removed obsolete ssd_permute_param parameter in caffe converter permute translation
+* Tool: qnn-sample-app: Added support for the usage of QnnSystem API.
+* OpDef: Added Op definition for ScatterND. Not yet supported on any backend.
+* Op: CPU: Added support for ScatterND
+
+Bugs
+~~~~
+* QNN DSP: export QnnDspProperty.h in include directory of released sdk
+* OpDef: Added clarification about behavior with negative values in input for ElementwiseRsqrt op.
+* Saver: Fixed variable naming issue when separate contexts re-used a graph name
+* GPU: Fix issue where StridedSlice may not finalize properly on Snapdragon 778G.
+* Tools: Quantization: Fix for weight enabled op inputs to convolution when using per-channel quantization.
+* HTP: Fixed some model accuracy issues when quantized with 16bits
+* Op: HTP: Improved Concat performance
+* DSP: disable setting power without voltage corner which causes regression
+* OP: DSP: Fix accuracy issue of TransposeConv2d
+* Tools: Converters: Fixed coefficient input broadcasting issue for ONNX Prelu operation
+* Tool: Converter: Changed QNN model.so c++ linking to static.
+This means that libc++_shared.so will not be produced as an artifact of qnn-model-lib-generator any longer, as that dependency is satisfied internally within the model library. Applications that may reference this artifact should be updated to not do so starting with this release. 
+
+
+
+1.8.0
+=====
+
+**12/08/2021**
+
+QNN API version: v1.8.0
+
+- Headers:
+  - QnnGraph: Clarify that nodes must be added in dependency order.
+  - QnnGraph: Added new error code in QnnGraph_addNode to report dependency order enforcemen
+  - QnnGraph: Clarify that tensor IDs must be unique in the context the tensor is created.
+  - QnnGraph: Clarify that tensor IDs used in an offline-prepared context binary must match
+              to those created at runtime for execution
+
+- Op Definitions:
+  - Matmul: Allow broadcasting on input operands.
+  - New Ops: NV12toRGB
+  - ElementWise: Clarify handling of tensors with different ranks for ElementWise ops.
+  - Convert: Remove Quantization constraints on convert op.
+  - FullyConnected: Added optional keep_dims param.
+
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* Tool: QNN Converter: Added support for calculating Multiply and Accumulate(MACs) and Param count metrics per node which is saved with the model_net.json output of QNN converters.
+* OpDef: Add a section in QNN documentation about how mismatch in dimensions of two tensors is handled in the case of binary elementwise operations.
+* Tool: Onnx Converter: Added support in dry-run mode to handle reporting ops that are not in onnx schema domain
+* API: tensor IDs are expected to be unique in a context. Graph and context tensors cannot share tensor IDs. Users are required to use the same tensor IDs during graph execution that were used in creating them, possibly during an offline preparation stage.
+* Op:DSP: support BoxWithNmsLimit
+* Op: GPU: Support SquaredDifference
+* Tools: OpPackageGenerator: Verified all the references of deprecated ALL_DATATYPES are removed in the Op package generator
+* API: Enforce the requirement that nodes can be added to a graph only in strict order of dependency.
+* Op: GPU: Support UnPack
+* Op:DSP: Support for Reduce Sum
+* Op:DSP: Support for Unpack
+* Op:DSP: support Correlation1D
+* Op:DSP: Support for RoiPooling
+* Op:DSP: Support for Reduce Min Max
+* Tool: Converter: SDK Doc updated to include qnn_model_net.json structure
+* Tools: Converters: TFlite: Enabled conversion of BERT style models
+* Op: GPU: Support DetectionOutput
+* OpDef: Allow broadcasting on MatMul operands so that clients need not expand dimensions to achieve parity when constructing the model.
+* Tools: Converters: Added command line argument to override data type for inputs
+* Op: GPU: Support half_pixel_centers parameter for ResizeNearestNeighbor 
+* DSP: enable offline prepare of Hv2 non-rpc backend library
+* GPU: Added performance hints via context custom config.
+* Op: GPU: Support LayerNorm
+* OpDef: Add support for new param to retain dims of input tensor in FullyConnected op.
+* OpDef: Add Op definition for NV12 to RGB conversion. Not yet supported on any backend.
+
+Bugs
+~~~~
+* GPU: Fix issue where BatchNorm cannot handle large input dimensions.
+* DSP: fixed the Regression on unit tests of stub and skel.
+* Tool: TF Converter: Fixed LeakyRelu conversion issue with INT16 embeddings
+* HTP: PoolAvg2d optimizations 
+* HTP: Fixed mem leak when dlopen/dlclose libQnnHtpPrepare.so
+* Op: HTP: added INT16 support for ReflectionPad2d
+* HTP: Fixed possible deadlock in between graph execution and tear-down
+* HTP: Accuracy improvements for several models.
+* HTP: Fixed eltwise add uint16 fallback.
+
+
+
+1.7.2
+=====
+
+**10/30/2021**
+
+QNN API version: v1.7.0
+
+- Headers:
+  - QnnGraph: Introduce new error code in QnnGraph_execute to report invalid tensor inputs.
+ 
+- Op Definitions:
+  - ALL: Deprecate use of notation 'any datatype' for tensors used in some ops;
+         replaced with 'backend specific' to indicate that BEs decide what they support. 
+  - StridedSlice: Update begin in 'ranges' param to be strictly non-negative. 
+  - ElementwiseSquaredDifference: Add new op for element-wise squared difference.
+  - BatchNorm: Relax op def to permit N-dimensional inputs, subject to BE support.
+  - InstanceNorm: Relax op def to permit N-dimensional inputs, subject to BE support.
+
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* GPU: Update QnnGpuOpPackage.h API data structures to consume arrays of pointers.
+* Tools:Caffe Converter: Warn for uninitialized weight/bias parameters in the BatchNorm layer and initialize them to default values.
+* Tools: Converters: Enabled support for conversion of Cast Op in TFlite and Pytorch converters
+* Tool:qnn-throughput-net-run: Allow backend extension config file to be passed on per thread entry for concurrent execution in the app
+* GPU: New SuperNode feature added which triggers a QNN GPU API major version increment to 2.0.0.
+* HTA: Added support of 16 bit operations for: AveragePool, MaxPool, ElementWiseSum, ElementWiseSub, ElementWiseProd, ResizeNearestNeighbor, ResizeBilinear, Conv2D, DepthwiseConv2D, TransposeConv2D, Relu, Relu6, Prelu, Tanh, Sigmoid, HardSwish, Concat, Softmax
+* CPU: Improved inference performance 
+* HTP: Introduced new libraries to facilitate better functional decoupling. See SDK documentation for details.
+* Op:GPU: Added support for ElementwiseCos Op
+* HTP: Added V69 support to Op Package sample code
+* HTP: Added support for HMX TO config through perf settings for non-rpc case
+* API: Update to error code on QnnGraph_execute() when a tensor supplied to the inputs/outputs arguments is invalid/malformed.
+* QNN HTP: Support output_padding param for HTP float version of QNN Transpose op.
+* GPU: Remove deprecated precision modes.
+* HTP: added HTP API revision history
+* Tool: Converters: Added support for dynamic weights 
+* QNN HTP: Non-rpc V68 libQnnHtp.so is to be deprecated in QNN 1.7 and a renamed libQnnHtpV68.so to be introduced. In 1.9, the deprecated one will be removed.
+* OpDef: Added op for elementwise squared difference.
+
+Bugs
+~~~~
+* Saver: Allow parsing of NULL tensor dimensions
+* GPU: Fix issue where optional bias tensors for Batchnorm, MatMul, or TransposeConv2d could cause finalize to fail.
+* CPU: Fixed accuracy issue in Image Projective op
+* GPU: Fix issue where StridedSlice input rank is not correctly validated.
+* GPU: Fix issue where validation may fail if Reduce params change order.
+* Tool: qnn-op-package-generator: fixed bug causing custom op package generation failure for CPU backend
+* QNN HTP: Support 2 customer network use-cases in float runtime
+* HTP: Fixed possible crash in QnnBackend_terminate when process gets destroyed 
+* HTP: Fixed handling of tensor dimension pointers in OpConfig tensor struct to be API compliant
+* CPU: Fixed a possible buffer overflow that could cause a crash during graph preparation
+* HTP OpDef: Added support for data type UINT32 in Concat op.
+* GPU: Fix issue in backend extension where ill-formed config could be passed to the backend.
+* HTP: Fixed possible deadlock scenario in HMX timeout control
+
+
+
+1.6.0
+=====
+
+**10/06/2021**
+
+QNN API version: v1.5.0
+
+- Headers:
+  - ALL: Direct access to QNN component API is now suppressed. Users have to access them
+         strictly through QnnInterface.
+  - QnnMem: Introducing component header with APIs to register externally allocated memory.
+
+- Op Definitions:
+  - StridedSlice: Capture expectations in corner cases; describe hierarchy of applying params
+  - StridedSlice: Fix bug with validation when end range is negative.
+  - InstanceNorm: Add new optional param 'normalized_variance'.
+  - ElementwiseCos: Add new op for element-wise cosine.
+
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* QNN Tools: Converters: Adds support for Caffe Power scale/shift parameters
+* GPU: Support INT32 input and output for Reshape op.
+* HTP: Added support to configure HMX timeout for hysteresis feature
+* HTP: Op package relu example has been updated with a more optimized version, it now includes multiple examples of optimization rules, and it also demonstrates interactions with QNN HTP native ops.
+* Op: DSP: Added support for Cast
+* OpDef: Add new operator definition for Elementwise Cosine.
+* OpDef: Add clarifications to StridedSlice op behavior about parameter precedence in slicing the input. Add additional clarifications around corner-case behaviors.
+* API: Introduce QnnMem as a core component API to allow users to register externally allocated memory with QNN backends in order to achieve 'zero-copy' inference.
+* API: Upgraded core API version to API-1.5.0.
+* HTP: remove libQnnHtpStub.so and libQnnHtpSkel.so from QNN SDK 
+* OpDef: Added a new optional param 'normalize_variance' defaulting to true to InstanceNorm.
+* GPU: Support TransposeConv2d output_padding param
+* Tools: Add option '--shared_buffer' to indicate to users that qnn-net-run exercises shared buffers between application and QNN backends to speed up network inference.
+* HTP: backward incompatible API changes in QnnDspBackend_CustomConfig_t, custom config  API enhancement to accept non-binary parameters (enums, structures, e.t.c) 
+
+Bugs
+~~~~
+* HTP: Optimized mirror padding for better vtcm utilization
+* CPU: Fix bug with BoxWithNmsLimit op
+* CPU: Handling 0 indices value for split op
+* Tool: qnn-net-run: Fixed a bug to close profile handle before backend is terminated.
+* GPU: Fix issue when Cast operation has input dims larger than 32768.
+* OpDef: Fix bug in validation code for StridedSlice.
+* Tools: TF Converter: Added check to verify 1D(or squeezable to 1D) weights/biases for batchnorm sequence matching and if not resolve as eltwise.
+* Tool: TF Converter: Fixed an erroneous validation that was failing for a sequence of Split op followed by Mul Op.
+* Core: Fixed bboxTransform validator code
+* Tools: Converters: Fixes Softmax and Reduction Ops to have default case for output_buf axis format
+* OpDef: Fixed validation criterion for ranges in StridedSlice.
+
+
+
+1.5.0
+=====
+
+**09/09/2021**
+
+QNN API version: v1.4.1
+
+- Headers:
+  - QnnGraph: Clarify that graphs with zero nodes are invalid, and will fail finalize step.
+  - QnnGraph: Clarify that graphs cannot have optional input or output tensors.
+
+- Op Definitions:
+  - LSTM: Clarify that peephole weights are specified as 1D vector because they are
+          essentially diagonal matrices.
+
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* API: Version update to 1.4.1 including minor documentation changes.
+* Tools: qnn-net-run and other inference tools will start using log level ERROR by default, so some of the messages that showed up previously will be absent. To turn on more logging use tag 'verbose'.
+* Tools: qnn-tensorflow-converter: Adds support for LSTM models with SVD hidden and input weights. The converter will attempt to perform a static multiplication of the split U and V orthogonal matrices into a single set of weights.
+* Op:HTP: Optimized Softmax implementation 
+* Op:HTP: Updated LayerNorm support
+* Op: GPU: Support ResizeBilinear half_pixel_centers parameter.
+* OpDef: Peephole weights in the LSTM OpDef are theoretically 2D matrices but expressed as 1D owing to the fact that they are essentially diagonal matrices and are more efficiently expressed that way.
+* Op: GPU: Concat: Allow axis == 0 for 4D inputs.
+* Tool: Pytorch Converter: Add initial Pytorch converter.
+* SDK: Added documentation describing the new Pytorch converter support
+* Tool: Caffe Converter: Added support for Reduction Sum, Reduction Mean Op translation in Caffe frontend and added support for Scale layer in QNN backend lowering
+* Tools: TF Converter: Added support for converting the Tensorflow GELU operation
+* Tool: TF Converter: Added support for detecting eltwise pattern for batchnorm layer with fakequant inputs
+
+Bugs
+~~~~
+* Tool: Converters: Removes extraneous dequantize op added when casting from quantized to non-quantized tensors.
+* Tool:qnn-throughput-net-run: Fixed concurrent backend initialization call in the app
+* GPU: Fix issue where QnnOpPackage_logInitialize is called multiple times.
+* Op: GPU: Fix issue where non-static DepthWiseConv2d bias tensors failed during finalize.
+* CPU: Added uint32,int32,int64,int8,uint8 support for strided slice op
+* Tools: TF Converter: Fixed static coeff extraction for prelu layer to traceback const origin instead of verifying only immediate node input tensors.
+* Tool:qnn-throughput-net-run: Fixed initModelInLoop option for serialized model usecase
+* Tool: Converters: Added batch dimension to anchor input data conversion from tensorflow corner style to center style for DetectionOutput operation optimization
+* GPU: Fix issue when failing to finalize a graph with some configurations of a Pack operation.
+* HTP: fix race condition in BE initialization from multiple threads
+* Tool: TF Converter: Enabled layernorm sequence detection and fixed a couple of other issue in Identity output handling, eltwise constant subgraph patterns, etc to enable conversion of transformer style models
+* QNN : add the support of "FakeQuantWithMinMaxVarsPerChannel" node in tensorflow
+
+
+
+1.4.2
+=====
+
+**07/30/2021**
+
+QNN API version: v1.4.0
+
+- Headers:
+  - QnnCommon: QnnSdkBuild.h, which was previously included in QnnCommon.h has been moved out
+
+- Op Definitions:
+
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* Converter: Tflite: Added converter support for Pack op
+* SDK: Added API version history in Doc under API tab
+* Tools: Converter: Support for TF LSTM ops has been added to the qnn-tensorflow-converter. 
+* Op:CPU: added support for OneHot
+* Converters: ONNX Converter: Added support for quantize/dequantize operators
+* Op:GPU: Added support for ElementwiseCeil
+* Op: GPU: Support ElementWiseRound
+* Op: GPU: Concat: Allow axis == 0 for 4D inputs.
+* GPU: Performance improvements in FP16 precision mode.
+
+Bugs
+~~~~
+* Op:GPU: Fix issue with ArgMax memory initialization after first inference pass.
+* Op:CPU: Fixed bug in LSTM Op which was causing accuracy drop
+* GPU: Fix issue when FullyConnected in[2] bias tensor has type QNN_TENSOR_TYPE_NULL.
+
+
+
+1.3.2
+=====
+
+**07/23/2021**
+
+QNN API version: v1.3.0
+
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+
+Bugs
+~~~~
+* HTP:Op: Fixed an accuracy issue with StridedSlice implementation
+
+
+
+1.3.0
+=====
+
+**07/05/2021**
+
+QNN API version: v1.3.0
+
+- Headers:
+  - QnnOpPackage: Remove support for QnnOpPackage_ImplementationV1_3_t.
+                  Custom op packages created with older versions need to upgrade to V1.4.
+  - QnnTypes: Add new enum for expressing precision types.
+  - QnnProfile: Remove support for deprecated profile types. Use corresponding 'units'.
+  - QnnProfile: Add new profiling unit: COUNT
+
+- Op Definitions:
+  - DetectionOutput: Clarify that o/p box coordinates are normalized to [0, 1]
+                     and not absolute coordinates.
+  - StridedSlice: Add new param 'new_axes_mask'.
+  - Transpose: Allow op to have rank-1 inputs.
+  - Slice: Fix range for 'split_index' to go up to rank of input tensor.
+  - L2Norm: Add vector equivalent of axis as new param called 'axes'.
+  - Convert: Allow mixed precision modes by accepting i/p and o/p tensors with equal or
+             proportional scales and offsets.
+
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* API: Removed deprecated profiling event types in QnnProfile.h
+* Op:DSP: Support for ImageProjectionTransform
+* Op:DSP: Support for BatchMatMul
+* API: Added new profiling unit type QNN_PROFILE_EVENTUNIT_COUNT.
+* OpDef: Added new param 'axes' for L2Norm.
+* GPU: Implement recordable command queues to improve inference performance
+* Tool: Converters: Added support for OneHot operation to QNN converter
+* API: New enum added for precision types supported in QNN. Currently only lists floating point precision types to distinguish between 32-bit and 16-bit floating point values.
+* Converters: Tflite: Added support for gather op
+* Converters: Tflite: Added support for flatten op
+* Converters: Tflite: Added support for pad op
+* Converters: Tflite: Added support for strided slice 
+* Converters: Tflite: Added support for sigmoid op
+* Op: CPU: Optimize across channel LRN ops computation
+* Op: CPU: Added support of new_axis_mask for strided slice.
+* Converters: Common: Updated op squashing logic to attempt a squash into subsequent op when node's input buffer has multiple consumers
+* API:HTP: Backend now allows re-initialization after it has been terminated using QnnBackend_terminate.
+* GPU: Add QnnGpuGraph_CustomConfig_t option to enable/disable recordable command queue feature. 
+* GPU: Backend specific API version updated from 1.1.0 to 1.2.0
+* CPU: Backend specific API version updated from 1.0.0 to 1.1.0
+* HTP: Backend specific API version updated from 2.0.0 to 2.1.0
+* DSP: Backend specific API version updated from 1.0.0 to 2.1.0. Version in QNN SDK 1.2.0 should had been 2.0.0.
+* Tool: TF Converter: Added CastOp support for TF. 
+* Tool: TF Converter: Added support for static subgraph resolutions at conversion time.
+* Tool: TF Converter: Fixed bug in TF fullyconnected translation where input was intermittently out-of-order. 
+* Tool: TF Converter: Added support for tensor dtype for TF fill op translation.
+* Tool: Converters: Removes pre-broadcasting of constant tensors resulting in smaller file sizes in converter output
+* HTP: removed interface v1.3 support from opPackage
+* Tool: qnn-net-run: Update android example to use unsigned dsp libraries in the SDK.
+* API: Removed QnnOpPackage_ImplementationV1_3_t from QnnOpPackage API. Use V1_4 instead. All custom op packages previously compiled with older interface versions need to be upgraded and recompiled with V1_4.
+* OpDef: Fix range of values that can be assigned to param 'split_index' of Split op to include rank of input tensor.
+* API: Updated core API version to 1.3.0.
+* Op: CPU: GELU op support
+* Tool: Converter: Added Converter support for Nd Reshape layer
+* HTA: Introduce HTA backend in the QNN SDK.
+* HTA: Added documentation for HTA backend in the SDK.
+* HTP: tensor axis is supported for L2Norm op
+* Tool: qnn-op-package-generator: Upgrades interface version for all CPU and HTP generated op packages to 1.4
+* Tool: qnn-op-package-generator: The createKernels interface function within generated op packages has been replaced with createOpImpl as a result of the interface version upgrade to 1.4. Note that createKernels API support has been deprecated for CPU generated op packages, and that packages containing createKernels need to be re-generated.
+* API: CPU: Support QnnOpPackage.h OpImpl
+* OpDef: Allow transpose op to accept 1D vectors as input tensors, i.e tensors with rank 1.
+* OpDef: Allow Convert op to process tensors with mixed precision by permitting input and output quantization scales to be exactly equal and adjusting min-max ranges.
+* HTP: Enabled DLBC feature through backend specific API. Experimental/alpha level feature support. 
+* Op: CPU: Layernorm Op support
+* Tool: Converter: The output padding attribute for the ONNX ConvTranspose operation has been incorporated into the QNN TransposeConv2d op produced by the converter. The previous behavior, which inserted a Pad op following the TransposeConv2d op when output padding was non-zero, has been deprecated.
+* Converters: ONNX: Added support for NonMaxSuppression and updated Cast op ensure proper type tracking
+
+Bugs
+~~~~
+* Saver: Add missing NULL pointer initialization in saver_output.c 
+* Saver: Fix incorrect return value check for fclose() in saver_output.c
+* GPU: Fix failing op validation for SpaceToBatch
+* GPU: Improve StridedSlice 4-D input tensor performance
+* GPU: Improve ElementwiseBinary broadcast accuracy for large dimensions
+* HTP: Fixed prepare failure for 16bit Mul op with both inputs as flat TCM layout.
+* HTP: Optimized specific unpack->elementwise sequences
+* Tool: Converter: Fixed tensor datatype for TensorFlow EltwiseSquareOp's power param to expected float32
+* Tool: Converter: Fixes output shape miscalculation for prelu in TF converter caused when coeff input is ND
+* OpDef: Clarify that output box coordinates of DetectionOutput are normalized floating point coordinates in the range [0,1]. Users are expected to convert them back to original image coordinates by scaling with image height and width if they are intended to be rendered back on the output image.
+* HTP: Tile large width/height avgpool with stride==width/height to fix vtcm issue
+* Tool: qnn-profile-viewer: added support to report units memory and count.
+* GPU: Add support for Conv2d in[2] bias tensor to be QNN_TENSOR_TYPE_NULL
+* Tool:qnn-throughput-net-run: Fixed incorrect interval between graph execute calls
+* HTP/DSP: fixed API to make it C compatible. Removed default initializer value from QnnDspBackend_CustomConfig_t.
+* HTP: Fixes stack corruption issue during yielding logic.
+* CPU: OP: StridedSlice bug fix
+
+
+
+1.2.4
+=====
+
+**11/11/2021**
+
+QNN API version: v1.2.0
+
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+
+Bugs
+~~~~
+* HTP: Fixed several issues that caused failures in concurrent execution scenarios: graph id mapping issue, clearing of htp data on terminate, stack corruption issue.
+
+
+
+1.2.2
+=====
+
+**08/04/2021**
+
+QNN API version: v1.2.0
+
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+
+Bugs
+~~~~
+* HTP: Fix the memory leak issue caused by the Graph not being removed on stub when calling
+   QnnContext_free API
+
+
+
+1.2.0
+======
+
+**05/31/2021**
+
+QNN API version: v1.2.0
+
+- Headers:
+ - QnnGraph: Clarified expectations on several API arguments and usage.
+             Execute API can handle null inputs for fully static graphs
+             Execute API matches tensor info through ID and uses previously provided info.
+             Graphs can contain 'unconsumed tensors' that don't feed into any other node.
+
+- Op Definitions:
+ - ConvTranspose: Add new param output_padding to op definition.
+ - ElementwiseExp: Add data type extensions to support fixed point runtimes.
+ - New Ops: ElementWiseFloorDiv, ElementWiseFloorRound, ElementWiseFloorCeil,
+            Gelu, UnPack, OneHot, LayerNorm
+
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* GPU: Reduce large init times seen for FP16 graphs with transposed weights.
+* Tool:Converter: Added supported for Onnx WhereOp
+* GPU: QnnContext_getBinarySize and QnnContext_getBinary now callable multiple times.
+* CPU: Op: Supported output padding for ConvTranspose
+* OpDef: Added Op definition for Elementwise Unary Ceil.
+* OpDef: Added Op definition for Elementwise Unary Round.
+* Tool: qnn-net-run: Added a new option --log_level to set maximum log level and deprecated --verbose option.
+* OpDef: Added op definition of elementwise divide and floor.
+* OpDef: Add UnPack op definition
+* HTP: Added capability to set GraphConfig options in QNN HTP Backend extensions
+* API: QNN Graphs can now be composed with some non APP_READ tensors to remain unconsumed. That is, NATIVE tensors need not all be necessarily connected to another node in the graph as inputs, and can remain 'unconsumed'.
+* API: Fully static QNN graphs can now be executed with no inputs. Backend support is optional and can be queried using the QNN_PROPERTY_GRAPH_SUPPORT_NULL_INPUTS capability. 
+* API: Clarify what attributes of Qnn_Tensor_t are permitted to be modified by user in QnnGraph_execute() API.
+* GPU: Add support for QNN_PROFILE_EVENTTYPE_NODE_MEMORY_BYTES
+* OpDef: Added GELU op definition
+* OpDef: Added OneHot op definition 
+* OpDef: Added LayerNorm op definition
+* Tools: Converters: Added ONNX converter support for Unpack
+* HTP: performance improvements for RPC calls
+* HTP/DSP: Removed HMX power control API from PerfInfrastructure. New major revision for QNN HTP and DSP API.
+* Tools: ONNX Converter: Added support for Elementwise Round operation
+* Tools: TF Converter: Added support for Elementwise Round operation
+* Tool: ONNX Converter: Adds support for Elementwise Ceil op
+* Tool: TF Converter: Adds support for Elementwise Ceil op
+* HTP: print OP name and OP ID when there is VTCM allocation error.
+* Tools: Quantizer: Fixed grouped per-channel quantization
+* Saver: Rename output file model.c to saver_output.c for clarity 
+* SDK: Updated SDK docs to include a detailed description of the Saver backend and a tutorial on how to compile and replay saver_output.c
+* DSP: Updated context binary image format version to reflect use of new serialization method. 
+
+Bugs
+~~~~
+* GPU: Fix bug in ArgMax and ArgMin validation for 0-D sized output tensor
+* GPU: Fix issue that can cause QnnContext_getBinary to fail
+* Tool: Converter: Fixed missing post-reshape issue with NMS conversion when multiple features use output of NMS as indices to gather layers
+* GPU: Fix bug in Dequantize operation regarding how offset was used
+* Tool: Converter: Fixed negative axes handling for Reduction Ops.
+* GPU: Hybrid precision mode bug fix for Conv2d inputs with three channels.
+* GPU: Fix context caching bug which resulted in valid serializations but a varying size
+* Saver: Fixed variable redeclaration in model.c when using multiple graphs
+* Tools: Converters: Added support for ONNX ConstantOfShape and Range Ops with static inputs. Added support to resolve static subgraphs in ONNX model as Constant during conversion.
+* HTP: Fixed backend crash when farf logging is enabled due to memory corruption in fastrpc.
+* Tool: Converter: Fixed bug where batcnorm folding was broken for certain op sequences.
+* HTP: fixed stability issue in concurrent serialized models execution case  
+* HTP: fixed retrieving multiple contexts using QnnContext_createFromBinary
+* HTP: fixed QnnInterface initialization issue in HtpAltPrep backend when loaded with other backends in the same process
+* HTP: Fixed issues with HMX hysteresis control that could lead to execution failures
+* HTP: Multi batch models give consistent accuracy
+
+
+
+1.1.0
+======
+
+**04/30/2021**
+
+QNN API version: v1.1.0
+
+- Headers:
+ - Renamed Qnn_NotifyFunc_t to Qnn_NotifyFn_t (for naming compliance).
+   Considered backwards compatible as this type is not used/supported yet.
+
+- Op Definitions:
+ - Topk: Added support for INT32 datatype in indices output.
+ - Correlation1D: Fixed output tensor shape definition. No change in BE behavior.
+
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* Op:DSP: support Prelu
+* GPU: Improve precision mode enums for readability. See QnnGpuGraph.h for deprecations.
+* GPU: Add backend version to QnnGpuOpPackage_GlobalInfrastructure_t
+* Op:HTP: uint32 type support added to Cast op
+* GPU: Support Transpose with 5D input/output.
+* API: Renamed Qnn_NotifyFunc_t to Qnn_NotifyFn_t (for naming compliance). Considered backwards compatible as this type has not been used/supported yet.
+* OpDef: Updated Topk to allow INT32 datatype for indices output.
+* GPU: Context caching version increased to 1.1.0. Caches from 1.0.0 are compatible.
+* Saver: Switch model.c to invoke QNN APIs via QnnInterface  
+* DSP: Add op name in detailed profiling data log.
+* HTP: Enable hysteresis for HMX power on/off to improve performance.
+* HTP: added support to deserialize one graph while the other one executes.
+* HTP: Adjusted profiling measure points to reflect more accurate timing between components
+* Op:DSP: Support for gather
+* GPU: QnnGpu_DeviceProperties_t tier field replaced with string tierName field.
+* Tools: Converters:  Added Converter support for TF 1.6.0 MatMul Op
+* Tools: Converters:  Added constants for fixed Op attribute values and replaced corresponding occurrences of string literals in Converters.
+* Op:DSP: support ElementWiseDivide
+* Op:DSP: support Depthwise Conv2D with depth multiplier greater than 1
+* Op:DSP: Support for Pack
+* Backends: Adopted uniform naming in per-op (detailed) profiling events: <Qnn_OpConfig_t::name>:<backend specific info if any>
+* Op:HTP: added Nv21ToRgb op, UFIXED_POINT_8 input/output type
+* Tools: qnn-op-package-generator: Added validateOpConfig interface function to generated packages which ontains simple validation checks based on information provided in XML config.
+* HTP: QNN HTP op packages header files has changed, therefore changes are needed in HTP op package source files:
+  Replace #include "typical_op.h" with #include "op_register_ext.h" and recompile the op packages.
+* GPU: Added custom profile reader which outputs JSON data.
+
+Bugs
+~~~~
+* GPU: Fix FP16 performance issue in the FullyConnected operation.
+* Tools: TFLite Converter: Fixes issue where Tanh op resulted in output tensor of all 0's
+* Op: Fix end_mask bug in StridedSlice validation
+* OP:HTP: Argmin fixed input type definition to support uint16
+* GPU: Fix error when adding context tensor with QNN_TENSOR_TYPE_NULL type.
+* GPU: Fix QnnProperty API return codes.
+* GPU: Fix Batchnorm accuracy bug when in[2] data type differs from in[0].
+* SDK: Fixed envsetup.sh to allow -h option
+* OpDef: Fixed output tensor shape in definition of Correlation1D. No change in BE behavior.
+* Saver: Fix memleak when profile objects were not explicitly freed
+* Tools: TFLite Converter: Fixes an issue where ElementwiseOps translation resulted in several backend failures.
+* HTP: Update total execute cycles to include inference on multiple HVX threads in detailed profiling
+* Op: Relaxed datatype validation for Quantize and Dequantize
+* Tool: Tensorflow Converter: fixed issue with constant coeff input to multiple Prelu layers.
+* Tool: Tensorflow Converter: Resolves issue where TF Mul was not being translated correctly
+* Tool: Converter: Fixed support in Onnx converter for translating Clip Op when min and max are provided as Constant Nodes.
+  Additionally, fixed the min/max default for the Clip Op translation to be actual float32 min and max instead of -inf to inf
+* Op: Fixed a bug in FullyConnected op validation
+* Saver: Fixed bug in backend validateOpConfig function, Qnn_Param_t, should be Qnn_Param_t*
+
+
+
+1.0.0
+======
+
+**04/02/2021**
+
+QNN API version: v1.0.0
+
+- Headers:
+  - QnnInterface: Introduce concept of exposing QNN APIs through 'providers'.
+  - Backends register their API interface as provider for users to access instead of direct
+        access to direct APIs that shall be deprecated in a future release.
+  - All APIs: Mark raw usage as deprecated; users need to access them through QnnInterface
+  - All APIs: Introduce helper macros for safe initialization of QNN data structures.
+  - QnnError.h: Remove this header from SDK, though it can still be used internally
+  - QnnCommon: Introduce error codes reserved for saver tool
+  - QnnProperty: Remove deprecated property keys from API header
+  - QnnGraph: Add caveats to tensor handling in graph execute
+  - QnnTypes: Add clarity to usage of error codes in API error handles
+  - QnnOpPackage.h: Simplify packageInfo in QnnOpPackage_Info_t to be a single pointer
+
+- Op Definitions:
+  - Gather: Change data type for indices to INT32 to match source framework definitions
+  - DetectionOutput: Fix dims of anchor positions to include batch
+  - LSTM: Enforce data dype for LSTM params to FLOAT32
+  - DepthWiseConv2D: Update def to state that channel_out can be a multiple of channel_in
+  - Pack: Axis param can have max value equal to rank of input tensor.
+
+
+Changelog
+---------
+
+Features
+~~~~~~~~
+* API: Simplify package info field in QnnOpPackage_Info_t to be a single pointer instead of a double pointer.
+* SDK: Updated documentation about TF 2.3 / ONNX 1.6 support
+* SDK: Tools: Added documentation for qnn-tflite-converter
+* API: Rearrange APIs in each QNN component header to adhere to common conventions.
+* API: Raw QNN APIs are now deprecated. Access them via QnnInterface instead.
+* HTP: updated perfInfrastructure API, added createPowerConfigId and destroyPowerConfigId methods. 
+* Tool: qnn-net-run: --debug option will not be allowed in conjunction with --retrieve_context.
+* Tool: qnn-context-binary-generator: Addition of a new option --enable_intermediate_outputs to enable all intermediate outputs in the generated context binary.
+* API: Clarify that only lower 16 bits of Qnn_ErrorHandle_t contain actual return type from an API. The rest of the bits are reserved for internal use.
+* GPU: Allow unconsumed NATIVE tensors
+* API: Introduce new error code for reporting invalid op configuration specified in certain QNN APIs.
+* SDK: Added documentation for QNN DSP custom op package generation
+* OpDef: Switch some LSTM params from being BE_SPECIFIC to concrete data types (FLOAT_32).
+* API: Remove QnnError from API offering until real use-cases evolve.
+* OpDef: Allow DepthWiseConv2d channel out to be a multiple of channel in
+* Tool:qnn-op-package-generator: Add aarch-64 compile target to op package generated makefiles
+* DSP: update Op table for QNN Property API support
+* Tool: TFLite Converter: Added support for ceil_mode parameter on pool ops
+* API: Remove QNN_PROPERTY_CORE_SUPPORT_ASYNC_EXECUTION and QNN_PROPERTY_CORE_SUPPORT_SIGNALS from QnnProperty.h
+* API: Reserve dedicated error code range for Saver backend
+* SDK: Updated requirements list to include lxml for python.
+* Tool:Converters: Enabled support of tanh Op in the TFlite converter. 
+* Tool:Converters: Enabled support of depth_to_space Op in the TFlite converter.
+* Tool:Converters: Enabled support of resize_bilinear and resize_nearest_neighbor Op in the TFlite converter
+* GPU: Support QnnInterface.h
+* GPU: Memory usage improvement for contexts created from cache
+* HTP: Added support for target string in QnnBackend_RegisterOpPackage
+* HTP: Updated supplement documentation indicating support for reduce ops with keepdims=false
+* SDK: Documentation: Updated software diagram in Overview section
+* GPU: Updated QnnGpuOpPackage.h regarding memory object requests
+* Tool: Converters: Cleans up ElementwiseBinary and Elementwise optimizations
+* Tool: Converters: Improves detection and removal of disconnected nodes
+* HTP: added QNN Property API support
+* Tool:Converters: Enabled support for transpose_conv Op in the TFlite converter.
+* API: Add QNN_PROPERTY_OP_PACKAGE_SUPPORTS_DUPLICATE_NAMES property to QnnProperty
+* Tool: qnn-sample-app: updated sample app to use QnnInterface API.
+* Tool: Converter: Updates QNN ToolsUtility to use QnnInterface for constructing graphs.
+* HTP: added QnnInterface API support
+* GPU: Backend extension config file format now requires graph_names to support custom graph config options
+* DSP: Updates for QNN Property API support
+* Saver: Add support for QnnGraph_retrieve()
+* Saver: Add support for QnnContext APIs - getBinarySize(), getBinary(), and createFromBinary()
+* GPU: Simplify op pkg API specialization by not depending upon OpenCL types
+* GPU: QnnProfile support added to context caching APIs
+* Tool: Converter: Bug fixes to support DETR model with onnx converter
+* Saver: Remove support for custom inputs to model.c
+* HTP: Added Op validation support
+* Op:CPU: Optimize Relu_min_max
+* API: Introduce macros to assist clients to do safe initialization of QNN data structures.
+* API: QnnInterface API is fully functional. Clients are expected to switch to accessing APIs through QNN interface rather than the deprecated method of direct invocation.
+* Op:HTP: Added support for MatMul
+* Op:DSP: Support for Caffe SSD model
+* HTP: Add profiling support to arm prepare library
+* Tool: qnn-net-run: Deprecated options --backend_extensions and --save_context have been removed.
+  - Backend extensions can now be supplied with configuration files in .json format.
+  - Context binary saving is now supported by a new tool called qnn-context-binary-generator.
+* GPU: Updated QNN GPU SDK docs.
+* GPU: Support QNN_GPU_PRECISION_HYBRID.
+* Tool: Converter: Removed deprecated command line quantization_encodings option used for quantizing model using json encodings file
+* Tools: Quantizer: Added a optimization to ensure concat quantization output encodings match input ranges and removed the pooling optimization which was causing degradations in accuracy.
+* HTP: Added support for Context Priority configuration via QnnContext_setConfig() API
+* SDK: Updated names for arm android and linux host targets to arm-android, aarch64-android, x86_64-linux-clang
+* Tool:qnn-onnx-converter: Added support for LSTM
+* SDK:Documentation: Added Tutorial #3 which introduces a step by step guide to converting and executing CNN models with custom operations including generation of compatible QNN Op packages containing custom operation implementations.
+* Op:DSP: support Split
+* Op:DSP: support DepthToSpace and SpaceToDepth
+* DSP: Added support for Op validation
+* Saver: Add support for QnnProperty APIs - hasCapablity(), get(), and free()
+* Saver: Add support for QnnLog APIs - initialize(), setLogLevel(), and terminate(). Add option to enable logging in model.c via command line
+* Saver: Add support for QnnProfile APIs - create(), getEvents(), getSubEvents(), getEventData(), and free()
+
+Bugs
+~~~~
+* OpDef: Fix value range for axis param in Pack op.
+* HTP: Fixed issues with detailed profiling which could lead to a crash
+* API: Mark correct error codes as return values from QnnProfile APIs.
+* OpDef: Fix data type specification for Prelu in HTP op definition supplement.
+* Tool:qnn-throughput-net-run: Fixed missing dlopen/dlclose issue
+* Tool: Converter:  fixed bugs to properly handle input_types for 'time_series' and 'other' command line options
+* DSP: fix the issue caused by caffe ssd
+* Tool: Converter: Fixed bias folding bug resulting in broadcasted shape
+* Tool: Converter: Removes restrictions from caffe converter translation for network input shapes to support ND
+* Tool:ONNX Converter: Fixed a shape issue with certain structures including FC.
+* Op:CPU: Fixed Cast op name to match op definition
+* Tool: Converter: Added restriction in converter for BatchNorm and InstanceNorm to require 4D input per QNN OpDef spec.
+* Tool: Quantizer: A race condition was fixed that might result in integer overflow.
+* Tool: Converter: Fixed inconsistent network topology flow differing between runs for larger models with forking nodes.
+
+

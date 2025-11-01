@@ -1,0 +1,385 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File QnnLog.h &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quantization.html">Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File QnnLog.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-qnnlog-h">
+<span id="program-listing-file-include-qnnlog-h"></span><h1>Program Listing for File QnnLog.h<a class="headerlink" href="#program-listing-for-file-qnnlog-h" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_include_QnnLog.h.html#file-include-qnnlog-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/QnnLog.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">//=============================================================================</span>
+<span class="c1">//</span>
+<span class="c1">//  Copyright (c) 2019-2021 Qualcomm Technologies, Inc.</span>
+<span class="c1">//  All Rights Reserved.</span>
+<span class="c1">//  Confidential and Proprietary - Qualcomm Technologies, Inc.</span>
+<span class="c1">//</span>
+<span class="c1">//=============================================================================</span>
+
+<span class="cm">/**</span>
+<span class="cm"> *  @file</span>
+<span class="cm"> *  @brief  Logging component API.</span>
+<span class="cm"> *</span>
+<span class="cm"> *          Provides means for QNN backends to output logging data.</span>
+<span class="cm"> */</span><span class="w"></span>
+
+<span class="cp">#ifndef QNN_LOG_H</span>
+<span class="cp">#define QNN_LOG_H</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;QnnCommon.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;QnnTypes.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#ifdef __cplusplus</span>
+<span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="cp">#endif</span>
+
+<span class="c1">//=============================================================================</span>
+<span class="c1">// Macros</span>
+<span class="c1">//=============================================================================</span>
+
+<span class="c1">//=============================================================================</span>
+<span class="c1">// Data Types</span>
+<span class="c1">//=============================================================================</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief QNN Log API result / error codes.</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">enum</span> <span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">QNN_LOG_MIN_ERROR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QNN_MIN_ERROR_LOG</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="c1">////////////////////////////////////</span>
+
+<span class="w">  </span><span class="c1">/// Qnn Log success</span>
+<span class="w">  </span><span class="n">QNN_LOG_NO_ERROR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QNN_SUCCESS</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="c1">/// General error relating to memory allocation in Log API</span>
+<span class="w">  </span><span class="n">QNN_LOG_ERROR_MEM_ALLOC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QNN_COMMON_ERROR_MEM_ALLOC</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="c1">/// Function could not be called because logging has already been</span>
+<span class="w">  </span><span class="c1">/// successfully initialized.</span>
+<span class="w">  </span><span class="n">QNN_LOG_ERROR_ALREADY_INITIALIZED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QNN_MIN_ERROR_LOG</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="c1">/// Function could not be called because logging has not yet</span>
+<span class="w">  </span><span class="c1">/// been initialized.</span>
+<span class="w">  </span><span class="n">QNN_LOG_ERROR_NOT_INITIALIZED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QNN_MIN_ERROR_LOG</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="c1">/// Unable to initialize logging</span>
+<span class="w">  </span><span class="n">QNN_LOG_ERROR_INITIALIZATION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QNN_MIN_ERROR_LOG</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="c1">/// Invalid argument passed</span>
+<span class="w">  </span><span class="n">QNN_LOG_ERROR_INVALID_ARGUMENT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QNN_MIN_ERROR_LOG</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">////////////////////////////////////</span>
+<span class="w">  </span><span class="n">QNN_LOG_MAX_ERROR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QNN_MAX_ERROR_LOG</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Unused, present to ensure 32 bits.</span>
+<span class="w">  </span><span class="n">QNN_LOG_ERROR_UNDEFINED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x7FFFFFFF</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="n">QnnLog_Error_t</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">enum</span> <span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Enum Levels must be in ascending order, so that the enum value</span>
+<span class="w">  </span><span class="c1">// can be compared with the &quot;maximum&quot; set in QnnLog_initialize().</span>
+<span class="w">  </span><span class="n">QNN_LOG_LEVEL_ERROR</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">QNN_LOG_LEVEL_WARN</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">QNN_LOG_LEVEL_INFO</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">QNN_LOG_LEVEL_VERBOSE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="c1">/// Reserved for developer debugging</span>
+<span class="w">  </span><span class="n">QNN_LOG_LEVEL_DEBUG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Present to ensure 32 bits</span>
+<span class="w">  </span><span class="n">QNN_LOG_LEVEL_MAX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x7fffffff</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="n">QnnLog_Level_t</span><span class="p">;</span><span class="w"></span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief Signature for user-supplied logging callback.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @warning  The backend may call this callback from multiple threads, and expects</span>
+<span class="cm"> *           that it is re-entrant.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] fmt       printf-style message format specifier.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] level     Log level for the message. Will not be higher than the maximum</span>
+<span class="cm"> *                      specified in QnnLog_initialize.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] timestamp Backend-generated timestamp which is monotonically increasing,</span>
+<span class="cm"> *                      but otherwise meaningless.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] args      Message-specific parameters, to be used with fmt.</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">QnnLog_Callback_t</span><span class="p">)(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">fmt</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                  </span><span class="n">QnnLog_Level_t</span><span class="w"> </span><span class="n">level</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                  </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">timestamp</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                  </span><span class="kt">va_list</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">//=============================================================================</span>
+<span class="c1">// Public Functions</span>
+<span class="c1">//=============================================================================</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief Initialize logging for this backend. The backend will generate no logging messages</span>
+<span class="cm"> *        before this function is called. Once successfully initialized, logging must be terminated</span>
+<span class="cm"> *        before attempting another initialize call. This function will also configure logging for</span>
+<span class="cm"> *        each registered op package (see QnnOpPackage_LogInitializeFn_t). This API function can be</span>
+<span class="cm"> *        called before QnnBackend_initialize().</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] callback    Callback to handle backend-generated logging messages.</span>
+<span class="cm"> *                        NULL indicates backend may direct log messages to the default log stream</span>
+<span class="cm"> *                        on the target platform when possible (e.g. to logcat in case of Android).</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] maxLogLevel Maximum level of messages which the backend will generate.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @return Error code:</span>
+<span class="cm"> *         - QNN_SUCCESS: if logging is successfully initialized.</span>
+<span class="cm"> *         - QNN_COMMON_ERROR_NOT_SUPPORTED: logging is not supported.</span>
+<span class="cm"> *         - QNN_LOG_ERROR_INVALID_ARGUMENT: if one or more arguments is invalid.</span>
+<span class="cm"> *         - QNN_LOG_ERROR_ALREADY_INITIALIZED: logging was already successfully initialized</span>
+<span class="cm"> *         - QNN_LOG_ERROR_MEM_ALLOC: for memory allocation errors.</span>
+<span class="cm"> *         - QNN_LOG_ERROR_INITIALIZATION: log init failed.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @note DEPRECATED: Use corresponding API through QnnInterface_t.</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="n">QNN_API</span><span class="w"></span>
+<span class="n">Qnn_ErrorHandle_t</span><span class="w"> </span><span class="n">QnnLog_initialize</span><span class="p">(</span><span class="n">QnnLog_Callback_t</span><span class="w"> </span><span class="n">callback</span><span class="p">,</span><span class="w"> </span><span class="n">QnnLog_Level_t</span><span class="w"> </span><span class="n">maxLogLevel</span><span class="p">);</span><span class="w"></span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief Change the log level for the currently configured logging stream. Also sets the logging</span>
+<span class="cm"> *        level for each registered op package (see QnnOpPackage_LogSetLevelFn_t).</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] maxLogLevel New maximum log level</span>
+<span class="cm"> *</span>
+<span class="cm"> * @return Error code:</span>
+<span class="cm"> *         - QNN_SUCCESS: if the level is changed successfully.</span>
+<span class="cm"> *         - QNN_LOG_ERROR_NOT_INITIALIZED: if called before logging has been initialized</span>
+<span class="cm"> *           by QnnLog_initialize.</span>
+<span class="cm"> *         - QNN_LOG_ERROR_INVALID_ARGUMENT: if maxLogLevel is not a valid QnnLog_Level_t level.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @note DEPRECATED: Use corresponding API through QnnInterface_t.</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="n">QNN_API</span><span class="w"></span>
+<span class="n">Qnn_ErrorHandle_t</span><span class="w"> </span><span class="n">QnnLog_setLogLevel</span><span class="p">(</span><span class="n">QnnLog_Level_t</span><span class="w"> </span><span class="n">maxLogLevel</span><span class="p">);</span><span class="w"></span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @brief Terminate a logging configuration. Logging must have been successfully initialized.</span>
+<span class="cm"> *        Terminate call frees all logging resources allocated by the library. This also calls</span>
+<span class="cm"> *        terminates logging for each registered op package (see QnnOpPackage_LogTerminateFn_t).</span>
+<span class="cm"> *</span>
+<span class="cm"> * @return Error code:</span>
+<span class="cm"> *         - QNN_SUCCESS: indicates logging is terminated.</span>
+<span class="cm"> *         - QNN_LOG_ERROR_NOT_INITIALIZED: if logging has not been initialized</span>
+<span class="cm"> *           successfully or has already been terminated.</span>
+<span class="cm"> *         - QNN_LOG_ERROR_MEM_ALLOC: for memory de-allocation errors.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @note DEPRECATED: Use corresponding API through QnnInterface_t.</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="n">QNN_API</span><span class="w"></span>
+<span class="n">Qnn_ErrorHandle_t</span><span class="w"> </span><span class="n">QnnLog_terminate</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
+
+<span class="cp">#ifdef __cplusplus</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// extern &quot;C&quot;</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

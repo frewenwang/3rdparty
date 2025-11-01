@@ -1,0 +1,31 @@
+//============================================================================
+//
+//  Copyright (c) 2021-2022 Qualcomm Technologies, Inc.
+//  All Rights Reserved.
+//  Confidential and Proprietary - Qualcomm Technologies, Inc.
+//
+//============================================================================
+
+namespace qnn.tools.sample_app;
+
+table QnnTensorInfo {
+    id:uint;
+    name:string;
+}
+
+table QnnGraphInfo {
+    name:string;
+    inputTensorsCount:uint;
+    inputTensorsInfo:[QnnTensorInfo];
+    outputTensorsCount:uint;
+    outputTensorsInfo:[QnnTensorInfo];
+}
+
+table ContextCache {
+    graphsCount:uint;
+    graphsInfo:[QnnGraphInfo];
+    binaryCacheSize:uint;
+    binaryCache:[ubyte];
+}
+
+root_type qnn.tools.sample_app.ContextCache;

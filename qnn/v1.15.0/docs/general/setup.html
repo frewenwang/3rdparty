@@ -1,0 +1,456 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Setup &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Backend" href="backend.html" />
+    <link rel="prev" title="Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#platform-dependencies">Platform Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#host-os">Host OS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python">Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linux">Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ml-frameworks">ML Frameworks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Compiler Toolchains</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#environment-setup">Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tensorflow-setup">TensorFlow Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#caffe-setup">Caffe Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#onnx-setup">ONNX Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tflite-setup">TFLite Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pytorch-setup">PyTorch Setup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantization.html">Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Setup</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
+<p>This page will outline the setup required for using the QNN SDK.
+The page is split into <a class="reference internal" href="#platform-dependencies">Platform Dependencies</a> and <a class="reference internal" href="#environment-setup">Environment Setup</a>.</p>
+<div class="section" id="platform-dependencies">
+<h2>Platform Dependencies<a class="headerlink" href="#platform-dependencies" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="host-os">
+<h3>Host OS<a class="headerlink" href="#host-os" title="Permalink to this headline">¶</a></h3>
+<p>The host operating system that the QNN SDK is verified with is Ubuntu 18.04 LTS (Bionic).</p>
+</div>
+<div class="section" id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<p>QNN SDK distributions are supported on python3 only.
+Download and Installation instructions vary based on the host OS, and for Linux distributions
+that do not come pre-installed with python3 you may install it with the following commands:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">update</span><span class="w"></span>
+<span class="n">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">python3</span><span class="o">=</span><span class="mf">3.6.9</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For older Linux distributions that may not contain python3 in the base image download from a
+Personal Package Archive (PPA).</p>
+</div>
+<p>Example command:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span><span class="w"> </span><span class="nl">ppa</span><span class="p">:</span><span class="n">your_ppa_dist</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>PIP:</strong></p>
+<p>If it isn’t present pip3 needs to be installed on your system in order to allow
+further installations and management of python packages.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">python3</span><span class="o">-</span><span class="n">pip</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Some additional python3 packages need to be available in your environment in order to be able to
+interact with QNN modules and tools.
+This QNN release is verified to work with the versions of the packages specified below:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Package</p></th>
+<th class="head"><p>Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Mako</p></td>
+<td><p>1.1.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>numpy</p></td>
+<td><p>1.16.5</p></td>
+</tr>
+<tr class="row-even"><td><p>PyYAML</p></td>
+<td><p>3.10.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>scikit-image</p></td>
+<td><p>0.15.0</p></td>
+</tr>
+<tr class="row-even"><td><p>scipy</p></td>
+<td><p>1.3.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>six</p></td>
+<td><p>1.14.0</p></td>
+</tr>
+<tr class="row-even"><td><p>lxml</p></td>
+<td><p>4.6.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>onnx-simplifier</p></td>
+<td><p>0.3.5</p></td>
+</tr>
+</tbody>
+</table>
+<p>Run the following script to check and install missing dependencies:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">clang</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">check</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="n">dependency</span><span class="p">.</span><span class="n">sh</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<p>Compiling for the HTP v68 emulator on X86 requires clang++.
+This QNN SDK release is verified to work with clang-9.0.0.</p>
+<p>Run the following script to check and install missing linux dependencies:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">clang</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">check</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">dependency</span><span class="p">.</span><span class="n">sh</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To set QNN_SDK_ROOT see <a class="reference internal" href="#environment-setup">Environment Setup</a>.</p>
+</div>
+</div>
+<div class="section" id="ml-frameworks">
+<h3>ML Frameworks<a class="headerlink" href="#ml-frameworks" title="Permalink to this headline">¶</a></h3>
+<p>In order to convert ML models trained on different frameworks into intermediate representations
+consumable by QNN you may need to download and install the corresponding frameworks on your
+host machine.</p>
+<p>This QNN release is verified to work with versions of the ML training frameworks specified below:</p>
+<ul class="simple">
+<li><p><strong>Caffe:</strong> caffe_1.0.0-rc3 from the open-source tree at <a class="reference external" href="https://github.com/BVLC/caffe">https://github.com/BVLC/caffe</a>.</p></li>
+<li><p><strong>Caffe-SSD:</strong> A fork of the Caffe development tree available at <a class="reference external" href="https://github.com/weiliu89/caffe/tree/ssd">https://github.com/weiliu89/caffe/tree/ssd</a>.</p></li>
+<li><p><strong>Tensorflow:</strong> tf-1.15.0, or tf-2.3.0</p></li>
+<li><p><strong>TFLite:</strong> tflite-2.3.0 available at <a class="reference external" href="https://pypi.org/project/tflite/2.3.0/">https://pypi.org/project/tflite/2.3.0/</a></p></li>
+<li><p><strong>PyTorch:</strong> torch-1.8.1</p></li>
+<li><p><strong>ONNX:</strong> onnx-1.6.0</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h3>Compiler Toolchains<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The QNN SDK allows users to compile custom operation packages to be used with the different
+backends such as the CPU, GPU, HTP and DSP. You may need to install appropriate cross-compilation
+toolchains in order to compile such packages for a particular backend.</p>
+<p><strong>MAKE:</strong></p>
+<p>Operation packages are compiled with a front-end that is written with Makefiles. If make is
+not available on your host machine install it using the following command:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">make</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>CPU:</strong></p>
+<p>Compiler used for X86_64 is clang 9.0.0. ARM CPU targets are built using Android NDK. The
+current Android NDK used is Android NDK 19c, which uses clang 8.02.</p>
+<p><strong>GPU:</strong></p>
+<p>GPU kernels are written based on OpenCL. You should implement operation packages for the GPU
+based on OpenCL headers with minimum version OpenCL1.2.</p>
+<p><strong>HTP/DSP:</strong></p>
+<p>Compiling for HTP/DSP requires the use of the Hexagon toolchain available from Hexagon-SDK. Versions
+of the SDK are available at <a class="reference external" href="https://developer.qualcomm.com/software/hexagon-dsp-sdk/tools">https://developer.qualcomm.com/software/hexagon-dsp-sdk/tools</a>.</p>
+<p>This QNN release is verified to work with:</p>
+<ul class="simple">
+<li><p>HTP: Hexagon SDK version 4.2.0, Hexagon-sdkTools version: 8.4.09</p></li>
+<li><p>DSP: v65 - Hexagon SDK version 3.5.2, Hexagon-sdkTools version: 8.3.07,
+v66 - Hexagon SDK version 4.1.0, Hexagon-sdkTools version: 8.4.06</p></li>
+<li><p>Additionally, compiling for HTP/DSP requires clang++.</p></li>
+</ul>
+<p>Further setup instructions are available at $HEXAGON_SDK_ROOT/docs/readme.html, where
+HEXAGON_SDK_ROOT is the location of the Hexagon-SDK installation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Hexagon-sdkTools version 8.4.09/8.4.06/8.3.07 is not currently pre-packaged into
+Hexagon SDK version 4.2.0/4.1.0/3.5.2. It needs to be downloaded separately and placed
+at the location $HEXAGON_SDK_ROOT/tools/HEXAGON_Tools/ .</p>
+</div>
+</div>
+</div>
+<div class="section" id="environment-setup">
+<h2>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this headline">¶</a></h2>
+<p>After platform dependencies have been satisfied, the user
+environment can be set with the provided <strong>envsetup.sh</strong> script.</p>
+<p>Set ANDROID_NDK_ROOT:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">export</span><span class="w"> </span><span class="n">ANDROID_NDK_ROOT</span><span class="o">=&lt;</span><span class="n">PATH</span><span class="o">-</span><span class="n">TO</span><span class="o">-</span><span class="n">NDK</span><span class="o">&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This QNN release is verified to work with Android NDK version r19c.</p>
+</div>
+<p>Then run:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">clang</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">envsetup</span><span class="p">.</span><span class="n">sh</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This will set/update the following environment variables:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>QNN_SDK_ROOT</p></li>
+<li><p>PYTHONPATH</p></li>
+<li><p>PATH</p></li>
+<li><p>LD_LIBRARY_PATH</p></li>
+</ul>
+</div></blockquote>
+<p>The QNN API headers are in ${QNN_SDK_ROOT}/include.</p>
+<p>The tools are in ${QNN_SDK_ROOT}/target/x86_64-linux-clang.</p>
+<p>Target specific backends are in ${QNN_SDK_ROOT}/target/<a href="#id2"><span class="problematic" id="id3">*</span></a>/lib.</p>
+<div class="section" id="tensorflow-setup">
+<h3>TensorFlow Setup<a class="headerlink" href="#tensorflow-setup" title="Permalink to this headline">¶</a></h3>
+<p>To setup environment for TensorFlow run:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">clang</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">envsetup</span><span class="p">.</span><span class="n">sh</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">&lt;</span><span class="n">your_tensorflow_installation_path</span><span class="o">&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="caffe-setup">
+<h3>Caffe Setup<a class="headerlink" href="#caffe-setup" title="Permalink to this headline">¶</a></h3>
+<p>To setup environment for Caffe run:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">clang</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">envsetup</span><span class="p">.</span><span class="n">sh</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="o">&lt;</span><span class="n">your_caffe_installation_path</span><span class="o">&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="onnx-setup">
+<h3>ONNX Setup<a class="headerlink" href="#onnx-setup" title="Permalink to this headline">¶</a></h3>
+<p>To setup environment for ONNX run:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">clang</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">envsetup</span><span class="p">.</span><span class="n">sh</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="o">&lt;</span><span class="n">your_onnx_installation_path</span><span class="o">&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tflite-setup">
+<h3>TFLite Setup<a class="headerlink" href="#tflite-setup" title="Permalink to this headline">¶</a></h3>
+<p>Please install TFLite as a standalone Python module using <a class="reference external" href="https://pypi.org/project/tflite/2.3.0/">https://pypi.org/project/tflite/2.3.0/</a>
+and ensure TFLite is in your PYTHONPATH by using this test code:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="s">&quot;import tflite&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pytorch-setup">
+<h3>PyTorch Setup<a class="headerlink" href="#pytorch-setup" title="Permalink to this headline">¶</a></h3>
+<p>Please install PyTorch as a standalone Python module using <a class="reference external" href="https://pytorch.org/get-started/locally">https://pytorch.org/get-started/locally</a>
+v1.8.1 and ensure PyTorch is in your PYTHONPATH by using this test code:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="s">&quot;import torch&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="backend.html" class="btn btn-neutral float-right" title="Backend" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

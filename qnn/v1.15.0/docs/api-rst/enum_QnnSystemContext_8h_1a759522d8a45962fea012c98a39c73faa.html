@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Enum QnnSystemContext_Error_t &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Enum QnnSystemContext_GraphInfoVersion_t" href="enum_QnnSystemContext_8h_1a7048a1089587414834a1ec2c4c0ab190.html" />
+    <link rel="prev" title="Enum QnnSystemContext_BinaryInfoVersion_t" href="enum_QnnSystemContext_8h_1a23d8dd16bb52889cf557f28aa13bd168.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../general/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quantization.html">Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../general/api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general/api_overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/api_usage_guidelines.html">Usage Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/api_version_history.html">Version History</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/api.html#operation-definitions">Operation Definitions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../general/api.html#c">C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="unabridged_api.html">Full API</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="unabridged_api.html#enums">Enums</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#unions">Unions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#variables">Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#defines">Defines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../general/api_error_codes.html">Error Codes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../general/glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../general/api.html">API</a> &raquo;</li>
+        
+          <li><a href="unabridged_api.html">Full API</a> &raquo;</li>
+        
+      <li>Enum QnnSystemContext_Error_t</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="enum-qnnsystemcontext-error-t">
+<span id="exhale-enum-qnnsystemcontext-8h-1a759522d8a45962fea012c98a39c73faa"></span><h1>Enum QnnSystemContext_Error_t<a class="headerlink" href="#enum-qnnsystemcontext-error-t" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_System_QnnSystemContext.h.html#file-include-system-qnnsystemcontext-h"><span class="std std-ref">File QnnSystemContext.h</span></a></p></li>
+</ul>
+<div class="section" id="enum-documentation">
+<h2>Enum Documentation<a class="headerlink" href="#enum-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="enum">
+<dt id="_CPPv424QnnSystemContext_Error_t">
+<span id="_CPPv324QnnSystemContext_Error_t"></span><span id="_CPPv224QnnSystemContext_Error_t"></span><span class="target" id="QnnSystemContext_8h_1a759522d8a45962fea012c98a39c73faa"></span><em class="property">enum </em><code class="sig-name descname">QnnSystemContext_Error_t</code><a class="headerlink" href="#_CPPv424QnnSystemContext_Error_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>QNN System Context API result / error codes. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt id="_CPPv427QNN_SYSTEM_CONTEXT_MINERROR">
+<span id="_CPPv327QNN_SYSTEM_CONTEXT_MINERROR"></span><span id="_CPPv227QNN_SYSTEM_CONTEXT_MINERROR"></span><span class="target" id="QnnSystemContext_8h_1a759522d8a45962fea012c98a39c73faaa832b23a3bb01d4d3145b352221b65ef6"></span><code class="sig-name descname">QNN_SYSTEM_CONTEXT_MINERROR</code> = 30000<a class="headerlink" href="#_CPPv427QNN_SYSTEM_CONTEXT_MINERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv427QNN_SYSTEM_CONTEXT_NO_ERROR">
+<span id="_CPPv327QNN_SYSTEM_CONTEXT_NO_ERROR"></span><span id="_CPPv227QNN_SYSTEM_CONTEXT_NO_ERROR"></span><span class="target" id="QnnSystemContext_8h_1a759522d8a45962fea012c98a39c73faaae4a3d387b032df63ceaa709efad5f089"></span><code class="sig-name descname">QNN_SYSTEM_CONTEXT_NO_ERROR</code> = 0<a class="headerlink" href="#_CPPv427QNN_SYSTEM_CONTEXT_NO_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Qnn System Context success. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv444QNN_SYSTEM_CONTEXT_ERROR_UNSUPPORTED_FEATURE">
+<span id="_CPPv344QNN_SYSTEM_CONTEXT_ERROR_UNSUPPORTED_FEATURE"></span><span id="_CPPv244QNN_SYSTEM_CONTEXT_ERROR_UNSUPPORTED_FEATURE"></span><span class="target" id="QnnSystemContext_8h_1a759522d8a45962fea012c98a39c73faaa47f83d46db6b92ff948d1774024c73a1"></span><code class="sig-name descname">QNN_SYSTEM_CONTEXT_ERROR_UNSUPPORTED_FEATURE</code> = <a class="reference internal" href="enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv430QNN_COMMON_ERROR_NOT_SUPPORTED" title="QNN_COMMON_ERROR_NOT_SUPPORTED">QNN_COMMON_ERROR_NOT_SUPPORTED</a><a class="headerlink" href="#_CPPv444QNN_SYSTEM_CONTEXT_ERROR_UNSUPPORTED_FEATURE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>There is optional API component that is not supported yet. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv439QNN_SYSTEM_CONTEXT_ERROR_INVALID_HANDLE">
+<span id="_CPPv339QNN_SYSTEM_CONTEXT_ERROR_INVALID_HANDLE"></span><span id="_CPPv239QNN_SYSTEM_CONTEXT_ERROR_INVALID_HANDLE"></span><span class="target" id="QnnSystemContext_8h_1a759522d8a45962fea012c98a39c73faaac5f60c1234469da66dee34dd50b75fe5"></span><code class="sig-name descname">QNN_SYSTEM_CONTEXT_ERROR_INVALID_HANDLE</code> = <a class="reference internal" href="#_CPPv427QNN_SYSTEM_CONTEXT_MINERROR" title="QNN_SYSTEM_CONTEXT_MINERROR">QNN_SYSTEM_CONTEXT_MINERROR</a> + 0<a class="headerlink" href="#_CPPv439QNN_SYSTEM_CONTEXT_ERROR_INVALID_HANDLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>QNN System Context invalid handle. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv441QNN_SYSTEM_CONTEXT_ERROR_INVALID_ARGUMENT">
+<span id="_CPPv341QNN_SYSTEM_CONTEXT_ERROR_INVALID_ARGUMENT"></span><span id="_CPPv241QNN_SYSTEM_CONTEXT_ERROR_INVALID_ARGUMENT"></span><span class="target" id="QnnSystemContext_8h_1a759522d8a45962fea012c98a39c73faaa3f61e136055b916a6132cb4a28cdd142"></span><code class="sig-name descname">QNN_SYSTEM_CONTEXT_ERROR_INVALID_ARGUMENT</code> = <a class="reference internal" href="#_CPPv427QNN_SYSTEM_CONTEXT_MINERROR" title="QNN_SYSTEM_CONTEXT_MINERROR">QNN_SYSTEM_CONTEXT_MINERROR</a> + 1<a class="headerlink" href="#_CPPv441QNN_SYSTEM_CONTEXT_ERROR_INVALID_ARGUMENT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>One or more arguments to a System Context API is/are NULL/invalid. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv441QNN_SYSTEM_CONTEXT_ERROR_OPERATION_FAILED">
+<span id="_CPPv341QNN_SYSTEM_CONTEXT_ERROR_OPERATION_FAILED"></span><span id="_CPPv241QNN_SYSTEM_CONTEXT_ERROR_OPERATION_FAILED"></span><span class="target" id="QnnSystemContext_8h_1a759522d8a45962fea012c98a39c73faaa2107be4f9afb9d03f8cfb096e8c42e32"></span><code class="sig-name descname">QNN_SYSTEM_CONTEXT_ERROR_OPERATION_FAILED</code> = <a class="reference internal" href="#_CPPv427QNN_SYSTEM_CONTEXT_MINERROR" title="QNN_SYSTEM_CONTEXT_MINERROR">QNN_SYSTEM_CONTEXT_MINERROR</a> + 2<a class="headerlink" href="#_CPPv441QNN_SYSTEM_CONTEXT_ERROR_OPERATION_FAILED" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Generic Failure in achieving the objective of a System Context API. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv441QNN_SYSTEM_CONTEXT_ERROR_MALFORMED_BINARY">
+<span id="_CPPv341QNN_SYSTEM_CONTEXT_ERROR_MALFORMED_BINARY"></span><span id="_CPPv241QNN_SYSTEM_CONTEXT_ERROR_MALFORMED_BINARY"></span><span class="target" id="QnnSystemContext_8h_1a759522d8a45962fea012c98a39c73faaa818ab788aaec59aa835f4be28115c4b1"></span><code class="sig-name descname">QNN_SYSTEM_CONTEXT_ERROR_MALFORMED_BINARY</code> = <a class="reference internal" href="#_CPPv427QNN_SYSTEM_CONTEXT_MINERROR" title="QNN_SYSTEM_CONTEXT_MINERROR">QNN_SYSTEM_CONTEXT_MINERROR</a> + 10<a class="headerlink" href="#_CPPv441QNN_SYSTEM_CONTEXT_ERROR_MALFORMED_BINARY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Malformed context binary. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv427QNN_SYSTEM_CONTEXT_MAXERROR">
+<span id="_CPPv327QNN_SYSTEM_CONTEXT_MAXERROR"></span><span id="_CPPv227QNN_SYSTEM_CONTEXT_MAXERROR"></span><span class="target" id="QnnSystemContext_8h_1a759522d8a45962fea012c98a39c73faaadc60bf45e6beedfde7b6a5e96cdb344e"></span><code class="sig-name descname">QNN_SYSTEM_CONTEXT_MAXERROR</code> = 49999<a class="headerlink" href="#_CPPv427QNN_SYSTEM_CONTEXT_MAXERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="enum_QnnSystemContext_8h_1a7048a1089587414834a1ec2c4c0ab190.html" class="btn btn-neutral float-right" title="Enum QnnSystemContext_GraphInfoVersion_t" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="enum_QnnSystemContext_8h_1a23d8dd16bb52889cf557f28aa13bd168.html" class="btn btn-neutral float-left" title="Enum QnnSystemContext_BinaryInfoVersion_t" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

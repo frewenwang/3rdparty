@@ -1,0 +1,39 @@
+ #=============================================================================
+ #
+ #  Copyright (c) 2021-2022 Qualcomm Technologies, Inc.
+ #  All Rights Reserved.
+ #  Confidential and Proprietary - Qualcomm Technologies, Inc.
+ #
+ #=============================================================================
+
+This README will provide instructions on how to compile saver_output.c for replay on a QNN backend
+
+Setup:
+------
+Set QNN_SDK_ROOT by running 'source <QNN_SDK_PATH>/target/x86_64-linux-clang/bin/envsetup.sh'
+
+To compile for x86 targets:
+Ensure clang is discoverable in your PATH by running 'source <QNN_SDK_ROOT>/target/x86_64-linux-clang/bin/check-linux-dependency.sh'
+
+To compile for android targets:
+Set ANDROID_NDK_ROOT to the path of the Android NDK
+
+To compile for DSP/HTP backends on aarch64:
+Set HEXAGON_SDK_ROOT by running 'source <HEXAGON_SDK_PATH>/setup_sdk_env.source'
+
+Compiling saver_output.c:
+------------------
+Ensure saver_output.c is in the same directory as Makefile, and run:
+
+1) 'make all' to compile for all backends on x86 and android targets.
+
+2) 'make x86' to compile for all backends on x86 targets.
+
+3) 'make arm' to compile for all backends on arm targets.
+
+4) 'make aarch64' to compile for all backends on aarch64 targets.
+
+5) 'make <backend>_<target>' to compile for a certain backend on a certain target. Valid options
+   for <target> are x86, aarch, or arm. Valid options for <backend> are cpu or htp for <target>=x86,
+   and cpu, gpu, dsp, or htp for <target>=arm or aarch64.
+

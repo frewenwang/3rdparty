@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Enum QnnBackend_Error_t &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Enum QnnCommon_Error_t" href="enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html" />
+    <link rel="prev" title="Enum QnnBackend_ConfigOption_t" href="enum_QnnBackend_8h_1a185a54f92b3ecaf2cc8fa546e4d1d02b.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../general/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quantization.html">Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../general/api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general/api_overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/api_usage_guidelines.html">Usage Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/api_version_history.html">Version History</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/api.html#operation-definitions">Operation Definitions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../general/api.html#c">C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="unabridged_api.html">Full API</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="unabridged_api.html#enums">Enums</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#unions">Unions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#variables">Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#defines">Defines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../general/api_error_codes.html">Error Codes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../general/glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../general/api.html">API</a> &raquo;</li>
+        
+          <li><a href="unabridged_api.html">Full API</a> &raquo;</li>
+        
+      <li>Enum QnnBackend_Error_t</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="enum-qnnbackend-error-t">
+<span id="exhale-enum-qnnbackend-8h-1a3da48ae867bc80fa3e906f3dcc337a6b"></span><h1>Enum QnnBackend_Error_t<a class="headerlink" href="#enum-qnnbackend-error-t" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_QnnBackend.h.html#file-include-qnnbackend-h"><span class="std std-ref">File QnnBackend.h</span></a></p></li>
+</ul>
+<div class="section" id="enum-documentation">
+<h2>Enum Documentation<a class="headerlink" href="#enum-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="enum">
+<dt id="_CPPv418QnnBackend_Error_t">
+<span id="_CPPv318QnnBackend_Error_t"></span><span id="_CPPv218QnnBackend_Error_t"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6b"></span><em class="property">enum </em><code class="sig-name descname">QnnBackend_Error_t</code><a class="headerlink" href="#_CPPv418QnnBackend_Error_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>QNN Backend API result / error codes. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt id="_CPPv421QNN_BACKEND_MIN_ERROR">
+<span id="_CPPv321QNN_BACKEND_MIN_ERROR"></span><span id="_CPPv221QNN_BACKEND_MIN_ERROR"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6ba4a0b1e6cfdfbfa76de1eb27a0d36085d"></span><code class="sig-name descname">QNN_BACKEND_MIN_ERROR</code> = 4000<a class="headerlink" href="#_CPPv421QNN_BACKEND_MIN_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv420QNN_BACKEND_NO_ERROR">
+<span id="_CPPv320QNN_BACKEND_NO_ERROR"></span><span id="_CPPv220QNN_BACKEND_NO_ERROR"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6bab190d65ebd357cf093ea48cb99181488"></span><code class="sig-name descname">QNN_BACKEND_NO_ERROR</code> = 0<a class="headerlink" href="#_CPPv420QNN_BACKEND_NO_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Qnn Backend success. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv433QNN_BACKEND_ERROR_NOT_INITIALIZED">
+<span id="_CPPv333QNN_BACKEND_ERROR_NOT_INITIALIZED"></span><span id="_CPPv233QNN_BACKEND_ERROR_NOT_INITIALIZED"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6ba2b083e16f5ea4788e0bc71340ecca45e"></span><code class="sig-name descname">QNN_BACKEND_ERROR_NOT_INITIALIZED</code> = <a class="reference internal" href="enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv440QNN_COMMON_ERROR_BACKEND_NOT_INITIALIZED" title="QNN_COMMON_ERROR_BACKEND_NOT_INITIALIZED">QNN_COMMON_ERROR_BACKEND_NOT_INITIALIZED</a><a class="headerlink" href="#_CPPv433QNN_BACKEND_ERROR_NOT_INITIALIZED" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Backend hasn’t been initialized. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv427QNN_BACKEND_ERROR_MEM_ALLOC">
+<span id="_CPPv327QNN_BACKEND_ERROR_MEM_ALLOC"></span><span id="_CPPv227QNN_BACKEND_ERROR_MEM_ALLOC"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6baa8f4b0a7f92389265f44e9ba8f4dd28b"></span><code class="sig-name descname">QNN_BACKEND_ERROR_MEM_ALLOC</code> = <a class="reference internal" href="enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv426QNN_COMMON_ERROR_MEM_ALLOC" title="QNN_COMMON_ERROR_MEM_ALLOC">QNN_COMMON_ERROR_MEM_ALLOC</a><a class="headerlink" href="#_CPPv427QNN_BACKEND_ERROR_MEM_ALLOC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>General error relating to memory allocation in Backend API. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv438QNN_BACKEND_ERROR_UNSUPPORTED_PLATFORM">
+<span id="_CPPv338QNN_BACKEND_ERROR_UNSUPPORTED_PLATFORM"></span><span id="_CPPv238QNN_BACKEND_ERROR_UNSUPPORTED_PLATFORM"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6ba6f84f16d0503c769f44560d10b03b1d1"></span><code class="sig-name descname">QNN_BACKEND_ERROR_UNSUPPORTED_PLATFORM</code> = <a class="reference internal" href="enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv439QNN_COMMON_ERROR_PLATFORM_NOT_SUPPORTED" title="QNN_COMMON_ERROR_PLATFORM_NOT_SUPPORTED">QNN_COMMON_ERROR_PLATFORM_NOT_SUPPORTED</a><a class="headerlink" href="#_CPPv438QNN_BACKEND_ERROR_UNSUPPORTED_PLATFORM" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Backend attempted to be initialized on an unsupported platform. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv435QNN_BACKEND_ERROR_CANNOT_INITIALIZE">
+<span id="_CPPv335QNN_BACKEND_ERROR_CANNOT_INITIALIZE"></span><span id="_CPPv235QNN_BACKEND_ERROR_CANNOT_INITIALIZE"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6baf89c280c08c7eb69af942bf7bc48b484"></span><code class="sig-name descname">QNN_BACKEND_ERROR_CANNOT_INITIALIZE</code> = 4000 + 0<a class="headerlink" href="#_CPPv435QNN_BACKEND_ERROR_CANNOT_INITIALIZE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Backend failed to initialize. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv437QNN_BACKEND_ERROR_ALREADY_INITIALIZED">
+<span id="_CPPv337QNN_BACKEND_ERROR_ALREADY_INITIALIZED"></span><span id="_CPPv237QNN_BACKEND_ERROR_ALREADY_INITIALIZED"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6bacb2da7cc3e909fc096e6b13dfa37a266"></span><code class="sig-name descname">QNN_BACKEND_ERROR_ALREADY_INITIALIZED</code> = 4000 + 1<a class="headerlink" href="#_CPPv437QNN_BACKEND_ERROR_ALREADY_INITIALIZED" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Backend is already initialized. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv434QNN_BACKEND_ERROR_TERMINATE_FAILED">
+<span id="_CPPv334QNN_BACKEND_ERROR_TERMINATE_FAILED"></span><span id="_CPPv234QNN_BACKEND_ERROR_TERMINATE_FAILED"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6ba9112be7ab6123a95eea633e10b432f3f"></span><code class="sig-name descname">QNN_BACKEND_ERROR_TERMINATE_FAILED</code> = 4000 + 2<a class="headerlink" href="#_CPPv434QNN_BACKEND_ERROR_TERMINATE_FAILED" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Failed to free allocated resources during termination. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv431QNN_BACKEND_ERROR_NOT_SUPPORTED">
+<span id="_CPPv331QNN_BACKEND_ERROR_NOT_SUPPORTED"></span><span id="_CPPv231QNN_BACKEND_ERROR_NOT_SUPPORTED"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6ba81f3552394e5a9564388c10ef3194ba6"></span><code class="sig-name descname">QNN_BACKEND_ERROR_NOT_SUPPORTED</code> = 4000 + 3<a class="headerlink" href="#_CPPv431QNN_BACKEND_ERROR_NOT_SUPPORTED" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Backend does not support requested functionality. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv434QNN_BACKEND_ERROR_INVALID_ARGUMENT">
+<span id="_CPPv334QNN_BACKEND_ERROR_INVALID_ARGUMENT"></span><span id="_CPPv234QNN_BACKEND_ERROR_INVALID_ARGUMENT"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6bac29df48c6ff183b8412bb1c5732d2e5f"></span><code class="sig-name descname">QNN_BACKEND_ERROR_INVALID_ARGUMENT</code> = 4000 + 4<a class="headerlink" href="#_CPPv434QNN_BACKEND_ERROR_INVALID_ARGUMENT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Invalid function argument. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv438QNN_BACKEND_ERROR_OP_PACKAGE_NOT_FOUND">
+<span id="_CPPv338QNN_BACKEND_ERROR_OP_PACKAGE_NOT_FOUND"></span><span id="_CPPv238QNN_BACKEND_ERROR_OP_PACKAGE_NOT_FOUND"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6ba2ba001ea34ab30f2d131f59e62281d3c"></span><code class="sig-name descname">QNN_BACKEND_ERROR_OP_PACKAGE_NOT_FOUND</code> = 4000 + 5<a class="headerlink" href="#_CPPv438QNN_BACKEND_ERROR_OP_PACKAGE_NOT_FOUND" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Could not find specified op package. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv450QNN_BACKEND_ERROR_OP_PACKAGE_IF_PROVIDER_NOT_FOUND">
+<span id="_CPPv350QNN_BACKEND_ERROR_OP_PACKAGE_IF_PROVIDER_NOT_FOUND"></span><span id="_CPPv250QNN_BACKEND_ERROR_OP_PACKAGE_IF_PROVIDER_NOT_FOUND"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6ba9055b070332e1902985233fa8bce7e4f"></span><code class="sig-name descname">QNN_BACKEND_ERROR_OP_PACKAGE_IF_PROVIDER_NOT_FOUND</code> = 4000 + 6<a class="headerlink" href="#_CPPv450QNN_BACKEND_ERROR_OP_PACKAGE_IF_PROVIDER_NOT_FOUND" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Could not load interface provider from op package library. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv448QNN_BACKEND_ERROR_OP_PACKAGE_REGISTRATION_FAILED">
+<span id="_CPPv348QNN_BACKEND_ERROR_OP_PACKAGE_REGISTRATION_FAILED"></span><span id="_CPPv248QNN_BACKEND_ERROR_OP_PACKAGE_REGISTRATION_FAILED"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6bac7348c9883cd4cc957dad75e0c4529cf"></span><code class="sig-name descname">QNN_BACKEND_ERROR_OP_PACKAGE_REGISTRATION_FAILED</code> = 4000 + 7<a class="headerlink" href="#_CPPv448QNN_BACKEND_ERROR_OP_PACKAGE_REGISTRATION_FAILED" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Failed to register op package. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv448QNN_BACKEND_ERROR_OP_PACKAGE_UNSUPPORTED_VERSION">
+<span id="_CPPv348QNN_BACKEND_ERROR_OP_PACKAGE_UNSUPPORTED_VERSION"></span><span id="_CPPv248QNN_BACKEND_ERROR_OP_PACKAGE_UNSUPPORTED_VERSION"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6bab5f1693d49121ce7904361179f583a1e"></span><code class="sig-name descname">QNN_BACKEND_ERROR_OP_PACKAGE_UNSUPPORTED_VERSION</code> = 4000 + 8<a class="headerlink" href="#_CPPv448QNN_BACKEND_ERROR_OP_PACKAGE_UNSUPPORTED_VERSION" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Backend does not support the op config’s interface version. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv438QNN_BACKEND_ERROR_OP_PACKAGE_DUPLICATE">
+<span id="_CPPv338QNN_BACKEND_ERROR_OP_PACKAGE_DUPLICATE"></span><span id="_CPPv238QNN_BACKEND_ERROR_OP_PACKAGE_DUPLICATE"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6ba4ab3b14e8af1d52040e65174e74ab9b5"></span><code class="sig-name descname">QNN_BACKEND_ERROR_OP_PACKAGE_DUPLICATE</code> = 4000 + 9<a class="headerlink" href="#_CPPv438QNN_BACKEND_ERROR_OP_PACKAGE_DUPLICATE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>An Op with the same package name and op name was already registered. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv421QNN_BACKEND_MAX_ERROR">
+<span id="_CPPv321QNN_BACKEND_MAX_ERROR"></span><span id="_CPPv221QNN_BACKEND_MAX_ERROR"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6ba5e73553232bf711a3349fd706b58bd3c"></span><code class="sig-name descname">QNN_BACKEND_MAX_ERROR</code> = 4999<a class="headerlink" href="#_CPPv421QNN_BACKEND_MAX_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv427QNN_BACKEND_ERROR_UNDEFINED">
+<span id="_CPPv327QNN_BACKEND_ERROR_UNDEFINED"></span><span id="_CPPv227QNN_BACKEND_ERROR_UNDEFINED"></span><span class="target" id="QnnBackend_8h_1a3da48ae867bc80fa3e906f3dcc337a6ba8251be5748d8ce1d936c3ee9a5711d43"></span><code class="sig-name descname">QNN_BACKEND_ERROR_UNDEFINED</code> = 0x7FFFFFFF<a class="headerlink" href="#_CPPv427QNN_BACKEND_ERROR_UNDEFINED" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html" class="btn btn-neutral float-right" title="Enum QnnCommon_Error_t" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="enum_QnnBackend_8h_1a185a54f92b3ecaf2cc8fa546e4d1d02b.html" class="btn btn-neutral float-left" title="Enum QnnBackend_ConfigOption_t" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

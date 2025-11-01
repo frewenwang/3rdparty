@@ -1,0 +1,668 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quantization &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tutorials" href="tutorials.html" />
+    <link rel="prev" title="Typedef qnn_wrapper_api::QnnInterfaceGetProvidersFn_t" href="../tools-api-rst/typedef_namespaceqnn__wrapper__api_1a73cb51e01c1e0df045bfe1f5f94fea6f.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters.html">Converters</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quantization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Quantization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#details">Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quantization-example">Quantization Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dequantization-example">Dequantization Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bitwidth-selection">Bitwidth Selection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quantization-modes">Quantization Modes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tf">TF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#symmetric">Symmetric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enhanced">Enhanced</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tf-adjusted">TF Adjusted</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#enhanced-quantization-techniques">Enhanced Quantization Techniques</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#enhanced-quantization-techniques-limitations">Enhanced Quantization Techniques: Limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quantization-impacts">Quantization Impacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quantization-overrides">Quantization Overrides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quantizing-a-model">Quantizing a Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Quantization</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quantization">
+<h1>Quantization<a class="headerlink" href="#quantization" title="Permalink to this headline">¶</a></h1>
+<p>This page describes the general quantization process and supported algorithms and features.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id3">Overview</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id4">Quantization</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id2" id="id5">Overview</a></p></li>
+<li><p><a class="reference internal" href="#details" id="id6">Details</a></p></li>
+<li><p><a class="reference internal" href="#quantization-example" id="id7">Quantization Example</a></p></li>
+<li><p><a class="reference internal" href="#dequantization-example" id="id8">Dequantization Example</a></p></li>
+<li><p><a class="reference internal" href="#bitwidth-selection" id="id9">Bitwidth Selection</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#quantization-modes" id="id10">Quantization Modes</a></p>
+<ul>
+<li><p><a class="reference internal" href="#tf" id="id11">TF</a></p></li>
+<li><p><a class="reference internal" href="#symmetric" id="id12">Symmetric</a></p></li>
+<li><p><a class="reference internal" href="#enhanced" id="id13">Enhanced</a></p></li>
+<li><p><a class="reference internal" href="#tf-adjusted" id="id14">TF Adjusted</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#enhanced-quantization-techniques" id="id15">Enhanced Quantization Techniques</a></p>
+<ul>
+<li><p><a class="reference internal" href="#enhanced-quantization-techniques-limitations" id="id16">Enhanced Quantization Techniques: Limitations</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#quantization-impacts" id="id17">Quantization Impacts</a></p></li>
+<li><p><a class="reference internal" href="#quantization-overrides" id="id18">Quantization Overrides</a></p></li>
+<li><p><a class="reference internal" href="#quantizing-a-model" id="id19">Quantizing a Model</a></p>
+<ul>
+<li><p><a class="reference internal" href="#examples" id="id20">Examples</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id3">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Non-quantized models files use 32 bit floating point representations of network parameters.
+Quantized model files use fixed point representations of network parameters, generally 8 bit weights and 8 or 32bit biases.
+The fixed point representation is the same used in Tensorflow quantized models.</p>
+<p>Choosing Between a Quantized or Non-Quantized Model</p>
+<ul class="simple">
+<li><p>CPU - Choose a non-quantized model. Quantized models are currently incompatible with the CPU backend.</p></li>
+<li><p>DSP - Choose a quantized model. Quantized models are required when running on the DSP backend.</p></li>
+<li><p>GPU - Choose a non-quantized model. Quantized models are currently incompatible with the GPU backend.</p></li>
+<li><p>HTP - Choose a quantized model. Quantized models are required when running on the HTP backend.</p></li>
+<li><p>HTA - Choose a quantized model. Quantized models are required when running on the HTA backend.</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id4">Quantization</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>This section describes the concepts behind the quantization algorithm used in QNN.  These concepts are used by the converters when the developer decides to quantize a graph.</p>
+<div class="section" id="id2">
+<h3><a class="toc-backref" href="#id5">Overview</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>QNN supports multiple quantization modes.  The basics of the quantization, regardless of mode, are described here.</p>
+<ul>
+<li><p>Quantization converts floating point data to the Tensorflow-style fixed point format using a provided bit width.</p></li>
+<li><p>The following requirements are satisfied:</p>
+<ul class="simple">
+<li><p>Full range of input values is covered.</p></li>
+<li><p>Minimum range of 0.01 is enforced.</p></li>
+<li><p>Floating point zero is exactly representable.</p></li>
+</ul>
+</li>
+<li><p>Quantization algorithm inputs:</p>
+<ul class="simple">
+<li><p>Set of floating point values to be quantized.</p></li>
+</ul>
+</li>
+<li><p>Quantization algorithm outputs:</p>
+<ul class="simple">
+<li><p>Set of 8-bit fixed point values.</p></li>
+<li><p>Encoding parameters:</p>
+<ul>
+<li><p>encoding-min - minimum floating point value representable (by fixed point value 0)</p></li>
+<li><p>encoding-max - maximum floating point value representable (by fixed point value 255)</p></li>
+<li><p>scale - The step size for the given range (max - min) / (2^bw-1)</p></li>
+<li><p>offset - The integer value which exactly represents 0. round(-min/scale)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Algorithm</p>
+<ol class="arabic simple">
+<li><p>Compute the true range (min, max) of input data.</p></li>
+<li><p>Compute the encoding-min and encoding-max.</p></li>
+<li><p>Quantize the input floating point values.</p></li>
+<li><p>Output:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>fixed point values</p></li>
+<li><p>encoding-min and encoding-max parameters</p></li>
+<li><p>scale and offset parameters</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="details">
+<h3><a class="toc-backref" href="#id6">Details</a><a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Compute the true range of the input floating point data.</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>finds the smallest and largest values in the input data</p></li>
+<li><p>represents the true range of the input data</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Compute the encoding-min and encoding-max.</p></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p>These parameters are used in the quantization step.</p></li>
+<li><p>These parameters define the range and floating point values that will be representable by the fixed point format.</p>
+<ul class="simple">
+<li><p>encoding-min: specifies the smallest floating point value that will be represented by the fixed point value of 0</p></li>
+<li><p>encoding-max: specifies the largest floating point value that will be represented by the fixed point value of 255</p></li>
+<li><p>floating point values at every step size, where step size = (encoding-max - encoding-min) / (2^bw-1), will be representable</p></li>
+<li><p>offset where zero is exactly represented</p></li>
+</ul>
+</li>
+<li><p>encoding-min and encoding-max are first set to the true min and true max computed in the previous step</p></li>
+<li><p>Requirements</p>
+<ol class="arabic simple">
+<li><p>Encoding range must be at least a minimum of 0.01</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>encoding-max is adjusted to max(true max, true min + 0.01)</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Floating point value of 0 must be exactly representable</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>encoding-min or encoding-max may be further adjusted</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Cases - Handling 0</p></li>
+</ol>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Inputs are strictly positive</p>
+<ul class="simple">
+<li><p>the encoding-min is set to 0.0</p></li>
+<li><p>zero floating point value is exactly representable by smallest fixed point value 0</p></li>
+<li><p>e.g. input range = [5.0, 10.0]</p>
+<ul>
+<li><p>encoding-min = 0.0, encoding-max = 10.0</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Inputs are strictly negative</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>encoding-max is set to 0.0</p></li>
+<li><p>zero floating point value is exactly representable by the largest fixed point value 255</p></li>
+<li><p>e.g. input range = [-20.0, -6.0]</p>
+<ul>
+<li><p>encoding-min = -20.0, encoding-max = 0.0</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Inputs are both negative and positive</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>encoding-min and encoding-max are slightly shifted to make the floating point zero exactly representable</p></li>
+<li><p>e.g. input range = [-5.1, 5.1]</p>
+<ul>
+<li><p>encoding-min and encoding-max are first set to -5.1 and 5.1, respectively</p></li>
+<li><p>encoding range is 10.2 and the step size is 10.2/255 = 0.04</p></li>
+<li><p>zero value is currently not representable. The closest values representable are -0.02 and +0.02 by fixed point values 127 and 128, respectively</p></li>
+<li><p>encoding-min and encoding-max are shifted by -0.02. The new encoding-min is -5.12 and the new encoding-max is 5.08</p></li>
+<li><p>floating point zero is now exactly representable by the fixed point value of 128</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>Quantize the input floating point values.</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>encoding-min and encoding-max parameter determined in the previous step are used to quantize all the input floating values to their fixed point representation</p></li>
+<li><p>Quantization formula is:</p>
+<ul>
+<li><p>quantized value = round(255 * (floating point value - encoding.min) / (encoding.max - encoding.min))</p></li>
+</ul>
+</li>
+<li><p>quantized value is also clamped to be within 0 and 2^bw-1</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><p>Outputs</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>the fixed point values</p></li>
+<li><p>encoding-min, encoding-max, scale, and offset  parameters</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="quantization-example">
+<h3><a class="toc-backref" href="#id7">Quantization Example</a><a class="headerlink" href="#quantization-example" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Inputs:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>input values = [-1.8, -1.0, 0, 0.5]</p></li>
+<li><p>encoding-min is set to -1.8 and encoding-max to 0.5</p></li>
+<li><p>encoding range is 2.3, which is larger than the required 0.01</p></li>
+<li><p>encoding-min is adjusted to −1.803922 and encoding-max to 0.496078 to make zero exactly representable</p></li>
+<li><p>step size is 0.009020</p></li>
+<li><p>offset is 200</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Outputs:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>quantized values are [0, 89, 200, 255]</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="dequantization-example">
+<h3><a class="toc-backref" href="#id8">Dequantization Example</a><a class="headerlink" href="#dequantization-example" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Inputs:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>quantized values = [0, 89, 200, 255]</p></li>
+<li><p>encoding-min = −1.803922, encoding-max = 0.496078</p></li>
+<li><p>step size is 0.009020</p></li>
+<li><p>offset is 200</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Outputs:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>dequantized values = [−1.8039, −1.0011, 0.0000, 0.4961]</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="bitwidth-selection">
+<h3><a class="toc-backref" href="#id9">Bitwidth Selection</a><a class="headerlink" href="#bitwidth-selection" title="Permalink to this headline">¶</a></h3>
+<p>QNN currently supports a default quantization bit width of 8 for both weights and biases. The weight, bias, and activation bit widths,
+however, can be overriden by passing one of –weight_bw, –bias_bw, and/or –act_bw followed by the bitwidth. Please see the
+converter documentation <a class="reference internal" href="tools.html"><span class="doc">here</span></a> for more details on the command line options.</p>
+</div>
+</div>
+<div class="section" id="quantization-modes">
+<h2><a class="toc-backref" href="#id10">Quantization Modes</a><a class="headerlink" href="#quantization-modes" title="Permalink to this headline">¶</a></h2>
+<p>QNN supports four quantization modes: tf, symmetric, enhanced, and adjusted. The primary difference is between how they select the quantization range to be used.</p>
+<div class="section" id="tf">
+<h3><a class="toc-backref" href="#id11">TF</a><a class="headerlink" href="#tf" title="Permalink to this headline">¶</a></h3>
+<p>The default mode has been described above, and uses the true min/max of the data being quantized, followed by an adjustment of the range to ensure a minimum range and to ensure 0.0 is exactly quantizable.</p>
+</div>
+<div class="section" id="symmetric">
+<h3><a class="toc-backref" href="#id12">Symmetric</a><a class="headerlink" href="#symmetric" title="Permalink to this headline">¶</a></h3>
+<p>Symmetric quantization follows the same basic principles as TF quantization but adjusted the range to be symmetric. It does this by selecting a new min and max from the original
+range such that new_max=max(abs(min), abs(max)) and adjusts the range to be (-new_max, max) such that the range is symmetric around 0. This is typically only used for weights as it helps
+to reduce computation overhead at runtime. This mode is enabled by passing –param_quantizer symmetric  to one of the <a class="reference internal" href="tools.html"><span class="doc">converters</span></a>.</p>
+</div>
+<div class="section" id="enhanced">
+<h3><a class="toc-backref" href="#id13">Enhanced</a><a class="headerlink" href="#enhanced" title="Permalink to this headline">¶</a></h3>
+<p>Enhanced quantization mode (invoked by passing “enhanced” to either the <code class="docutils literal notranslate"><span class="pre">--param_quantizer</span></code> or <code class="docutils literal notranslate"><span class="pre">--act_quantizer</span></code> options in one of the <a class="reference internal" href="tools.html"><span class="doc">converters</span></a>) uses an algorithm to try to determine a better
+set of quantization parameters to improve accuracy.   The algorithm may pick a different min/max value than the default quantizer, and in some cases it may set
+the range such that some of the original weights and/or activations cannot fall into that range.  However, this range does produce better accuracy than simply using
+the true min/max. The enhanced quantizer can be enabled independently for weights and activations by appending either “weights” or “activations” after the option.</p>
+<p>This is useful for some models where the weights and/or activations may have “long tails”. (Imagine a range with most values between -100 and 1000, but a few values much greater than 1000 or much less than -100.)  In some cases these long tails can be ignored and the range -100, 1000 can be used more effectively than the full range.</p>
+<p>Enhanced quantizer still enforces a minimum range and ensures 0.0 is exactly quantizable.</p>
+</div>
+<div class="section" id="tf-adjusted">
+<h3><a class="toc-backref" href="#id14">TF Adjusted</a><a class="headerlink" href="#tf-adjusted" title="Permalink to this headline">¶</a></h3>
+<p>This mode is used only for quantizing weights to 8 bit fixed point (invoked by passing “adjusted” to either the <code class="docutils literal notranslate"><span class="pre">--param_quantizer</span></code> or <code class="docutils literal notranslate"><span class="pre">--act_quantizer</span></code> options in one of the <a class="reference internal" href="tools.html"><span class="doc">converters</span></a>)
+to, which uses adjusted min or max of the data being quantized other than true min/max or the min/max
+that exclude the long tail. This has been verified to be able to provide accuracy benefit for denoise model specifically. Using this
+quantizer, the max will be expanded or the min will be decreased if necessary.</p>
+<p>Adjusted weights quantizer still enforces a minimum range and ensures 0.0 is exactly quantizable.</p>
+</div>
+</div>
+<div class="section" id="enhanced-quantization-techniques">
+<h2><a class="toc-backref" href="#id15">Enhanced Quantization Techniques</a><a class="headerlink" href="#enhanced-quantization-techniques" title="Permalink to this headline">¶</a></h2>
+<p>Quantization can be a difficult problem to solve due to the myriad of training techniques, model architectures, and layer types. In an attempt to mitigate quantization problems
+model preprocessing techniques have been added to the quantizer that may improve quantization performance on models which exhibit sharp drops in accuracy upon quantization.</p>
+<p>The primary technique introduced is CLE (Cross Layer Equalization).</p>
+<p>CLE works by scaling the convolution weight ranges in the network by making use of a scale-equivariance property of activation functions. In addition, the process absorbs high biases which may be result from weight scaling from one convolution layer to a subsequent convolution layer.</p>
+<div class="section" id="enhanced-quantization-techniques-limitations">
+<h3><a class="toc-backref" href="#id16">Enhanced Quantization Techniques: Limitations</a><a class="headerlink" href="#enhanced-quantization-techniques-limitations" title="Permalink to this headline">¶</a></h3>
+<p>In many cases CLE may enable quantized models to return to close to their original floating-point accuracy. There are some caveats/limitations to the current algorithms:</p>
+<blockquote>
+<div><p>CLE operates on specific patterns of operations that all exist in a single branch (outputs cannot be consumed by more than one op). The matched operation patterns (r=required, o=optional) are:</p>
+<blockquote>
+<div><p>Conv(r)-&gt;Batchnorm(r)-&gt;activation(o)-&gt;Conv(r)-&gt;Batchnorm(r)-&gt;activation(o)
+Conv(r)-&gt;Batchnorm(r)-&gt;activation(o)-&gt;DepthwiseConv(r)-&gt;Batchnorm(r)-&gt;activation(o)-&gt;Conv(r)-&gt;Batchnorm(r)-&gt;activation(o)</p>
+</div></blockquote>
+<p>The CLE algorithm currently only supports Relu activations. Any Relu6 activations will be automatically changed to Relu and any activations other than
+these will cause the algorithm to ignore the preceding convolution. Typically the switch from Relu6-&gt;Relu is harmless and does not cause any degradation in accuracy, however some
+models may exhibit a slight degradation of accuracy. In this case, CLE can only recover accuracy to that degraded level, and not to the original float
+accuracy.
+CLE requires batchnorms (specifically detectable batchnorm beta/gamma data) be present in the original model before conversion to DLC for the complete
+algorithm to be run and to regain maximum accuracy. For Tensorflow, the beta and gamma can sometimes still be found even with folded batchnorms, so long as
+the folding didn’t fold the parameters into the convolution’s static weights and bias. If it does not detect the required information you may see a message
+that looks like: “Invalid model for HBA quantization algorithm.” This indicates the algorithm will only partially run and accuracy issues may likely be present.</p>
+</div></blockquote>
+<p>To run CLE simply add the option –algorithms cle to the converter command line.</p>
+<p>More information about the algorithms can be found here: [<a class="reference external" href="https://arxiv.org/abs/1906.04721">https://arxiv.org/abs/1906.04721</a>]</p>
+</div>
+</div>
+<div class="section" id="quantization-impacts">
+<h2><a class="toc-backref" href="#id17">Quantization Impacts</a><a class="headerlink" href="#quantization-impacts" title="Permalink to this headline">¶</a></h2>
+<p>Quantizing a model and/or running it in a quantized runtime (like the HTP) can affect accuracy.  Some models may not work well when quantized, and may yield incorrect results.
+The metrics for measuring impact of quantization on a model that does classification are typically “Mean Average Precision”, “Top-1 Error” and “Top-5 Error”.</p>
+</div>
+<div class="section" id="quantization-overrides">
+<h2><a class="toc-backref" href="#id18">Quantization Overrides</a><a class="headerlink" href="#quantization-overrides" title="Permalink to this headline">¶</a></h2>
+<p>If the option –quantization_overrides is provided the user may provide a json file with parameters to use for quantization. These will override any
+quantization data carried from conversion (eg TF fake quantization) or calculated during the normal quantization process. Format defined as per AIMET specification.</p>
+<p>There are two sections in the json, a section for overriding operator output encodings called “activation_encodings” and a section for overriding parameter (weight and bias) encodings
+called “param_encodings”. Both must be present in the file, but can be empty if no overrides are desired. An example with all of the currently supported options:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="s">&quot;activation_encodings&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="s">&quot;Conv1:0&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">           </span><span class="p">{</span><span class="w"></span>
+<span class="w">               </span><span class="s">&quot;bitwidth&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="s">&quot;max&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">12.82344407824954</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="s">&quot;min&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="s">&quot;offset&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="s">&quot;scale&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0.050288015993135454</span><span class="w"></span>
+<span class="w">           </span><span class="p">}</span><span class="w"></span>
+<span class="w">       </span><span class="p">],</span><span class="w"></span>
+<span class="w">       </span><span class="s">&quot;input:0&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">           </span><span class="p">{</span><span class="w"></span>
+<span class="w">               </span><span class="s">&quot;bitwidth&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="s">&quot;max&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0.9960872825108046</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="s">&quot;min&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">-1.0039304197656937</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="s">&quot;offset&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">127</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="s">&quot;scale&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0.007843206675594112</span><span class="w"></span>
+<span class="w">           </span><span class="p">}</span><span class="w"></span>
+<span class="w">       </span><span class="p">]</span><span class="w"></span>
+<span class="w">   </span><span class="p">},</span><span class="w"></span>
+<span class="w">   </span><span class="s">&quot;param_encodings&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">       </span><span class="s">&quot;Conv2d/weights&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">           </span><span class="p">{</span><span class="w"></span>
+<span class="w">               </span><span class="s">&quot;bitwidth&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="s">&quot;max&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1.700559472933134</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="s">&quot;min&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">-2.1006477158567995</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="s">&quot;offset&quot;</span><span class="o">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w"></span>
+<span class="w">               </span><span class="s">&quot;scale&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">0.01490669485799974</span><span class="w"></span>
+<span class="w">           </span><span class="p">}</span><span class="w"></span>
+<span class="w">       </span><span class="p">]</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note that it is not required to provide scale and offset. If they are provided they will be used, otherwise they will be calulated from the provided bw, min, and
+max parameters.</p>
+</div>
+<div class="section" id="quantizing-a-model">
+<h2><a class="toc-backref" href="#id19">Quantizing a Model</a><a class="headerlink" href="#quantizing-a-model" title="Permalink to this headline">¶</a></h2>
+<p>To enable quantization simply pass the option –input_list along with a text file containing raw data inputs to the network. Note that the inputs specified in this file
+should match exactly with the inputs in the .cpp file generated by conversion. In most cases, these inputs can be obtained directly from the source framework model. However,
+in rare cases, such as when the inputs are pruned by the converter, these inputs can differ. The format of the file uses a single line for each set of inputs to the network:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">inputFile0</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">inputFile1</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">inputFile2</span><span class="o">&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>If a network contains multiple inputs they are all listed on a single line separated by a space
+and prefaced with the input name and a “:=”</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">inputNameA</span><span class="o">&gt;:=&lt;</span><span class="n">inputFile0a</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">inputNameB</span><span class="o">&gt;:=&lt;</span><span class="n">inputFile0b</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">inputNameA</span><span class="o">&gt;:=&lt;</span><span class="n">inputFile1a</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">inputNameB</span><span class="o">&gt;:=&lt;</span><span class="n">inputFile1b</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">inputNameA</span><span class="o">&gt;:=&lt;</span><span class="n">inputFile2a</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">inputNameB</span><span class="o">&gt;:=&lt;</span><span class="n">inputFile2b</span><span class="o">&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="section" id="examples">
+<h3><a class="toc-backref" href="#id20">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>For graph containing a single input the input text file would contain something like:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">/</span><span class="n">chair</span><span class="p">.</span><span class="n">raw</span><span class="w"></span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">/</span><span class="n">mongoose</span><span class="p">.</span><span class="n">raw</span><span class="w"></span>
+<span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">/</span><span class="n">honeybadger</span><span class="p">.</span><span class="n">raw</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For a network containing multiple graph inputs:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="nl">input_left_eye</span><span class="p">:</span><span class="o">=</span><span class="n">left0</span><span class="p">.</span><span class="n">rawtensor</span><span class="w"> </span><span class="nl">input_right_eye</span><span class="p">:</span><span class="o">=</span><span class="n">right0</span><span class="p">.</span><span class="n">rawtensor</span><span class="w"></span>
+<span class="nl">input_left_eye</span><span class="p">:</span><span class="o">=</span><span class="n">left1</span><span class="p">.</span><span class="n">rawtensor</span><span class="w"> </span><span class="nl">input_right_eye</span><span class="p">:</span><span class="o">=</span><span class="n">right1</span><span class="p">.</span><span class="n">rawtensor</span><span class="w"></span>
+<span class="nl">input_left_eye</span><span class="p">:</span><span class="o">=</span><span class="n">left2</span><span class="p">.</span><span class="n">rawtensor</span><span class="w"> </span><span class="nl">input_right_eye</span><span class="p">:</span><span class="o">=</span><span class="n">right2</span><span class="p">.</span><span class="n">rawtensor</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorials.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../tools-api-rst/typedef_namespaceqnn__wrapper__api_1a73cb51e01c1e0df045bfe1f5f94fea6f.html" class="btn btn-neutral float-left" title="Typedef qnn_wrapper_api::QnnInterfaceGetProvidersFn_t" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+    "Artifacts": {
+        "aarch64-qnx": [
+            "qnn-net-run",
+            "qnn-context-binary-generator",
+            "libQnnCpu.so",
+            "libQnnHtp.so",
+            "libQnnHtpV68Stub.so",
+            "libQnnSaver.so",
+            "qnn-profile-viewer",
+            "libQnnHtpNetRunExtensions.so"
+        ],
+        "x86_64-linux-clang": [
+            "qnn-profile-viewer",
+            "qnn-context-binary-generator",
+            "libQnnHtp.so",
+            "qnn-net-run"
+        ],
+        "hexagon-v68": [
+            "cdsp0:libQnnHtpV68Skel.so",
+            "cdsp1:libQnnHtpV68Skel.so"
+        ]
+    }
+}

@@ -1,0 +1,410 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Enum SnpeUdo_ErrorType_t &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Enum SnpeUdo_HexNNTensorLayout_t" href="enum_group__c__plus__plus__apis_1ga7c9382f2b8c8459370e85419a5d4125d.html" />
+    <link rel="prev" title="Enum SnpeUdo_DataType_t" href="enum_group__c__plus__plus__apis_1ga629ab0e5dcda1a3f5d878e6a0aa33fe5.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../general/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quantization.html">Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../general/api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../general/api_overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/api_usage_guidelines.html">Usage Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/api_version_history.html">Version History</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/api.html#operation-definitions">Operation Definitions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../general/api.html#c">C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="unabridged_api.html">Full API</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="unabridged_api.html#enums">Enums</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#unions">Unions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#variables">Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#defines">Defines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="unabridged_api.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../general/api_error_codes.html">Error Codes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../general/glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../general/api.html">API</a> &raquo;</li>
+        
+          <li><a href="unabridged_api.html">Full API</a> &raquo;</li>
+        
+      <li>Enum SnpeUdo_ErrorType_t</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="enum-snpeudo-errortype-t">
+<span id="exhale-enum-group-c-plus-plus-apis-1ga1f02bf39ff236da33ba951188e94b2ea"></span><h1>Enum SnpeUdo_ErrorType_t<a class="headerlink" href="#enum-snpeudo-errortype-t" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_DSP_Udo_UdoBase.h.html#file-include-dsp-udo-udobase-h"><span class="std std-ref">File UdoBase.h</span></a></p></li>
+</ul>
+<div class="section" id="enum-documentation">
+<h2>Enum Documentation<a class="headerlink" href="#enum-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="enum">
+<dt id="_CPPv419SnpeUdo_ErrorType_t">
+<span id="_CPPv319SnpeUdo_ErrorType_t"></span><span id="_CPPv219SnpeUdo_ErrorType_t"></span><span class="target" id="group__c__plus__plus__apis_1ga1f02bf39ff236da33ba951188e94b2ea"></span><em class="property">enum </em><code class="sig-name descname">SnpeUdo_ErrorType_t</code><a class="headerlink" href="#_CPPv419SnpeUdo_ErrorType_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>An enum which holds the various error types. The error types are divided to classes : 0 - 99 : generic errors 100 - 200 : errors related to configuration </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt id="_CPPv417SNPE_UDO_NO_ERROR">
+<span id="_CPPv317SNPE_UDO_NO_ERROR"></span><span id="_CPPv217SNPE_UDO_NO_ERROR"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaad0aa3b1d382ac37c5c0cd3e7af321828"></span><code class="sig-name descname">SNPE_UDO_NO_ERROR</code> = 0<a class="headerlink" href="#_CPPv417SNPE_UDO_NO_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>No Error. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv412UDO_NO_ERROR">
+<span id="_CPPv312UDO_NO_ERROR"></span><span id="_CPPv212UDO_NO_ERROR"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaad9e9b3bbdc6a482b6c78b7003e6c8f63"></span><code class="sig-name descname">UDO_NO_ERROR</code> = 0<a class="headerlink" href="#_CPPv412UDO_NO_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv419SNPE_UDO_WRONG_CORE">
+<span id="_CPPv319SNPE_UDO_WRONG_CORE"></span><span id="_CPPv219SNPE_UDO_WRONG_CORE"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaaa8ce5e63877163db015259963048b307"></span><code class="sig-name descname">SNPE_UDO_WRONG_CORE</code> = 1<a class="headerlink" href="#_CPPv419SNPE_UDO_WRONG_CORE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unsupported value for core type. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv414UDO_WRONG_CORE">
+<span id="_CPPv314UDO_WRONG_CORE"></span><span id="_CPPv214UDO_WRONG_CORE"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaabc40a76c455df138ee12913c8b83d21f"></span><code class="sig-name descname">UDO_WRONG_CORE</code> = 1<a class="headerlink" href="#_CPPv414UDO_WRONG_CORE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv425SNPE_UDO_INVALID_ARGUMENT">
+<span id="_CPPv325SNPE_UDO_INVALID_ARGUMENT"></span><span id="_CPPv225SNPE_UDO_INVALID_ARGUMENT"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaadd7457a897e685740957bce167b6f91b"></span><code class="sig-name descname">SNPE_UDO_INVALID_ARGUMENT</code> = 2<a class="headerlink" href="#_CPPv425SNPE_UDO_INVALID_ARGUMENT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Invalid attribute/argument passed into UDO API. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv420UDO_INVALID_ARGUMENT">
+<span id="_CPPv320UDO_INVALID_ARGUMENT"></span><span id="_CPPv220UDO_INVALID_ARGUMENT"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaadb673c803b653599afeaf5dbfb154b3f"></span><code class="sig-name descname">UDO_INVALID_ARGUMENT</code> = 2<a class="headerlink" href="#_CPPv420UDO_INVALID_ARGUMENT" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv428SNPE_UDO_UNSUPPORTED_FEATURE">
+<span id="_CPPv328SNPE_UDO_UNSUPPORTED_FEATURE"></span><span id="_CPPv228SNPE_UDO_UNSUPPORTED_FEATURE"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaae55716fafd788435a00a8f8d8238f4f8"></span><code class="sig-name descname">SNPE_UDO_UNSUPPORTED_FEATURE</code> = 3<a class="headerlink" href="#_CPPv428SNPE_UDO_UNSUPPORTED_FEATURE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unsupported feature error. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv423UDO_UNSUPPORTED_FEATURE">
+<span id="_CPPv323UDO_UNSUPPORTED_FEATURE"></span><span id="_CPPv223UDO_UNSUPPORTED_FEATURE"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaaf659120707decd8cdcdac071bd7236b7"></span><code class="sig-name descname">UDO_UNSUPPORTED_FEATURE</code> = 3<a class="headerlink" href="#_CPPv423UDO_UNSUPPORTED_FEATURE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv424SNPE_UDO_MEM_ALLOC_ERROR">
+<span id="_CPPv324SNPE_UDO_MEM_ALLOC_ERROR"></span><span id="_CPPv224SNPE_UDO_MEM_ALLOC_ERROR"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaaeda89f81d670672a9831dccbc7de7297"></span><code class="sig-name descname">SNPE_UDO_MEM_ALLOC_ERROR</code> = 4<a class="headerlink" href="#_CPPv424SNPE_UDO_MEM_ALLOC_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Error relating to memory allocation. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv419UDO_MEM_ALLOC_ERROR">
+<span id="_CPPv319UDO_MEM_ALLOC_ERROR"></span><span id="_CPPv219UDO_MEM_ALLOC_ERROR"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaa632277c19c2873457760acb29f64077c"></span><code class="sig-name descname">UDO_MEM_ALLOC_ERROR</code> = 4<a class="headerlink" href="#_CPPv419UDO_MEM_ALLOC_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv424SNPE_UDO_WRONG_OPERATION">
+<span id="_CPPv324SNPE_UDO_WRONG_OPERATION"></span><span id="_CPPv224SNPE_UDO_WRONG_OPERATION"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaa082285b87a4758808af4ad717d76b8cd"></span><code class="sig-name descname">SNPE_UDO_WRONG_OPERATION</code> = 100<a class="headerlink" href="#_CPPv424SNPE_UDO_WRONG_OPERATION" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>No op with given attributes available in library. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv419UDO_WRONG_OPERATION">
+<span id="_CPPv319UDO_WRONG_OPERATION"></span><span id="_CPPv219UDO_WRONG_OPERATION"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaa63f761143b377dc5db2f112dd07989c6"></span><code class="sig-name descname">UDO_WRONG_OPERATION</code> = 100<a class="headerlink" href="#_CPPv419UDO_WRONG_OPERATION" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv424SNPE_UDO_WRONG_CORE_TYPE">
+<span id="_CPPv324SNPE_UDO_WRONG_CORE_TYPE"></span><span id="_CPPv224SNPE_UDO_WRONG_CORE_TYPE"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaa2ac217338ec25b0c1c0ccce525190e1a"></span><code class="sig-name descname">SNPE_UDO_WRONG_CORE_TYPE</code> = 101<a class="headerlink" href="#_CPPv424SNPE_UDO_WRONG_CORE_TYPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unsupported value for core type in UDO configuration. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv419UDO_WRONG_CORE_TYPE">
+<span id="_CPPv319UDO_WRONG_CORE_TYPE"></span><span id="_CPPv219UDO_WRONG_CORE_TYPE"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaae0b3d8ae0d1028c87665dd93fdb6256e"></span><code class="sig-name descname">UDO_WRONG_CORE_TYPE</code> = 101<a class="headerlink" href="#_CPPv419UDO_WRONG_CORE_TYPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv428SNPE_UDO_WRONG_NUM_OF_PARAMS">
+<span id="_CPPv328SNPE_UDO_WRONG_NUM_OF_PARAMS"></span><span id="_CPPv228SNPE_UDO_WRONG_NUM_OF_PARAMS"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaadb7ed786092296452d2c0af4d038dba3"></span><code class="sig-name descname">SNPE_UDO_WRONG_NUM_OF_PARAMS</code> = 102<a class="headerlink" href="#_CPPv428SNPE_UDO_WRONG_NUM_OF_PARAMS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Wrong number of params in UDO definition. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv423UDO_WRONG_NUM_OF_PARAMS">
+<span id="_CPPv323UDO_WRONG_NUM_OF_PARAMS"></span><span id="_CPPv223UDO_WRONG_NUM_OF_PARAMS"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaa7de8a63c7c74e2a7712e873d91086c0e"></span><code class="sig-name descname">UDO_WRONG_NUM_OF_PARAMS</code> = 102<a class="headerlink" href="#_CPPv423UDO_WRONG_NUM_OF_PARAMS" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv432SNPE_UDO_WRONG_NUM_OF_DIMENSIONS">
+<span id="_CPPv332SNPE_UDO_WRONG_NUM_OF_DIMENSIONS"></span><span id="_CPPv232SNPE_UDO_WRONG_NUM_OF_DIMENSIONS"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaa97da1398d8c7e7caa4a7cc0cdb46fcae"></span><code class="sig-name descname">SNPE_UDO_WRONG_NUM_OF_DIMENSIONS</code> = 103<a class="headerlink" href="#_CPPv432SNPE_UDO_WRONG_NUM_OF_DIMENSIONS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Wrong number of dimensions for tensor(s) in UDO definition. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv427UDO_WRONG_NUM_OF_DIMENSIONS">
+<span id="_CPPv327UDO_WRONG_NUM_OF_DIMENSIONS"></span><span id="_CPPv227UDO_WRONG_NUM_OF_DIMENSIONS"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaa83c61a28d3bec486e5523d729a4351e9"></span><code class="sig-name descname">UDO_WRONG_NUM_OF_DIMENSIONS</code> = 103<a class="headerlink" href="#_CPPv427UDO_WRONG_NUM_OF_DIMENSIONS" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv428SNPE_UDO_WRONG_NUM_OF_INPUTS">
+<span id="_CPPv328SNPE_UDO_WRONG_NUM_OF_INPUTS"></span><span id="_CPPv228SNPE_UDO_WRONG_NUM_OF_INPUTS"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaa3d3f964b2b199c018f6462dd3186009f"></span><code class="sig-name descname">SNPE_UDO_WRONG_NUM_OF_INPUTS</code> = 104<a class="headerlink" href="#_CPPv428SNPE_UDO_WRONG_NUM_OF_INPUTS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Wrong number of input tensors in UDO definition. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv423UDO_WRONG_NUM_OF_INPUTS">
+<span id="_CPPv323UDO_WRONG_NUM_OF_INPUTS"></span><span id="_CPPv223UDO_WRONG_NUM_OF_INPUTS"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaa25958f7f50c1bdbac650a5031d1eae73"></span><code class="sig-name descname">UDO_WRONG_NUM_OF_INPUTS</code> = 104<a class="headerlink" href="#_CPPv423UDO_WRONG_NUM_OF_INPUTS" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv429SNPE_UDO_WRONG_NUM_OF_OUTPUTS">
+<span id="_CPPv329SNPE_UDO_WRONG_NUM_OF_OUTPUTS"></span><span id="_CPPv229SNPE_UDO_WRONG_NUM_OF_OUTPUTS"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaa9e076e0a54bff3bbb7b044c5ef971ccd"></span><code class="sig-name descname">SNPE_UDO_WRONG_NUM_OF_OUTPUTS</code> = 105<a class="headerlink" href="#_CPPv429SNPE_UDO_WRONG_NUM_OF_OUTPUTS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Wrong number of output tensors in UDO definition. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv424UDO_WRONG_NUM_OF_OUTPUTS">
+<span id="_CPPv324UDO_WRONG_NUM_OF_OUTPUTS"></span><span id="_CPPv224UDO_WRONG_NUM_OF_OUTPUTS"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaa8204f4f85f36d255483d835c7c9f9d6b"></span><code class="sig-name descname">UDO_WRONG_NUM_OF_OUTPUTS</code> = 105<a class="headerlink" href="#_CPPv424UDO_WRONG_NUM_OF_OUTPUTS" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv432SNPE_UDO_PROGRAM_CACHE_NOT_FOUND">
+<span id="_CPPv332SNPE_UDO_PROGRAM_CACHE_NOT_FOUND"></span><span id="_CPPv232SNPE_UDO_PROGRAM_CACHE_NOT_FOUND"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaad0638686e6334eaf3fc7ad0741c93c9d"></span><code class="sig-name descname">SNPE_UDO_PROGRAM_CACHE_NOT_FOUND</code> = 106<a class="headerlink" href="#_CPPv432SNPE_UDO_PROGRAM_CACHE_NOT_FOUND" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv427UDO_PROGRAM_CACHE_NOT_FOUND">
+<span id="_CPPv327UDO_PROGRAM_CACHE_NOT_FOUND"></span><span id="_CPPv227UDO_PROGRAM_CACHE_NOT_FOUND"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaa0898a34dff014b0cde64ff0618c68c49"></span><code class="sig-name descname">UDO_PROGRAM_CACHE_NOT_FOUND</code> = 106<a class="headerlink" href="#_CPPv427UDO_PROGRAM_CACHE_NOT_FOUND" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv422SNPE_UDO_UNKNOWN_ERROR">
+<span id="_CPPv322SNPE_UDO_UNKNOWN_ERROR"></span><span id="_CPPv222SNPE_UDO_UNKNOWN_ERROR"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaa6f7ed673360a2a32beb1dcec48c3635d"></span><code class="sig-name descname">SNPE_UDO_UNKNOWN_ERROR</code> = 0xFFFFFFFF<a class="headerlink" href="#_CPPv422SNPE_UDO_UNKNOWN_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv417UDO_UNKNOWN_ERROR">
+<span id="_CPPv317UDO_UNKNOWN_ERROR"></span><span id="_CPPv217UDO_UNKNOWN_ERROR"></span><span class="target" id="group__c__plus__plus__apis_1gga1f02bf39ff236da33ba951188e94b2eaa755fd4e89e822d5aeaf55bf14d646fe4"></span><code class="sig-name descname">UDO_UNKNOWN_ERROR</code> = 0xFFFFFFFF<a class="headerlink" href="#_CPPv417UDO_UNKNOWN_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="enum_group__c__plus__plus__apis_1ga7c9382f2b8c8459370e85419a5d4125d.html" class="btn btn-neutral float-right" title="Enum SnpeUdo_HexNNTensorLayout_t" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="enum_group__c__plus__plus__apis_1ga629ab0e5dcda1a3f5d878e6a0aa33fe5.html" class="btn btn-neutral float-left" title="Enum SnpeUdo_DataType_t" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

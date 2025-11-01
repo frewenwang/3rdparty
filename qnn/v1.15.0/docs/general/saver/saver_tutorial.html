@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>QNN Saver Tutorial: Save execution sequence with Saver and replay on a backend &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="QNN HTP Shared Buffer Tutorial" href="../htp/htp_shared_buffer_tutorial.html" />
+    <link rel="prev" title="Sample App Tutorial" href="../sample_app.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantization.html">Quantization</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../tutorial1.html">Tutorial #1: Executing a shallow model using custom op package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial2.html">Tutorial #2: Converting and executing a CNN model with QNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial3.html">Tutorial #3: Converting and executing a CNN model with custom operations with QNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial4.html">Tutorial #4: Converting and executing a model with dynamic weights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dsp/hexnn_migration.html">DSP Tutorial: Migrating from Hexagon-nn to QNN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sample_app.html">Sample App Tutorial: Create and build a sample C++ application</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">QNN Saver Tutorial: Save execution sequence with Saver and replay on a backend</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generating-saver-output-c">Generating saver_output.c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiling-saver-output-c">Compiling saver_output.c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replaying-saver-output-c-on-x86">Replaying saver_output.c on x86</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replaying-saver-output-c-on-android">Replaying saver_output.c on Android</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#set-environment-variables-based-on-platform">Set environment variables based on platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#replay-on-qnn-cpu-or-qnn-gpu-backend">Replay on QNN CPU or QNN GPU Backend</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#replay-on-qnn-dsp-or-qnn-htp-backend">Replay on QNN DSP or QNN HTP Backend</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../htp/htp_shared_buffer_tutorial.html">QNN HTP Shared Buffer Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../tutorials.html">Tutorials</a> &raquo;</li>
+        
+      <li>QNN Saver Tutorial: Save execution sequence with Saver and replay on a backend</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="qnn-saver-tutorial-save-execution-sequence-with-saver-and-replay-on-a-backend">
+<h1>QNN Saver Tutorial: Save execution sequence with Saver and replay on a backend<a class="headerlink" href="#qnn-saver-tutorial-save-execution-sequence-with-saver-and-replay-on-a-backend" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial describes how to use the QNN Saver backend to capture the execution sequence of
+QNN APIs. The captured output can then be compiled and replayed on any QNN backend.</p>
+<div class="section" id="generating-saver-output-c">
+<h2>Generating saver_output.c<a class="headerlink" href="#generating-saver-output-c" title="Permalink to this headline">¶</a></h2>
+<p>saver_output.c is an artifact produced by running a model on the Saver backend. A model in a source
+framework can be converted into a <code class="docutils literal notranslate"><span class="pre">model.cpp</span></code> and <code class="docutils literal notranslate"><span class="pre">model.bin</span></code> using the
+<span class="xref std std-doc">QNN Converters</span>. Sample <code class="docutils literal notranslate"><span class="pre">model.cpp</span></code> and <code class="docutils literal notranslate"><span class="pre">model.bin</span></code> files are located in
+<code class="docutils literal notranslate"><span class="pre">&lt;QNN_SDK_ROOT&gt;/examples/converter/models/</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">model.cpp</span></code> and <code class="docutils literal notranslate"><span class="pre">model.bin</span></code> are used to create a <code class="docutils literal notranslate"><span class="pre">model.so</span></code> via <code class="docutils literal notranslate"><span class="pre">qnn-model-lib-generator</span></code>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>$ ${QNN_SDK_ROOT}/target/x86_64-linux-clang/bin/qnn-model-lib-generator \
+              -c ${QNN_SDK_ROOT}/examples/converter/models/qnn_model_float.cpp \
+              -b ${QNN_SDK_ROOT}/examples/converter/models/qnn_model_float.bin \
+              -o ${QNN_SDK_ROOT}/examples/converter/model_libs # This can be any path
+</pre></div>
+</div>
+<p>This will produce the following artifacts:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">${QNN_SDK_ROOT}/examples/converter/model_libs/aarch64-android/libqnn_model_float.so</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">${QNN_SDK_ROOT}/examples/converter/model_libs/arm-android/libqnn_model_float.so</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">${QNN_SDK_ROOT}/examples/converter/model_libs/x86_64-linux-clang/libqnn_model_float.so</span></code></p></li>
+</ul>
+<p>The resulting <code class="docutils literal notranslate"><span class="pre">model.so</span></code> can be run on the Saver backend using <code class="docutils literal notranslate"><span class="pre">qnn-net-run</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">converter</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="w"></span>
+<span class="n">$</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">clang</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">qnn</span><span class="o">-</span><span class="n">net</span><span class="o">-</span><span class="n">run</span><span class="w"> </span>\
+<span class="w">              </span><span class="o">--</span><span class="n">backend</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">target</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">clang</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libQnnSaver</span><span class="p">.</span><span class="n">so</span><span class="w"> </span>\
+<span class="w">              </span><span class="o">--</span><span class="n">model</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">converter</span><span class="o">/</span><span class="n">model_libs</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">clang</span><span class="o">/</span><span class="n">model</span><span class="p">.</span><span class="n">so</span><span class="w"> </span>\
+<span class="w">              </span><span class="o">--</span><span class="n">input_list</span><span class="w"> </span><span class="n">input_list_float</span><span class="p">.</span><span class="n">txt</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This will produce the following artifacts:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">./saver_output/saver_output.c</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./saver_output/params.bin</span></code></p></li>
+</ul>
+<p>See <span class="xref std std-doc">Tutorial #2</span> for more information on converting a model from a source framework
+into the QNN shared library format.</p>
+<p>Alternatively, the following script performs the steps described above and can be used for
+convenience.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">NetRun</span><span class="o">/</span><span class="n">linux</span><span class="o">-</span><span class="n">x86_64</span><span class="w"></span>
+<span class="n">$</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="n">linux</span><span class="o">-</span><span class="n">qnn</span><span class="o">-</span><span class="n">net</span><span class="o">-</span><span class="n">run</span><span class="p">.</span><span class="n">sh</span><span class="w"> </span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="n">saver</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This will produce a quantized <code class="docutils literal notranslate"><span class="pre">saver_output.c</span></code> and <code class="docutils literal notranslate"><span class="pre">params.bin</span></code> in
+<code class="docutils literal notranslate"><span class="pre">&lt;QNN_SDK_ROOT&gt;/examples/NetRun/linux-x86_64/saver_output/quantized/</span></code> for replay on DSP or HTP
+backends, and a non-quantized <code class="docutils literal notranslate"><span class="pre">saver_output.c</span></code> and <code class="docutils literal notranslate"><span class="pre">params.bin</span></code> in
+<code class="docutils literal notranslate"><span class="pre">&lt;QNN_SDK_ROOT&gt;/examples/NetRun/linux-x86_64/saver_output/non_quantized/</span></code> for replay on CPU or GPU
+backends.</p>
+</div>
+<div class="section" id="compiling-saver-output-c">
+<h2>Compiling saver_output.c<a class="headerlink" href="#compiling-saver-output-c" title="Permalink to this headline">¶</a></h2>
+<p>To compile saver_output.c for replay on a backend, use the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> located in
+<code class="docutils literal notranslate"><span class="pre">${QNN_SDK_ROOT}/examples/Saver</span></code>. This makefile can be used to compile saver_output.c for the
+specified QNN backend on a compatible platform.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Compiling for x86 targets requires clang.</p></li>
+<li><p>Compiling for Android targets requires Android NDK.</p></li>
+<li><p>Compiling for DSP/HTP backends on Android aarch64 targets requires Hexagon SDK.</p></li>
+</ul>
+</div>
+<p>Refer to <span class="xref std std-doc">Setup</span> to set the appropriate environment variables.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">saver_output.c</span></code> located in the same directory as <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> to compile
+for all QNN backends on supported targets.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">$</span><span class="w"> </span><span class="n">cp</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="n">saver_output</span><span class="o">/</span><span class="n">saver_output</span><span class="p">.</span><span class="n">c</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">Saver</span><span class="w"></span>
+<span class="n">$</span><span class="w"> </span><span class="n">cp</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="n">saver_output</span><span class="o">/</span><span class="n">params</span><span class="p">.</span><span class="n">bin</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">Saver</span><span class="w"></span>
+<span class="n">$</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">QNN_SDK_ROOT</span><span class="p">}</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">Saver</span><span class="w"></span>
+<span class="n">$</span><span class="w"> </span><span class="n">make</span><span class="w"> </span><span class="n">all</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This will produce a folder for each target:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">./x86_64-linux-clang</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./arm-android</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./aarch64-android</span></code></p></li>
+</ul>
+<p>These folders will contain one executable for each backend available on the target named
+<code class="docutils literal notranslate"><span class="pre">saver_output_&lt;backend&gt;</span></code>.</p>
+<p>To create executables for all backends on a specific target, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">&lt;target&gt;</span></code>. Valid options
+for &lt;target&gt; are <strong>x86</strong>, <strong>aarch64</strong>, or <strong>arm</strong>.</p>
+<p>To create an executable for a specific backend on a specific target, run
+<code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">&lt;backend&gt;_&lt;target&gt;</span></code>. Valid options for &lt;backend&gt; are <strong>cpu</strong>, or <strong>htp</strong> for &lt;target&gt;=x86,
+and <strong>cpu</strong>, <strong>gpu</strong>, <strong>dsp</strong>, or <strong>htp</strong> for &lt;target&gt;=arm or aarch64.</p>
+</div>
+<div class="section" id="replaying-saver-output-c-on-x86">
+<h2>Replaying saver_output.c on x86<a class="headerlink" href="#replaying-saver-output-c-on-x86" title="Permalink to this headline">¶</a></h2>
+<p>To replay on x86 backends, set LD_LIBRARY_PATH to point to the desired QNN backend library and run
+the executable. Ensure <code class="docutils literal notranslate"><span class="pre">params.bin</span></code> is in the current working directory.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>$ cd ${QNN_SDK_ROOT}/examples/Saver
+$ export QNN_BACKEND=&lt;backend&gt; # where &lt;backend&gt; is QnnCpu or QnnHtp
+$ export LD_LIBRARY_PATH=${QNN_SDK_ROOT}/target/x86_64-linux-clang/lib:$LD_LIBRARY_PATH
+$ ./x86_64-linux-clang/saver_output_${QNN_BACKEND} [--logging &lt;verbose,debug,info,warn,error&gt;] # optionally enable logging
+</pre></div>
+</div>
+</div>
+<div class="section" id="replaying-saver-output-c-on-android">
+<h2>Replaying saver_output.c on Android<a class="headerlink" href="#replaying-saver-output-c-on-android" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="set-environment-variables-based-on-platform">
+<h3>Set environment variables based on platform<a class="headerlink" href="#set-environment-variables-based-on-platform" title="Permalink to this headline">¶</a></h3>
+<p>Set QNN_TARGET_ARCH to indicate the target platform ABI.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>$ export QNN_TARGET_ARCH=&lt;target_arch&gt; # where &lt;target_arch&gt; is arm-android or aarch64-android
+</pre></div>
+</div>
+</div>
+<div class="section" id="replay-on-qnn-cpu-or-qnn-gpu-backend">
+<h3>Replay on QNN CPU or QNN GPU Backend<a class="headerlink" href="#replay-on-qnn-cpu-or-qnn-gpu-backend" title="Permalink to this headline">¶</a></h3>
+<p>Make a directory on device, push QNN backend library, <code class="docutils literal notranslate"><span class="pre">saver_output.c</span></code> executable, and
+<code class="docutils literal notranslate"><span class="pre">params.bin</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>$ export QNN_BACKEND=&lt;backend&gt; # where &lt;backend&gt; is QnnCpu or QnnGpu
+$ adb shell &quot;mkdir /data/local/tmp/saver&quot;
+$ adb push ${QNN_SDK_ROOT}/target/$QNN_TARGET_ARCH/lib/lib${QNN_BACKEND}.so /data/local/tmp/saver
+$ adb push ${QNN_SDK_ROOT}/examples/Saver/$QNN_TARGET_ARCH/saver_output_${QNN_BACKEND} /data/local/tmp/saver
+$ adb push ./saver_output/params.bin /data/local/tmp/saver
+</pre></div>
+</div>
+<p>Set LD_LIBRARY_PATH on device and execute</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>$ adb shell
+$ cd /data/local/tmp/saver
+$ export LD_LIBRARY_PATH=/data/local/tmp/saver:$LD_LIBRARY_PATH
+$ ./saver_output_${QNN_BACKEND} [-l &lt;verbose,debug,info,warn,error&gt;] # optionally enable logging
+</pre></div>
+</div>
+</div>
+<div class="section" id="replay-on-qnn-dsp-or-qnn-htp-backend">
+<h3>Replay on QNN DSP or QNN HTP Backend<a class="headerlink" href="#replay-on-qnn-dsp-or-qnn-htp-backend" title="Permalink to this headline">¶</a></h3>
+<p>Make a directory on device, push QNN backend stub/skel, <code class="docutils literal notranslate"><span class="pre">saver_output.c</span></code> executable, and
+<code class="docutils literal notranslate"><span class="pre">params.bin</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>$ export QNN_BACKEND=&lt;backend&gt;  # where &lt;backend&gt; is QnnDsp or QnnHtp
+$ export HEXAGON_ARCH=&lt;v65,v66,v68,v69&gt;  # based on device
+$ adb shell &quot;mkdir data/local/tmp/saver&quot;
+$ adb push ${QNN_SDK_ROOT}/target/$QNN_TARGET_ARCH/lib/lib${QNN_BACKEND}.so /data/local/tmp/saver
+$ adb push ${QNN_SDK_ROOT}/target/$QNN_TARGET_ARCH/lib/lib${QNN_BACKEND}${HEXAGON_ARCH^}Stub.so /data/local/tmp/saver
+$ adb push ${QNN_SDK_ROOT}/target/hexagon-${HEXAGON_ARCH}/lib/unsigned/lib${QNN_BACKEND}${HEXAGON_ARCH^}Skel.so /data/local/tmp/saver
+$ adb push ${QNN_SDK_ROOT}/target/$QNN_TARGET_ARCH/lib/libQnnHtpPrepare.so /data/local/tmp/saver  # if QNN_BACKEND=QnnHtp
+$ adb push ${QNN_SDK_ROOT}/examples/Saver/$QNN_TARGET_ARCH/saver_output_${QNN_BACKEND} /data/local/tmp/saver
+$ adb push ${QNN_SDK_ROOT}/examples/Saver/params.bin /data/local/tmp/saver
+</pre></div>
+</div>
+<p>Set LD_LIBRARY_PATH and ADSP_LIBRARY_PATH on device and execute:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>$ adb shell
+$ cd /data/local/tmp/saver
+$ export LD_LIBRARY_PATH=/data/local/tmp/saver:$LD_LIBRARY_PATH
+$ export ADSP_LIBRARY_PATH=/data/local/tmp/saver:$ADSP_LIBRARY_PATH
+$ ./saver_output_${QNN_BACKEND} [-l &lt;verbose,debug,info,warn,error&gt;] # optionally enable logging
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../htp/htp_shared_buffer_tutorial.html" class="btn btn-neutral float-right" title="QNN HTP Shared Buffer Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../sample_app.html" class="btn btn-neutral float-left" title="Sample App Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

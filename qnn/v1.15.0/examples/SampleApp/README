@@ -1,0 +1,56 @@
+ #=============================================================================
+ #
+ #  Copyright (c) 2020, 2022 Qualcomm Technologies, Inc.
+ #  All Rights Reserved.
+ #  Confidential and Proprietary - Qualcomm Technologies, Inc.
+ #
+ #=============================================================================
+
+ This README will outline the steps needed to build and execute qnn-sample-app. It is currently available to be built
+ and executed on linux-x86_64, aarch64-android and arm-android platforms.
+
+ Setup:
+ ------
+
+ Building qnn-sample-app has three external dependencies:
+    1. clang compiler
+    2. flatbuffers (flatbuffers compiler and development headers)
+    3. ndk-build (for Android targets only)
+
+ If the first two dependencies are not installed or available in your system PATH, the script check-linux-dependency.sh
+ provided with the SDK can be used to install and prepare your environment. Alternatively, you could install these
+ dependencies and make them available in your PATH.
+
+ Command to automatically install required dependencies:
+        $ source <SDK_ROOT>/target/x86_64-linux-clang/bin/check-linux-dependency.sh
+
+ For the third dependency to be satisfied, ANDROID_NDK_ROOT needs to be set:
+        $ export ANDROID_NDK_ROOT=<PATH-TO-NDK>
+
+ Note: qnn-sample-app has been verified to work with Android NDK version r19c.
+
+ Build:
+ ------
+
+ Once the setup is complete, the sample app can be built as follows:
+        $ cd <SDK_ROOT>/examples/SampleApp
+        $ make
+
+ After executing make from above, you should be able to see two new folders in the same directory:
+    1. bin: will contain qnn-sample-app binaries for each platform within respective directories.
+    2. obj: this folder will contain all the object files that were used for building and linking the executable.
+
+ To delete all the artifacts that were generated in the above step, run:
+        $ cd <SDK_ROOT>/examples/SampleApp
+        $ make clean
+
+ Run:
+ ----
+
+ qnn-sample-app executable generated in the build step can be used to execute a model using any QNN backend available
+ for linux-x86_64, aarch64-android and arm-android platforms. It is very similar to executing qnn-net-run. Refer to the
+ general QNN documentation available at <SDK_ROOT>/Doc/general/tools.html to see how to run qnn-net-run. Simply
+ replacing qnn-net-run with qnn-sample-app in the tutorials should help.
+
+ For more tool help, run:
+        $ qnn-sample-app --help

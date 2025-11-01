@@ -1,0 +1,1150 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Error Codes &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DSP" href="dsp/dsp_api_error_codes.html" />
+    <link rel="prev" title="Typedef workerThread_t" href="../api-rst/typedef_group__c__plus__plus__apis_1ga2a8cf7d4de4ab64ad5dfdfdd8cf22279.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantization.html">Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_usage_guidelines.html">Usage Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_version_history.html">Version History</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#operation-definitions">Operation Definitions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="api.html#c">C</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api-rst/class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api-rst/file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api-rst/unabridged_api.html">Full API</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Error Codes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#backend-specific-error-codes">Backend Specific Error Codes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="api.html">API</a> &raquo;</li>
+        
+      <li>Error Codes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="error-codes">
+<h1>Error Codes<a class="headerlink" href="#error-codes" title="Permalink to this headline">¶</a></h1>
+<p>This page summarizes QNN API error codes.</p>
+<dl class="macro">
+<dt>
+<code class="sig-name descname">QNN_SUCCESS</code> 0</dt>
+<dd><p>Global value indicating success. </p>
+</dd></dl>
+
+<dl class="enum">
+<dt>
+<em class="property">enum </em><code class="sig-name descname">QnnCommon_Error_t</code><br /></dt>
+<dd><p>An enum which defines error codes commonly used across API components. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_COMMON_MIN_ERROR</code> = 1000<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_COMMON_ERROR_NOT_SUPPORTED</code> = 1000 + 0<br /></dt>
+<dd><p>Indicates an API or a feature is not supported by implementation. Generally applicable to optional elements of the API. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_COMMON_ERROR_BACKEND_NOT_INITIALIZED</code> = 1000 + 1<br /></dt>
+<dd><p>Indicates Backend library has not been initialized (see QnnBackend_initialize). </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_COMMON_ERROR_MEM_ALLOC</code> = 1000 + 2<br /></dt>
+<dd><p>Indicates memory allocation related error. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_COMMON_ERROR_SYSTEM</code> = 1000 + 3<br /></dt>
+<dd><p>Indicates system level error, such as related to platform / OS services. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_COMMON_ERROR_INVALID_ARGUMENT</code> = 1000 + 4<br /></dt>
+<dd><p>Indicates invalid function argument. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_COMMON_ERROR_OPERATION_NOT_PERMITTED</code> = 1000 + 5<br /></dt>
+<dd><p>Indicates an illegal operation or sequence of operations. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_COMMON_ERROR_PLATFORM_NOT_SUPPORTED</code> = 1000 + 6<br /></dt>
+<dd><p>Indicates failure in attempting to use QNN API on an unsupported platform. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_COMMON_ERROR_SYSTEM_COMMUNICATION</code> = 1000 + 7<br /></dt>
+<dd><p>Communication errors with platform / OS service. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_COMMON_ERROR_GENERAL</code> = 1000 + 100<br /></dt>
+<dd><p>Indicates general type of error, which has not been identified as any other error type. In general, this error should rarely be used. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_COMMON_MAX_ERROR</code> = 1999<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_COMMON_ERROR_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt>
+<em class="property">enum </em><code class="sig-name descname">QnnProperty_Error_t</code><br /></dt>
+<dd><p>QNN Property API result / error codes. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROPERTY_MIN_ERROR</code> = 2000<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROPERTY_NO_ERROR</code> = 0<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROPERTY_SUPPORTED</code> = 0<br /></dt>
+<dd><p>Property in question is supported. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROPERTY_NOT_SUPPORTED</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv430QNN_COMMON_ERROR_NOT_SUPPORTED" title="QNN_COMMON_ERROR_NOT_SUPPORTED">QNN_COMMON_ERROR_NOT_SUPPORTED</a><br /></dt>
+<dd><p>Property in question not supported. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROPERTY_ERROR_UNKNOWN_KEY</code> = 2000 + 0<br /></dt>
+<dd><p>The the property key was not known to a backend. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROPERTY_ERROR_WRONG_KEY_TYPE</code> = 2000 + 1<br /></dt>
+<dd><p>The property key refers to a different property type (capability vs property) than is queried via the called function. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROPERTY_ERROR_GENERAL</code> = 2000 + 2<br /></dt>
+<dd><p>An unknown error occurred while attempting to process the property query. This likely indicates the backend is non-functional. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROPERTY_ERROR_BAD_FREE</code> = 2000 + 3<br /></dt>
+<dd><p>Attempt to free a pointer which is not recognized as a value pointer previously returned by a QnnProperty_get call on this backend. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROPERTY_MAX_ERROR</code> = 2999<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROPERTY_ERROR_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt>
+<em class="property">enum </em><code class="sig-name descname">QnnOpPackage_Error_t</code><br /></dt>
+<dd><p>QNN OpPackage API result / error codes. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_OP_PACKAGE_MIN_ERROR</code> = 3000<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_OP_PACKAGE_NO_ERROR</code> = 0<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_OP_PACKAGE_ERROR_UNSUPPORTED_FEATURE</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv430QNN_COMMON_ERROR_NOT_SUPPORTED" title="QNN_COMMON_ERROR_NOT_SUPPORTED">QNN_COMMON_ERROR_NOT_SUPPORTED</a><br /></dt>
+<dd><p>There is optional API component that is not supported yet. See QnnProperty. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_OP_PACKAGE_ERROR_LIBRARY_ALREADY_INITIALIZED</code> = 3000 + 0<br /></dt>
+<dd><p>Indicates op package library was already initialized. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_OP_PACKAGE_ERROR_LIBRARY_NOT_INITIALIZED</code> = 3000 + 1<br /></dt>
+<dd><p>Attempt was made to call a function in an uninitialized op package library. Unless otherwise noted, any op package function may return this error. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_OP_PACKAGE_ERROR_INVALID_INFRASTRUCTURE</code> = 3000 + 100<br /></dt>
+<dd><p>Invalid infrastructure object used in initializing op package. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_OP_PACKAGE_ERROR_INVALID_INFO</code> = 3000 + 101<br /></dt>
+<dd><p>Invalid op package info object used in initializing op package. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_OP_PACKAGE_ERROR_VALIDATION_FAILURE</code> = 3000 + 110<br /></dt>
+<dd><p>Op configuration failed validation. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_OP_PACKAGE_ERROR_INVALID_ARGUMENT</code> = 3000 + 200<br /></dt>
+<dd><p>Invalid function argument. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_OP_PACKAGE_ERROR_GENERAL</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv424QNN_COMMON_ERROR_GENERAL" title="QNN_COMMON_ERROR_GENERAL">QNN_COMMON_ERROR_GENERAL</a><br /></dt>
+<dd><p>Indicates an error has occurred due to a condition unforeseen by QNN, and possibly meaningful only in the context of the particular op package. Unless otherwise noted, any op package function may return this error. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_OP_PACKAGE_MAX_ERROR</code> = 3999<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_OP_PACKAGE_ERROR_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt>
+<em class="property">enum </em><code class="sig-name descname">QnnBackend_Error_t</code><br /></dt>
+<dd><p>QNN Backend API result / error codes. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_MIN_ERROR</code> = 4000<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_NO_ERROR</code> = 0<br /></dt>
+<dd><p>Qnn Backend success. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_ERROR_NOT_INITIALIZED</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv440QNN_COMMON_ERROR_BACKEND_NOT_INITIALIZED" title="QNN_COMMON_ERROR_BACKEND_NOT_INITIALIZED">QNN_COMMON_ERROR_BACKEND_NOT_INITIALIZED</a><br /></dt>
+<dd><p>Backend hasn’t been initialized. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_ERROR_MEM_ALLOC</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv426QNN_COMMON_ERROR_MEM_ALLOC" title="QNN_COMMON_ERROR_MEM_ALLOC">QNN_COMMON_ERROR_MEM_ALLOC</a><br /></dt>
+<dd><p>General error relating to memory allocation in Backend API. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_ERROR_UNSUPPORTED_PLATFORM</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv439QNN_COMMON_ERROR_PLATFORM_NOT_SUPPORTED" title="QNN_COMMON_ERROR_PLATFORM_NOT_SUPPORTED">QNN_COMMON_ERROR_PLATFORM_NOT_SUPPORTED</a><br /></dt>
+<dd><p>Backend attempted to be initialized on an unsupported platform. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_ERROR_CANNOT_INITIALIZE</code> = 4000 + 0<br /></dt>
+<dd><p>Backend failed to initialize. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_ERROR_ALREADY_INITIALIZED</code> = 4000 + 1<br /></dt>
+<dd><p>Backend is already initialized. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_ERROR_TERMINATE_FAILED</code> = 4000 + 2<br /></dt>
+<dd><p>Failed to free allocated resources during termination. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_ERROR_NOT_SUPPORTED</code> = 4000 + 3<br /></dt>
+<dd><p>Backend does not support requested functionality. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_ERROR_INVALID_ARGUMENT</code> = 4000 + 4<br /></dt>
+<dd><p>Invalid function argument. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_ERROR_OP_PACKAGE_NOT_FOUND</code> = 4000 + 5<br /></dt>
+<dd><p>Could not find specified op package. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_ERROR_OP_PACKAGE_IF_PROVIDER_NOT_FOUND</code> = 4000 + 6<br /></dt>
+<dd><p>Could not load interface provider from op package library. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_ERROR_OP_PACKAGE_REGISTRATION_FAILED</code> = 4000 + 7<br /></dt>
+<dd><p>Failed to register op package. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_ERROR_OP_PACKAGE_UNSUPPORTED_VERSION</code> = 4000 + 8<br /></dt>
+<dd><p>Backend does not support the op config’s interface version. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_ERROR_OP_PACKAGE_DUPLICATE</code> = 4000 + 9<br /></dt>
+<dd><p>An Op with the same package name and op name was already registered. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_MAX_ERROR</code> = 4999<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_BACKEND_ERROR_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt>
+<em class="property">enum </em><code class="sig-name descname">QnnContext_Error_t</code><br /></dt>
+<dd><p>QNN Context API result / error codes. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_MIN_ERROR</code> = 5000<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_NO_ERROR</code> = 0<br /></dt>
+<dd><p>Qnn context success. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_ERROR_UNSUPPORTED_FEATURE</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv430QNN_COMMON_ERROR_NOT_SUPPORTED" title="QNN_COMMON_ERROR_NOT_SUPPORTED">QNN_COMMON_ERROR_NOT_SUPPORTED</a><br /></dt>
+<dd><p>There is optional API component that is not supported yet. See QnnProperty. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_ERROR_MEM_ALLOC</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv426QNN_COMMON_ERROR_MEM_ALLOC" title="QNN_COMMON_ERROR_MEM_ALLOC">QNN_COMMON_ERROR_MEM_ALLOC</a><br /></dt>
+<dd><p>Context-specific memory allocation/deallocation failure. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_ERROR_INVALID_ARGUMENT</code> = 5000 + 0<br /></dt>
+<dd><p>An argument to QNN context API is deemed invalid by a backend. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_ERROR_CTX_DOES_NOT_EXIST</code> = 5000 + 1<br /></dt>
+<dd><p>A QNN context has not yet been created in the backend. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_ERROR_INVALID_HANDLE</code> = 5000 + 2<br /></dt>
+<dd><p>Invalid/NULL QNN context handle. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_ERROR_NOT_FINALIZED</code> = 5000 + 3<br /></dt>
+<dd><p>Attempting an operation when graphs in a context haven’t been finalized. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_ERROR_BINARY_VERSION</code> = 5000 + 4<br /></dt>
+<dd><p>Attempt to access context binary with an incompatible version. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_ERROR_CREATE_FROM_BINARY</code> = 5000 + 5<br /></dt>
+<dd><p>Failure to create context from binary. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_ERROR_GET_BINARY_SIZE_FAILED</code> = 5000 + 6<br /></dt>
+<dd><p>Failure to get size of a QNN serialized context. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_ERROR_GET_BINARY_FAILED</code> = 5000 + 7<br /></dt>
+<dd><p>Failure to generate a QNN serialized context. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_ERROR_BINARY_CONFIGURATION</code> = 5000 + 8<br /></dt>
+<dd><p>Invalid context binary configuration. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_ERROR_SET_PROFILE</code> = 5000 + 9<br /></dt>
+<dd><p>Failure to set profile. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_ERROR_INVALID_CONFIG</code> = 5000 + 10<br /></dt>
+<dd><p>Invalid config. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_MAX_ERROR</code> = 5999<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_CONTEXT_ERROR_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt>
+<em class="property">enum </em><code class="sig-name descname">QnnGraph_Error_t</code><br /></dt>
+<dd><p>QNN Graph API result / error codes. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_MIN_ERROR</code> = 6000<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_NO_ERROR</code> = 0<br /></dt>
+<dd><p>Qnn Graph success. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_UNSUPPORTED_FEATURE</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv430QNN_COMMON_ERROR_NOT_SUPPORTED" title="QNN_COMMON_ERROR_NOT_SUPPORTED">QNN_COMMON_ERROR_NOT_SUPPORTED</a><br /></dt>
+<dd><p>There is optional API component that is not supported yet. See QnnProperty. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_MEM_ALLOC</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv426QNN_COMMON_ERROR_MEM_ALLOC" title="QNN_COMMON_ERROR_MEM_ALLOC">QNN_COMMON_ERROR_MEM_ALLOC</a><br /></dt>
+<dd><p>General error relating to memory allocation in processing graph API. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_INVALID_ARGUMENT</code> = 6000 + 0<br /></dt>
+<dd><p>An argument to QNN API is deemed invalid by a backend. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_INVALID_HANDLE</code> = 6000 + 1<br /></dt>
+<dd><p>Invalid graph handle. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_GRAPH_DOES_NOT_EXIST</code> = 6000 + 2<br /></dt>
+<dd><p>No graph with specified info is registered in the backend. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_INVALID_NAME</code> = 6000 + 3<br /></dt>
+<dd><p>Invalid or duplicate graph name. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_INVALID_TENSOR</code> = 6000 + 4<br /></dt>
+<dd><p>Invalid or NULL QNN tensor. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_INVALID_OP_CONFIG</code> = 6000 + 5<br /></dt>
+<dd><p>Some elements in the op config data are invalid. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_SET_PROFILE</code> = 6000 + 6<br /></dt>
+<dd><p>Failure to set profile. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_UNCONNECTED_NODE</code> = 6000 + 7<br /></dt>
+<dd><p>Node added before its dependent node(s) </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_CREATE_FAILED</code> = 6000 + 20<br /></dt>
+<dd><p>Failure in creating graph with specified configuration. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_OPTIMIZATION_FAILED</code> = 6000 + 21<br /></dt>
+<dd><p>Graph couldn’t be optimized with specified list of ops or config. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_FINALIZE_FAILED</code> = 6000 + 22<br /></dt>
+<dd><p>Graph finalize failed. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_GRAPH_NOT_FINALIZED</code> = 6000 + 23<br /></dt>
+<dd><p>Graph attempted to be executed before being finalized. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_GRAPH_FINALIZED</code> = 6000 + 24<br /></dt>
+<dd><p>Graph attempted to be modified after being finalized. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_EXECUTION_ASYNC_FIFO_FULL</code> = 6000 + 25<br /></dt>
+<dd><p>FIFO queue cannot register any more async execution requests. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_SIGNAL_OBSERVED</code> = 6000 + 30<br /></dt>
+<dd><p>A control signal object was provided to a call, but that signal object is already observed by another call. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_ABORTED</code> = 6000 + 31<br /></dt>
+<dd><p>Return when a call is aborted early due to a QnnSignal_abort call issued to the observed signal object. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_MAX_ERROR</code> = 6999<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_GRAPH_ERROR_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt>
+<em class="property">enum </em><code class="sig-name descname">QnnTensor_Error_t</code><br /></dt>
+<dd><p>QNN Tensor API result / error codes. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_TENSOR_MIN_ERROR</code> = 7000<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_TENSOR_NO_ERROR</code> = 0<br /></dt>
+<dd><p>Qnn Tensor success. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_TENSOR_ERROR_INVALID_HANDLE</code> = 7000 + 1<br /></dt>
+<dd><p>Invalid context/graph handle in creating tensor. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_TENSOR_ERROR_DOES_NOT_EXIST</code> = 7000 + 2<br /></dt>
+<dd><p>Tensor with specified credentials not registered with a context/graph. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_TENSOR_ERROR_ALREADY_EXISTS</code> = 7000 + 3<br /></dt>
+<dd><p>Tensor has already been registered with backend. Duplicate info. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_TENSOR_ERROR_INVALID_TENSOR_PARAM</code> = 7000 + 4<br /></dt>
+<dd><p>Invalid tensor param. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_TENSOR_ERROR_UNSUPPORTED_TENSOR_PARAM</code> = 7000 + 5<br /></dt>
+<dd><p>This tensor param is currently unsupported. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_TENSOR_MAX_ERROR</code> = 7999<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_TENSOR_ERROR_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt>
+<em class="property">enum </em><code class="sig-name descname">QnnMem_Error_t</code><br /></dt>
+<dd><p>QNN Mem(ory) API result / error codes. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_MEM_MIN_ERROR</code> = 8000<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_MEM_NO_ERROR</code> = 0<br /></dt>
+<dd><p>Qnn Memory success. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_MEM_ERROR_NOT_SUPPORTED</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv430QNN_COMMON_ERROR_NOT_SUPPORTED" title="QNN_COMMON_ERROR_NOT_SUPPORTED">QNN_COMMON_ERROR_NOT_SUPPORTED</a><br /></dt>
+<dd><p>Backend does not support requested functionality. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_MEM_ERROR_INVALID_ARGUMENT</code> = 8000 + 0<br /></dt>
+<dd><p>Invalid function argument. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_MEM_ERROR_INVALID_HANDLE</code> = 8000 + 1<br /></dt>
+<dd><p>Invalid memory handle. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_MEM_ERROR_ALREADY_REGISTERED</code> = 8000 + 2<br /></dt>
+<dd><p>Provided memory has already been registered. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_MEM_ERROR_MAPPING</code> = 8000 + 3<br /></dt>
+<dd><p>Error in memory mapping. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_MEM_ERROR_INVALID_SHAPE</code> = 8000 + 4<br /></dt>
+<dd><p>Invalid memory shape based on a backend’s memory restrictions (e.g. alignment incompatibility) </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_MEM_ERROR_UNSUPPORTED_MEMTYPE</code> = 8000 + 5<br /></dt>
+<dd><p>Backend does not support requested memory type. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_MEM_MAX_ERROR</code> = 8999<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_MEM_ERROR_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt>
+<em class="property">enum </em><code class="sig-name descname">QnnLog_Error_t</code><br /></dt>
+<dd><p>QNN Log API result / error codes. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_LOG_MIN_ERROR</code> = 11000<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_LOG_NO_ERROR</code> = 0<br /></dt>
+<dd><p>Qnn Log success. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_LOG_ERROR_MEM_ALLOC</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv426QNN_COMMON_ERROR_MEM_ALLOC" title="QNN_COMMON_ERROR_MEM_ALLOC">QNN_COMMON_ERROR_MEM_ALLOC</a><br /></dt>
+<dd><p>General error relating to memory allocation in Log API. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_LOG_ERROR_ALREADY_INITIALIZED</code> = 11000 + 0<br /></dt>
+<dd><p>Function could not be called because logging has already been successfully initialized. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_LOG_ERROR_NOT_INITIALIZED</code> = 11000 + 1<br /></dt>
+<dd><p>Function could not be called because logging has not yet been initialized. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_LOG_ERROR_INITIALIZATION</code> = 11000 + 2<br /></dt>
+<dd><p>Unable to initialize logging. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_LOG_ERROR_INVALID_ARGUMENT</code> = 11000 + 3<br /></dt>
+<dd><p>Invalid argument passed. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_LOG_MAX_ERROR</code> = 11999<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_LOG_ERROR_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt>
+<em class="property">enum </em><code class="sig-name descname">QnnProfile_Error_t</code><br /></dt>
+<dd><p>QNN Profile API result / error codes. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROFILE_MIN_ERROR</code> = 12000<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROFILE_NO_ERROR</code> = 0<br /></dt>
+<dd><p>Qnn Profile success. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROFILE_ERROR_UNSUPPORTED</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv430QNN_COMMON_ERROR_NOT_SUPPORTED" title="QNN_COMMON_ERROR_NOT_SUPPORTED">QNN_COMMON_ERROR_NOT_SUPPORTED</a><br /></dt>
+<dd><p>Backend does not support requested functionality. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROFILE_ERROR_INVALID_ARGUMENT</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv433QNN_COMMON_ERROR_INVALID_ARGUMENT" title="QNN_COMMON_ERROR_INVALID_ARGUMENT">QNN_COMMON_ERROR_INVALID_ARGUMENT</a><br /></dt>
+<dd><p>Invalid function argument. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROFILE_ERROR_MEM_ALLOC</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv426QNN_COMMON_ERROR_MEM_ALLOC" title="QNN_COMMON_ERROR_MEM_ALLOC">QNN_COMMON_ERROR_MEM_ALLOC</a><br /></dt>
+<dd><p>General error relating to memory allocation in Profile API. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROFILE_ERROR_INVALID_HANDLE</code> = 12000 + 0<br /></dt>
+<dd><p>Invalid/NULL QNN profile handle. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROFILE_MAX_ERROR</code> = 12999<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_PROFILE_ERROR_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt>
+<em class="property">enum </em><code class="sig-name descname">QnnSystemContext_Error_t</code><br /></dt>
+<dd><p>QNN System Context API result / error codes. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_SYSTEM_CONTEXT_MINERROR</code> = 30000<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_SYSTEM_CONTEXT_NO_ERROR</code> = 0<br /></dt>
+<dd><p>Qnn System Context success. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_SYSTEM_CONTEXT_ERROR_UNSUPPORTED_FEATURE</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv430QNN_COMMON_ERROR_NOT_SUPPORTED" title="QNN_COMMON_ERROR_NOT_SUPPORTED">QNN_COMMON_ERROR_NOT_SUPPORTED</a><br /></dt>
+<dd><p>There is optional API component that is not supported yet. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_SYSTEM_CONTEXT_ERROR_INVALID_HANDLE</code> = <a class="reference internal" href="../api-rst/enum_QnnSystemContext_8h_1a759522d8a45962fea012c98a39c73faa.html#_CPPv427QNN_SYSTEM_CONTEXT_MINERROR" title="QNN_SYSTEM_CONTEXT_MINERROR">QNN_SYSTEM_CONTEXT_MINERROR</a> + 0<br /></dt>
+<dd><p>QNN System Context invalid handle. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_SYSTEM_CONTEXT_ERROR_INVALID_ARGUMENT</code> = <a class="reference internal" href="../api-rst/enum_QnnSystemContext_8h_1a759522d8a45962fea012c98a39c73faa.html#_CPPv427QNN_SYSTEM_CONTEXT_MINERROR" title="QNN_SYSTEM_CONTEXT_MINERROR">QNN_SYSTEM_CONTEXT_MINERROR</a> + 1<br /></dt>
+<dd><p>One or more arguments to a System Context API is/are NULL/invalid. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_SYSTEM_CONTEXT_ERROR_OPERATION_FAILED</code> = <a class="reference internal" href="../api-rst/enum_QnnSystemContext_8h_1a759522d8a45962fea012c98a39c73faa.html#_CPPv427QNN_SYSTEM_CONTEXT_MINERROR" title="QNN_SYSTEM_CONTEXT_MINERROR">QNN_SYSTEM_CONTEXT_MINERROR</a> + 2<br /></dt>
+<dd><p>Generic Failure in achieving the objective of a System Context API. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_SYSTEM_CONTEXT_ERROR_MALFORMED_BINARY</code> = <a class="reference internal" href="../api-rst/enum_QnnSystemContext_8h_1a759522d8a45962fea012c98a39c73faa.html#_CPPv427QNN_SYSTEM_CONTEXT_MINERROR" title="QNN_SYSTEM_CONTEXT_MINERROR">QNN_SYSTEM_CONTEXT_MINERROR</a> + 10<br /></dt>
+<dd><p>Malformed context binary. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_SYSTEM_CONTEXT_MAXERROR</code> = 49999<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt>
+<em class="property">enum </em><code class="sig-name descname">QnnInterface_Error_t</code><br /></dt>
+<dd><p>QNN Interface API result / error codes. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_INTERFACE_MIN_ERROR</code> = 60000<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_INTERFACE_NO_ERROR</code> = 0<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_INTERFACE_ERROR_NOT_SUPPORTED</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv430QNN_COMMON_ERROR_NOT_SUPPORTED" title="QNN_COMMON_ERROR_NOT_SUPPORTED">QNN_COMMON_ERROR_NOT_SUPPORTED</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_INTERFACE_ERROR_INVALID_PARAMETER</code> = <a class="reference internal" href="../api-rst/enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv433QNN_COMMON_ERROR_INVALID_ARGUMENT" title="QNN_COMMON_ERROR_INVALID_ARGUMENT">QNN_COMMON_ERROR_INVALID_ARGUMENT</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt>
+<code class="sig-name descname">QNN_INTERFACE_MAX_ERROR</code> = 60999<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div class="section" id="backend-specific-error-codes">
+<h2>Backend Specific Error Codes<a class="headerlink" href="#backend-specific-error-codes" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dsp/dsp_api_error_codes.html">DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="htp/htp_api_error_codes.html">HTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hta/hta_api_error_codes.html">HTA</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dsp/dsp_api_error_codes.html" class="btn btn-neutral float-right" title="DSP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../api-rst/typedef_group__c__plus__plus__apis_1ga2a8cf7d4de4ab64ad5dfdfdd8cf22279.html" class="btn btn-neutral float-left" title="Typedef workerThread_t" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

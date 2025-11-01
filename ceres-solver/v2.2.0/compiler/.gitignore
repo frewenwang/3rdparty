@@ -1,0 +1,4 @@
+
+*.zip
+ceres-solver-*/
+build/

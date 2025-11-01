@@ -1,0 +1,7 @@
+{
+  "precision_mode": "fp16",
+  "disable_memory_optimizations": false,
+  "disable_node_optimizations": false,
+  "kernel_repo_path": "/data/local/tmp",
+  "disable_queue_recording": false
+}

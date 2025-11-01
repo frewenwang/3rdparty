@@ -1,0 +1,102 @@
+#=============================================================================
+#
+#  Copyright (c) 2020-2021 Qualcomm Technologies, Inc.
+#  All Rights Reserved.
+#  Confidential and Proprietary - Qualcomm Technologies, Inc.
+#
+#=============================================================================
+
+# users should provide locations for QNN_TARGET, QNN_INCLUDE and HEXAGON_SDK
+# QNN_INCLUDE = ${QNN_SDK_ROOT}/include
+# HEXAGON_SDK = /path/to/hexagon-sdk
+# ANDROID_NDK_ROOT = /path/to/android-ndk
+# QNN_TARGET = ${QNN_SDK_ROOT}/target
+ifeq ($(wildcard $(ANDROID_NDK_ROOT)),)
+$(error "ERROR: ANDROID_NDK_ROOT path is not set. ANDROID_NDK_ROOT path must be set to compile the package")
+endif
+ifeq ($(wildcard $(HEXAGON_SDK)),)
+$(error "ERROR: HEXAGON_SDK path is not set. HEXAGON SDK path must be set to compile the package")
+endif
+ifndef QNN_INCLUDE
+$(info "INFO: Qnn include not explicitly defined, attempting to use QNN_SDK_ROOT if it is valid")
+QNN_INCLUDE := $(QNN_SDK_ROOT)/include
+endif
+ifeq ($(wildcard $(QNN_INCLUDE)),)
+$(error "ERROR: QNN_INCLUDE path is not set. QNN include paths must be set to obtain BE headers necessary to compile the package")
+endif
+ifndef QNN_TARGET
+$(info "INFO: Qnn target not explicitly defined, attempting to use QNN_SDK_ROOT if it is valid")
+QNN_TARGET := $(QNN_SDK_ROOT)/target
+endif
+ifeq ($(wildcard $(QNN_TARGET)),)
+$(error "ERROR: QNN_TARGET is needed to compile package for aarch64")
+endif
+
+WORK = build
+X86_LIBNATIVE_RELEASE_DIR = $(HEXAGON_SDK)/tools/HEXAGON_Tools/8.4.09/Tools
+
+CXXFLAGS = -std=c++17 -I$(QNN_INCLUDE) -fPIC -Wall -Wreorder -Wno-missing-braces -Werror -Wno-format -Wno-unused-command-line-argument -fvisibility=default -stdlib=libc++
+CXXFLAGS += -DQNN_API="__attribute__((visibility(\"default\")))"  -D__QAIC_HEADER_EXPORT="__attribute__((visibility(\"default\")))"
+
+X86_CXX ?= clang++
+X86_C__FLAGS = -D__HVXDBL__ -I$(X86_LIBNATIVE_RELEASE_DIR)/libnative/include -ffast-math -DUSE_OS_LINUX
+X86_CXXFLAGS = $(CXXFLAGS) $(X86_C__FLAGS) -fomit-frame-pointer -Wno-invalid-offsetof
+X86_LDFLAGS =  -Wl,--whole-archive -L$(X86_LIBNATIVE_RELEASE_DIR)/libnative/lib -lnative -Wl,--no-whole-archive -lpthread
+
+HEX_CXX = $(HEXAGON_SDK)/tools/HEXAGON_Tools/8.4.09/Tools/bin/hexagon-clang++
+V68_QURT_DIR = $(HEXAGON_SDK)/rtos/qurt/computev68/include/qurt
+V68_INC_DIR = $(HEXAGON_SDK)/incs
+HEX_CXXFLAGS = $(CXXFLAGS) -mv68 -mhvx -mhvx-length=128B -mhmx -DUSE_OS_QURT -O2 -Wno-reorder -I$(V68_QURT_DIR)  -I$(V68_INC_DIR) -I$(V68_INC_DIR)/stddef
+HEX_LDFLAGS =
+
+ANDROID_NDK_ROOT ?= /opt/sdk/tools/android-ndk-r19c
+AARCH64_LIBNATIVE_RELEASE_DIR = $(HEXAGON_SDK)/tools/HEXAGON_Tools/8.4.09/Tools
+
+ARM_CLANG_OPTS =--target=aarch64-none-linux-android21 --sysroot=$(ANDROID_NDK_ROOT)/toolchains/llvm/prebuilt/linux-x86_64/sysroot
+AARCH64_CXX = $(ANDROID_NDK_ROOT)/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ $(ARM_CLANG_OPTS)
+AARCH64_C__FLAGS = -D__HVXDBL__ -I$(AARCH64_LIBNATIVE_RELEASE_DIR)/libnative/include -ffast-math -DUSE_OS_LINUX -DANDROID
+AARCH64_CXXFLAGS = $(CXXFLAGS) $(AARCH64_C__FLAGS) -fomit-frame-pointer -Wno-invalid-offsetof -Wno-unused-command-line-argument -Wno-unused-variable -Wno-unused-parameter -Wno-missing-braces -Wno-sign-compare -Wno-unused-private-field -Wno-unused-variable -Wno-ignored-qualifiers -Wno-missing-field-initializers
+AARCH64_LDFLAGS = -L$(QNN_TARGET)/aarch64-android/lib -lQnnHtp -lQnnHtpPrepare
+
+HFILES = $(wildcard $(QNN_INCLUDE)/*.h)
+HFILES += $(wildcard $(QNN_INCLUDE)/HTP/*.h)
+HFILES += $(wildcard $(QNN_INCLUDE)/HTP/core/*.h)
+CPPFILES = $(wildcard *.cpp)
+OBJS = $(patsubst %.cpp,%.o,$(CPPFILES))
+
+PKG_NAME = examples.OpPackage
+
+all:  htp_x86 htp_v68 htp_aarch64
+
+$(WORK)/x86_64-linux-clang $(WORK)/hexagon-v68 $(WORK)/aarch64-android:
+	mkdir -p $@
+
+$(WORK): $(WORK)/x86_64-linux-clang $(WORK)/hexagon-v68 $(WORK)/aarch64-android
+	mkdir -p $@
+
+$(WORK)/x86_64-linux-clang/%.o: %.cpp | $(WORK)
+	$(X86_CXX) $(X86_CXXFLAGS) -DTHIS_PKG_NAME=$(PKG_NAME) -MMD -c $< -o $@
+
+$(WORK)/x86_64-linux-clang/libQnnHtpOpPackageExample.so: $(patsubst %,$(WORK)/x86_64-linux-clang/%,$(OBJS)) | $(WORK) $(HFILES)
+	$(X86_CXX) -fPIC -std=c++17 -g -shared -o $@ $^ $(X86_LDFLAGS)
+
+htp_x86: $(WORK)/x86_64-linux-clang/libQnnHtpOpPackageExample.so
+
+$(WORK)/hexagon-v68/%.o: %.cpp | $(WORK)
+	$(HEX_CXX) $(HEX_CXXFLAGS) -DTHIS_PKG_NAME=$(PKG_NAME) -MMD -c $< -o $@
+
+$(WORK)/hexagon-v68/libQnnHtpOpPackageExample.so: $(patsubst %,$(WORK)/hexagon-v68/%,$(OBJS)) | $(WORK) $(HFILES)
+	$(HEX_CXX) -fPIC -std=c++17 -g -shared -o $@ $^ $(HEX_LDFLAGS)
+
+htp_v68: $(WORK)/hexagon-v68/libQnnHtpOpPackageExample.so
+
+$(WORK)/aarch64-android/%.o: %.cpp | $(WORK)
+	$(AARCH64_CXX) $(AARCH64_CXXFLAGS) -DTHIS_PKG_NAME=$(PKG_NAME) -MMD -c $< -o $@
+
+$(WORK)/aarch64-android/libQnnHtpOpPackageExample.so: $(patsubst %,$(WORK)/aarch64-android/%,$(OBJS)) | $(WORK) $(HFILES)
+	$(AARCH64_CXX) -fPIC -std=c++17 -g -shared -o $@ $^ $(AARCH64_LDFLAGS)
+
+htp_aarch64: $(WORK)/aarch64-android/libQnnHtpOpPackageExample.so
+
+clean:
+	rm -rf $(WORK)

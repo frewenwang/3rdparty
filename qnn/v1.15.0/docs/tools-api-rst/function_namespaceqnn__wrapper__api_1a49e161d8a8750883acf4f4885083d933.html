@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Function qnn_wrapper_api::freeQnnTensorWrapper &mdash; QNN Tools Utility API  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Function qnn_wrapper_api::freeQnnTensorWrappers" href="function_namespaceqnn__wrapper__api_1aa06bcabdff2809d32c40537847b7d8d8.html" />
+    <link rel="prev" title="Function qnn_wrapper_api::freeGraphsInfo" href="function_namespaceqnn__wrapper__api_1a39e97cb0ce0b29d3897e578466a77ade.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QNN Tools Utility API
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../general/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/debug-tools/debug_tools.html">Debug Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../general/converters.html">Converters</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../general/converters.html#overview">Overview</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../general/converters.html#tools-utility-api">Tools Utility API</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../general/converters.html#tensorflow-conversion">Tensorflow Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/converters.html#tflite-conversion">TFLite Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/converters.html#pytorch-conversion">PyTorch Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/converters.html#caffe-conversion">Caffe Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/converters.html#onnx-conversion">Onnx Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/converters.html#common-parameters">Common Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quantization.html">Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/api.html">API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QNN Tools Utility API</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../general/converters.html">Converters</a> &raquo;</li>
+        
+          <li><a href="unabridged_api.html">Full API</a> &raquo;</li>
+        
+      <li>Function qnn_wrapper_api::freeQnnTensorWrapper</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="function-qnn-wrapper-api-freeqnntensorwrapper">
+<span id="exhale-function-namespaceqnn-wrapper-api-1a49e161d8a8750883acf4f4885083d933"></span><h1>Function qnn_wrapper_api::freeQnnTensorWrapper<a class="headerlink" href="#function-qnn-wrapper-api-freeqnntensorwrapper" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_target_x86_64-linux-clang_share_converter_jni_QnnWrapperUtils.hpp.html#file-target-x86-64-linux-clang-share-converter-jni-qnnwrapperutils-hpp"><span class="std std-ref">File QnnWrapperUtils.hpp</span></a></p></li>
+</ul>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="_CPPv4N15qnn_wrapper_api20freeQnnTensorWrapperER19Qnn_TensorWrapper_t">
+<span id="_CPPv3N15qnn_wrapper_api20freeQnnTensorWrapperER19Qnn_TensorWrapper_t"></span><span id="_CPPv2N15qnn_wrapper_api20freeQnnTensorWrapperER19Qnn_TensorWrapper_t"></span><span id="qnn_wrapper_api::freeQnnTensorWrapper__Qnn_TensorWrapper_tR"></span><span class="target" id="namespaceqnn__wrapper__api_1a49e161d8a8750883acf4f4885083d933"></span><a class="reference internal" href="file_target_x86_64-linux-clang_share_converter_jni_QnnWrapperUtils.hpp.html#_CPPv4N15qnn_wrapper_api12ModelError_tE" title="qnn_wrapper_api::ModelError_t">ModelError_t</a> <code class="sig-prename descclassname"><a class="reference internal" href="file_target_x86_64-linux-clang_share_converter_jni_QnnModel.hpp.html#_CPPv415qnn_wrapper_api" title="qnn_wrapper_api">qnn_wrapper_api</a><code class="sig-prename descclassname">::</code></code><code class="sig-name descname">freeQnnTensorWrapper</code><span class="sig-paren">(</span><a class="reference internal" href="file_target_x86_64-linux-clang_share_converter_jni_QnnWrapperUtils.hpp.html#_CPPv4N15qnn_wrapper_api19Qnn_TensorWrapper_tE" title="qnn_wrapper_api::Qnn_TensorWrapper_t">Qnn_TensorWrapper_t</a> &amp;<em>tensorWrapper</em><span class="sig-paren">)</span><br /></dt>
+<dd><p>Frees all memory allocated tensor attributes. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">tensorWrapper</span></code>: tensor object to free</p></li>
+</ul>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Error code </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="function_namespaceqnn__wrapper__api_1aa06bcabdff2809d32c40537847b7d8d8.html" class="btn btn-neutral float-right" title="Function qnn_wrapper_api::freeQnnTensorWrappers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="function_namespaceqnn__wrapper__api_1a39e97cb0ce0b29d3897e578466a77ade.html" class="btn btn-neutral float-left" title="Function qnn_wrapper_api::freeGraphsInfo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

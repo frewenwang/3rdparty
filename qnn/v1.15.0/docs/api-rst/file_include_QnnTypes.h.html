@@ -1,0 +1,1277 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>File QnnTypes.h &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quantization.html">Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>File QnnTypes.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="file-qnntypes-h">
+<span id="file-include-qnntypes-h"></span><h1>File QnnTypes.h<a class="headerlink" href="#file-qnntypes-h" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="dir_include.html#dir-include"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">include</span></code>)</p>
+<p>A header which contains the base types required by the API. Strings are expected to be UTF-8 encoded and NULL terminated.</p>
+<div class="contents local topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-include-qnntypes-h" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">include/QnnTypes.h</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id2">Includes</a></p></li>
+<li><p><a class="reference internal" href="#included-by" id="id3">Included By</a></p></li>
+<li><p><a class="reference internal" href="#classes" id="id4">Classes</a></p></li>
+<li><p><a class="reference internal" href="#enums" id="id5">Enums</a></p></li>
+<li><p><a class="reference internal" href="#defines" id="id6">Defines</a></p></li>
+<li><p><a class="reference internal" href="#typedefs" id="id7">Typedefs</a></p></li>
+<li><p><a class="reference internal" href="#unions" id="id8">Unions</a></p></li>
+<li><p><a class="reference internal" href="#full-file-listing" id="id9">Full File Listing</a></p></li>
+</ul>
+</div>
+<div class="section" id="definition-include-qnntypes-h">
+<h2>Definition (<code class="docutils literal notranslate"><span class="pre">include/QnnTypes.h</span></code>)<a class="headerlink" href="#definition-include-qnntypes-h" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="program_listing_file_include_QnnTypes.h.html">Program Listing for File QnnTypes.h</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">QnnCommon.h</span></code> (<a class="reference internal" href="file_include_QnnCommon.h.html#file-include-qnncommon-h"><span class="std std-ref">File QnnCommon.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stdarg.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stddef.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stdint.h</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="included-by">
+<h2>Included By<a class="headerlink" href="#included-by" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="file_include_QnnGraph.h.html#file-include-qnngraph-h"><span class="std std-ref">File QnnGraph.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_QnnLog.h.html#file-include-qnnlog-h"><span class="std std-ref">File QnnLog.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_QnnOpPackage.h.html#file-include-qnnoppackage-h"><span class="std std-ref">File QnnOpPackage.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_CPU_QnnCpuOpPackage.h.html#file-include-cpu-qnncpuoppackage-h"><span class="std std-ref">File QnnCpuOpPackage.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_QnnBackend.h.html#file-include-qnnbackend-h"><span class="std std-ref">File QnnBackend.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_DSP_QnnDspPerfInfrastructure.h.html#file-include-dsp-qnndspperfinfrastructure-h"><span class="std std-ref">File QnnDspPerfInfrastructure.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_DSP_QnnDspOpPackage.h.html#file-include-dsp-qnndspoppackage-h"><span class="std std-ref">File QnnDspOpPackage.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_QnnProfile.h.html#file-include-qnnprofile-h"><span class="std std-ref">File QnnProfile.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_QnnProperty.h.html#file-include-qnnproperty-h"><span class="std std-ref">File QnnProperty.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_GPU_QnnGpuOpPackage.h.html#file-include-gpu-qnngpuoppackage-h"><span class="std std-ref">File QnnGpuOpPackage.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_HTA_QnnHtaPerfInfrastructure.h.html#file-include-hta-qnnhtaperfinfrastructure-h"><span class="std std-ref">File QnnHtaPerfInfrastructure.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_HTP_QnnDspPerfInfrastructure.h.html#file-include-htp-qnndspperfinfrastructure-h"><span class="std std-ref">File QnnDspPerfInfrastructure.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_QnnContext.h.html#file-include-qnncontext-h"><span class="std std-ref">File QnnContext.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_QnnInterface.h.html#file-include-qnninterface-h"><span class="std std-ref">File QnnInterface.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_QnnMem.h.html#file-include-qnnmem-h"><span class="std std-ref">File QnnMem.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_QnnTensor.h.html#file-include-qnntensor-h"><span class="std std-ref">File QnnTensor.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_Saver_QnnSaver.h.html#file-include-saver-qnnsaver-h"><span class="std std-ref">File QnnSaver.h</span></a></p></li>
+<li><p><a class="reference internal" href="file_include_System_QnnSystemContext.h.html#file-include-system-qnnsystemcontext-h"><span class="std std-ref">File QnnSystemContext.h</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="structQnn__ApiVersion__t.html#exhale-struct-structqnn-apiversion-t"><span class="std std-ref">Struct Qnn_ApiVersion_t</span></a></p></li>
+<li><p><a class="reference internal" href="structQnn__AxisScaleOffset__t.html#exhale-struct-structqnn-axisscaleoffset-t"><span class="std std-ref">Struct Qnn_AxisScaleOffset_t</span></a></p></li>
+<li><p><a class="reference internal" href="structQnn__ClientBuffer__t.html#exhale-struct-structqnn-clientbuffer-t"><span class="std std-ref">Struct Qnn_ClientBuffer_t</span></a></p></li>
+<li><p><a class="reference internal" href="structQnn__ErrorReportingConfig__t.html#exhale-struct-structqnn-errorreportingconfig-t"><span class="std std-ref">Struct Qnn_ErrorReportingConfig_t</span></a></p></li>
+<li><p><a class="reference internal" href="structQnn__OpConfig__t.html#exhale-struct-structqnn-opconfig-t"><span class="std std-ref">Struct Qnn_OpConfig_t</span></a></p></li>
+<li><p><a class="reference internal" href="structQnn__Param__t.html#exhale-struct-structqnn-param-t"><span class="std std-ref">Struct Qnn_Param_t</span></a></p></li>
+<li><p><a class="reference internal" href="structQnn__QuantizeParams__t.html#exhale-struct-structqnn-quantizeparams-t"><span class="std std-ref">Struct Qnn_QuantizeParams_t</span></a></p></li>
+<li><p><a class="reference internal" href="structQnn__Scalar__t.html#exhale-struct-structqnn-scalar-t"><span class="std std-ref">Struct Qnn_Scalar_t</span></a></p></li>
+<li><p><a class="reference internal" href="structQnn__ScaleOffset__t.html#exhale-struct-structqnn-scaleoffset-t"><span class="std std-ref">Struct Qnn_ScaleOffset_t</span></a></p></li>
+<li><p><a class="reference internal" href="structQnn__Tensor__t.html#exhale-struct-structqnn-tensor-t"><span class="std std-ref">Struct Qnn_Tensor_t</span></a></p></li>
+<li><p><a class="reference internal" href="structQnn__Version__t.html#exhale-struct-structqnn-version-t"><span class="std std-ref">Struct Qnn_Version_t</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="enums">
+<h2>Enums<a class="headerlink" href="#enums" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="enum_QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534.html#exhale-enum-qnntypes-8h-1a8bda296c6c8a3148f764dcbdb5b8f534"><span class="std std-ref">Enum Qnn_DataType_t</span></a></p></li>
+<li><p><a class="reference internal" href="enum_QnnTypes_8h_1abbf6fedef88292dcdd6cc156754d5e68.html#exhale-enum-qnntypes-8h-1abbf6fedef88292dcdd6cc156754d5e68"><span class="std std-ref">Enum Qnn_Definition_t</span></a></p></li>
+<li><p><a class="reference internal" href="enum_QnnTypes_8h_1ae75637f794bcff556c34b58ca1d04333.html#exhale-enum-qnntypes-8h-1ae75637f794bcff556c34b58ca1d04333"><span class="std std-ref">Enum Qnn_ErrorReportingLevel_t</span></a></p></li>
+<li><p><a class="reference internal" href="enum_QnnTypes_8h_1acdd68cd5db631c0a2173cbb50036055e.html#exhale-enum-qnntypes-8h-1acdd68cd5db631c0a2173cbb50036055e"><span class="std std-ref">Enum Qnn_ParamType_t</span></a></p></li>
+<li><p><a class="reference internal" href="enum_QnnTypes_8h_1a191443d3820cd5f895cfa381148b4724.html#exhale-enum-qnntypes-8h-1a191443d3820cd5f895cfa381148b4724"><span class="std std-ref">Enum Qnn_Precision_t</span></a></p></li>
+<li><p><a class="reference internal" href="enum_QnnTypes_8h_1a4394623faa5580a396f83dac19565e4d.html#exhale-enum-qnntypes-8h-1a4394623faa5580a396f83dac19565e4d"><span class="std std-ref">Enum Qnn_Priority_t</span></a></p></li>
+<li><p><a class="reference internal" href="enum_QnnTypes_8h_1a913496b89f3a2f15d0d5cd2e5433a2ba.html#exhale-enum-qnntypes-8h-1a913496b89f3a2f15d0d5cd2e5433a2ba"><span class="std std-ref">Enum Qnn_QuantizationEncoding_t</span></a></p></li>
+<li><p><a class="reference internal" href="enum_QnnTypes_8h_1a8aa5af24d0ef672c240438f6f1db1a00.html#exhale-enum-qnntypes-8h-1a8aa5af24d0ef672c240438f6f1db1a00"><span class="std std-ref">Enum Qnn_TensorMemType_t</span></a></p></li>
+<li><p><a class="reference internal" href="enum_QnnTypes_8h_1aedf2127d917e35605f466d7d02f28f25.html#exhale-enum-qnntypes-8h-1aedf2127d917e35605f466d7d02f28f25"><span class="std std-ref">Enum Qnn_TensorType_t</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="defines">
+<h2>Defines<a class="headerlink" href="#defines" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="define_QnnTypes_8h_1a56a721ae78c5b82c279ce75a2dd2978d.html#exhale-define-qnntypes-8h-1a56a721ae78c5b82c279ce75a2dd2978d"><span class="std std-ref">Define QNN_API</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnTypes_8h_1a9c8f56717e25a1afaafd524f42b5955c.html#exhale-define-qnntypes-8h-1a9c8f56717e25a1afaafd524f42b5955c"><span class="std std-ref">Define QNN_API_VERSION_INIT</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnTypes_8h_1aea260641d21222cfb174ac43d59ff8a0.html#exhale-define-qnntypes-8h-1aea260641d21222cfb174ac43d59ff8a0"><span class="std std-ref">Define QNN_AXIS_SCALE_OFFSET_INIT</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnTypes_8h_1a0963ee4e6f280941c9df72af263fa1df.html#exhale-define-qnntypes-8h-1a0963ee4e6f280941c9df72af263fa1df"><span class="std std-ref">Define QNN_CLIENT_BUFFER_INIT</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnTypes_8h_1aadf0c9ac4f327ae2095066e69fe98e43.html#exhale-define-qnntypes-8h-1aadf0c9ac4f327ae2095066e69fe98e43"><span class="std std-ref">Define QNN_ERROR_REPORTING_CONFIG_INIT</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnTypes_8h_1a858eb9083d3c3ad2f65dbe687cddea56.html#exhale-define-qnntypes-8h-1a858eb9083d3c3ad2f65dbe687cddea56"><span class="std std-ref">Define QNN_GET_ERROR_CODE</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnTypes_8h_1a0520f80c13206e4dcfe2d146fff1b69a.html#exhale-define-qnntypes-8h-1a0520f80c13206e4dcfe2d146fff1b69a"><span class="std std-ref">Define QNN_OPCONFIG_INIT</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnTypes_8h_1a01cabab5f92dbd7a00bfe8e87b8b3ecd.html#exhale-define-qnntypes-8h-1a01cabab5f92dbd7a00bfe8e87b8b3ecd"><span class="std std-ref">Define QNN_PARAM_INIT</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnTypes_8h_1af986d56f325b02e06e407173d4d27ce1.html#exhale-define-qnntypes-8h-1af986d56f325b02e06e407173d4d27ce1"><span class="std std-ref">Define QNN_QUANTIZE_PARAMS_INIT</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnTypes_8h_1aefad87bb92aff26c0e20a8b757d94528.html#exhale-define-qnntypes-8h-1aefad87bb92aff26c0e20a8b757d94528"><span class="std std-ref">Define QNN_SCALAR_INIT</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnTypes_8h_1a2665fcb171fc4d24e1a8017bae75feac.html#exhale-define-qnntypes-8h-1a2665fcb171fc4d24e1a8017bae75feac"><span class="std std-ref">Define QNN_SCALE_OFFSET_INIT</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnTypes_8h_1ac4d9c0362819481ebfc1321521f73063.html#exhale-define-qnntypes-8h-1ac4d9c0362819481ebfc1321521f73063"><span class="std std-ref">Define QNN_TENSOR_DATA_FORMAT_FLAT_BUFFER</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnTypes_8h_1a101cd9953298300882fbb6f7050c7335.html#exhale-define-qnntypes-8h-1a101cd9953298300882fbb6f7050c7335"><span class="std std-ref">Define QNN_TENSOR_INIT</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnTypes_8h_1afe072369f5ddc5230e48faa9c7057535.html#exhale-define-qnntypes-8h-1afe072369f5ddc5230e48faa9c7057535"><span class="std std-ref">Define QNN_VERSION_INIT</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="typedefs">
+<h2>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="typedef_QnnTypes_8h_1a382641d7da31090bbd71ea1eb6718a13.html#exhale-typedef-qnntypes-8h-1a382641d7da31090bbd71ea1eb6718a13"><span class="std std-ref">Typedef Qnn_ContextBinarySize_t</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_QnnTypes_8h_1a8e21e7c6a7471103b59098ef81c28570.html#exhale-typedef-qnntypes-8h-1a8e21e7c6a7471103b59098ef81c28570"><span class="std std-ref">Typedef Qnn_ErrorHandle_t</span></a></p></li>
+<li><p><a class="reference internal" href="typedef_QnnTypes_8h_1afcbf8ca38a8d70ba1348d381163cd287.html#exhale-typedef-qnntypes-8h-1afcbf8ca38a8d70ba1348d381163cd287"><span class="std std-ref">Typedef Qnn_TensorDataFormat_t</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="unions">
+<h2>Unions<a class="headerlink" href="#unions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="unionQnn__Param__t_1_1unnamed.html#exhale-union-unionqnn-param-t-1-1unnamed"><span class="std std-ref">Union Qnn_Param_t::unnamed</span></a></p></li>
+<li><p><a class="reference internal" href="unionQnn__QuantizeParams__t_1_1unnamed.html#exhale-union-unionqnn-quantizeparams-t-1-1unnamed"><span class="std std-ref">Union Qnn_QuantizeParams_t::unnamed</span></a></p></li>
+<li><p><a class="reference internal" href="unionQnn__Scalar__t_1_1unnamed.html#exhale-union-unionqnn-scalar-t-1-1unnamed"><span class="std std-ref">Union Qnn_Scalar_t::unnamed</span></a></p></li>
+<li><p><a class="reference internal" href="unionQnn__Tensor__t_1_1unnamed.html#exhale-union-unionqnn-tensor-t-1-1unnamed"><span class="std std-ref">Union Qnn_Tensor_t::unnamed</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="full-file-listing">
+<h2>Full File Listing<a class="headerlink" href="#full-file-listing" title="Permalink to this headline">¶</a></h2>
+<p>A header which contains the base types required by the API. Strings are expected to be UTF-8 encoded and NULL terminated. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="macro">
+<dt id="c.QNN_API">
+<span class="target" id="QnnTypes_8h_1a56a721ae78c5b82c279ce75a2dd2978d"></span><code class="sig-name descname">QNN_API</code><a class="headerlink" href="#c.QNN_API" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_GET_ERROR_CODE">
+<span class="target" id="QnnTypes_8h_1a858eb9083d3c3ad2f65dbe687cddea56"></span><code class="sig-name descname">QNN_GET_ERROR_CODE</code><span class="sig-paren">(</span>errorHandle<span class="sig-paren">)</span> (errorHandle &amp; 0xFFFF)<a class="headerlink" href="#c.QNN_GET_ERROR_CODE" title="Permalink to this definition">¶</a></dt>
+<dd><p>simple utility to extract 16-bit error code from 64-bit Qnn_ErrorHandle_t </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_ERROR_REPORTING_CONFIG_INIT">
+<span class="target" id="QnnTypes_8h_1aadf0c9ac4f327ae2095066e69fe98e43"></span><code class="sig-name descname">QNN_ERROR_REPORTING_CONFIG_INIT</code> <p>{                                                         \</p>
+<a class="reference internal" href="#QnnTypes_8h_1ae75637f794bcff556c34b58ca1d04333a2bac55dbf387610b558105c9def215c4"><span class="std std-ref">QNN_ERROR_REPORTING_LEVEL_UNDEFINED</span></a><p>, /*reportingLevel*/ \</p>
+<p>    0                                    /*storageLimit*/   \</p>
+<p>  }</p>
+<a class="headerlink" href="#c.QNN_ERROR_REPORTING_CONFIG_INIT" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="structQnn__ErrorReportingConfig__t.html#structQnn__ErrorReportingConfig__t"><span class="std std-ref">Qnn_ErrorReportingConfig_t</span></a> initializer macro. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_VERSION_INIT">
+<span class="target" id="QnnTypes_8h_1afe072369f5ddc5230e48faa9c7057535"></span><code class="sig-name descname">QNN_VERSION_INIT</code> <p>{                      \</p>
+<p>    0,     /*major*/     \</p>
+<p>    0,     /*minor*/     \</p>
+<p>    0      /*patch*/     \</p>
+<p>  }</p>
+<a class="headerlink" href="#c.QNN_VERSION_INIT" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="structQnn__Version__t.html#structQnn__Version__t"><span class="std std-ref">Qnn_Version_t</span></a> initializer macro. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_API_VERSION_INIT">
+<span class="target" id="QnnTypes_8h_1a9c8f56717e25a1afaafd524f42b5955c"></span><code class="sig-name descname">QNN_API_VERSION_INIT</code> <p>{                                                     \</p>
+<p>    {                                                   \</p>
+<a class="reference internal" href="file_include_QnnCommon.h.html#QnnCommon_8h_1a74ab5daaacea0c01b830dbb8bee10eb2"><span class="std std-ref">QNN_API_VERSION_MAJOR</span></a><p>, /*coreApiVersion.major*/ \</p>
+<a class="reference internal" href="file_include_QnnCommon.h.html#QnnCommon_8h_1a4aa85b21232a0c1e217a8e689b369681"><span class="std std-ref">QNN_API_VERSION_MINOR</span></a><p>, /*coreApiVersion.minor*/ \</p>
+<a class="reference internal" href="file_include_QnnCommon.h.html#QnnCommon_8h_1a9ab03624ebf1f5fa01147d078e382b38"><span class="std std-ref">QNN_API_VERSION_PATCH</span></a><p>  /*coreApiVersion.patch*/ \</p>
+<p>    },                                                  \</p>
+<a class="reference internal" href="#QnnTypes_8h_1afe072369f5ddc5230e48faa9c7057535"><span class="std std-ref">QNN_VERSION_INIT</span></a><p> /*backendApiVersion*/          \</p>
+<p>  }</p>
+<a class="headerlink" href="#c.QNN_API_VERSION_INIT" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="structQnn__ApiVersion__t.html#structQnn__ApiVersion__t"><span class="std std-ref">Qnn_ApiVersion_t</span></a> initializer macro. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_SCALAR_INIT">
+<span class="target" id="QnnTypes_8h_1aefad87bb92aff26c0e20a8b757d94528"></span><code class="sig-name descname">QNN_SCALAR_INIT</code> <p>{                                      \</p>
+<a class="reference internal" href="#QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a02f7f519ec1f541dc1741ae473bb3e19"><span class="std std-ref">QNN_DATATYPE_UNDEFINED</span></a><p>, /*dataType*/ \</p>
+<p>    {                                    \</p>
+<p>      0.0f /*floatValue*/                \</p>
+<p>    }                                    \</p>
+<p>  }</p>
+<a class="headerlink" href="#c.QNN_SCALAR_INIT" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="structQnn__Scalar__t.html#structQnn__Scalar__t"><span class="std std-ref">Qnn_Scalar_t</span></a> initializer macro. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_SCALE_OFFSET_INIT">
+<span class="target" id="QnnTypes_8h_1a2665fcb171fc4d24e1a8017bae75feac"></span><code class="sig-name descname">QNN_SCALE_OFFSET_INIT</code> <p>{                           \</p>
+<p>    0.0f, /*scale*/           \</p>
+<p>    0     /*offset*/          \</p>
+<p>  }</p>
+<a class="headerlink" href="#c.QNN_SCALE_OFFSET_INIT" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="structQnn__ScaleOffset__t.html#structQnn__ScaleOffset__t"><span class="std std-ref">Qnn_ScaleOffset_t</span></a> initializer macro. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_AXIS_SCALE_OFFSET_INIT">
+<span class="target" id="QnnTypes_8h_1aea260641d21222cfb174ac43d59ff8a0"></span><code class="sig-name descname">QNN_AXIS_SCALE_OFFSET_INIT</code> <p>{                                \</p>
+<p>    0,       /*axis*/              \</p>
+<p>    0,       /*numScaleOffsets*/   \</p>
+<p>    NULL     /*scaleOffset*/       \</p>
+<p>  }</p>
+<a class="headerlink" href="#c.QNN_AXIS_SCALE_OFFSET_INIT" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="structQnn__AxisScaleOffset__t.html#structQnn__AxisScaleOffset__t"><span class="std std-ref">Qnn_AxisScaleOffset_t</span></a> initializer macro. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_QUANTIZE_PARAMS_INIT">
+<span class="target" id="QnnTypes_8h_1af986d56f325b02e06e407173d4d27ce1"></span><code class="sig-name descname">QNN_QUANTIZE_PARAMS_INIT</code> <p>{                                                                   \</p>
+<a class="reference internal" href="#QnnTypes_8h_1abbf6fedef88292dcdd6cc156754d5e68a4e8dad0ffc41a0c09c94f13cacef9af7"><span class="std std-ref">QNN_DEFINITION_UNDEFINED</span></a><p>,                /*encodingDefinition*/   \</p>
+<a class="reference internal" href="#QnnTypes_8h_1a913496b89f3a2f15d0d5cd2e5433a2baa32ba7edbe651b2cda0646dd9c07fe01d"><span class="std std-ref">QNN_QUANTIZATION_ENCODING_UNDEFINED</span></a><p>,     /*quantizationEncoding*/ \</p>
+<p>    {                                                                 \</p>
+<a class="reference internal" href="#QnnTypes_8h_1a2665fcb171fc4d24e1a8017bae75feac"><span class="std std-ref">QNN_SCALE_OFFSET_INIT</span></a><p> /*scaleOffsetEncoding*/                   \</p>
+<p>    }                                                                 \</p>
+<p>  }</p>
+<a class="headerlink" href="#c.QNN_QUANTIZE_PARAMS_INIT" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="structQnn__QuantizeParams__t.html#structQnn__QuantizeParams__t"><span class="std std-ref">Qnn_QuantizeParams_t</span></a> initializer macro. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_TENSOR_DATA_FORMAT_FLAT_BUFFER">
+<span class="target" id="QnnTypes_8h_1ac4d9c0362819481ebfc1321521f73063"></span><code class="sig-name descname">QNN_TENSOR_DATA_FORMAT_FLAT_BUFFER</code> 0<a class="headerlink" href="#c.QNN_TENSOR_DATA_FORMAT_FLAT_BUFFER" title="Permalink to this definition">¶</a></dt>
+<dd><p>An n-dimensional tensor formatted in memory as flat buffer where the last dimension varies the fastest. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_CLIENT_BUFFER_INIT">
+<span class="target" id="QnnTypes_8h_1a0963ee4e6f280941c9df72af263fa1df"></span><code class="sig-name descname">QNN_CLIENT_BUFFER_INIT</code> <p>{                            \</p>
+<p>    NULL, /*data*/             \</p>
+<p>    0     /*dataSize*/         \</p>
+<p>  }</p>
+<a class="headerlink" href="#c.QNN_CLIENT_BUFFER_INIT" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="structQnn__ClientBuffer__t.html#structQnn__ClientBuffer__t"><span class="std std-ref">Qnn_ClientBuffer_t</span></a> initializer macro. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_TENSOR_INIT">
+<span class="target" id="QnnTypes_8h_1a101cd9953298300882fbb6f7050c7335"></span><code class="sig-name descname">QNN_TENSOR_INIT</code> <p>{                                                               \</p>
+<p>    0,                                      /*id*/                \</p>
+<a class="reference internal" href="#QnnTypes_8h_1aedf2127d917e35605f466d7d02f28f25a83dad0c8491119ee8e4f2a58601ca548"><span class="std std-ref">QNN_TENSOR_TYPE_UNDEFINED</span></a><p>,              /*type*/              \</p>
+<a class="reference internal" href="#QnnTypes_8h_1ac4d9c0362819481ebfc1321521f73063"><span class="std std-ref">QNN_TENSOR_DATA_FORMAT_FLAT_BUFFER</span></a><p>,     /*dataFormat*/        \</p>
+<a class="reference internal" href="#QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a02f7f519ec1f541dc1741ae473bb3e19"><span class="std std-ref">QNN_DATATYPE_UNDEFINED</span></a><p>,                 /*dataType*/          \</p>
+<a class="reference internal" href="#QnnTypes_8h_1af986d56f325b02e06e407173d4d27ce1"><span class="std std-ref">QNN_QUANTIZE_PARAMS_INIT</span></a><p>,               /*quantizeParams*/    \</p>
+<p>    0,                                      /*rank*/              \</p>
+<p>    NULL,                                   /*maxDimensions*/     \</p>
+<p>    NULL,                                   /*currentDimensions*/ \</p>
+<a class="reference internal" href="#QnnTypes_8h_1a8aa5af24d0ef672c240438f6f1db1a00a76608b2b3b4c26c5216a2ce826d5fbbe"><span class="std std-ref">QNN_TENSORMEMTYPE_UNDEFINED</span></a><p>,            /*memType*/           \</p>
+<p>    {                                                             \</p>
+<a class="reference internal" href="#QnnTypes_8h_1a0963ee4e6f280941c9df72af263fa1df"><span class="std std-ref">QNN_CLIENT_BUFFER_INIT</span></a><p> /*clientBuf*/                        \</p>
+<p>    }                                                             \</p>
+<p>  }</p>
+<a class="headerlink" href="#c.QNN_TENSOR_INIT" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="structQnn__Tensor__t.html#structQnn__Tensor__t"><span class="std std-ref">Qnn_Tensor_t</span></a> initializer macro. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_PARAM_INIT">
+<span class="target" id="QnnTypes_8h_1a01cabab5f92dbd7a00bfe8e87b8b3ecd"></span><code class="sig-name descname">QNN_PARAM_INIT</code> <p>{                                        \</p>
+<a class="reference internal" href="#QnnTypes_8h_1acdd68cd5db631c0a2173cbb50036055eaf249565e2ea05bccb934053c3d8c79aa"><span class="std std-ref">QNN_PARAMTYPE_UNDEFINED</span></a><p>, /*paramType*/ \</p>
+<p>    NULL,                    /*name*/      \</p>
+<p>    {                                      \</p>
+<a class="reference internal" href="#QnnTypes_8h_1aefad87bb92aff26c0e20a8b757d94528"><span class="std std-ref">QNN_SCALAR_INIT</span></a><p> /*scalarParam*/      \</p>
+<p>    }                                      \</p>
+<p>  }</p>
+<a class="headerlink" href="#c.QNN_PARAM_INIT" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="structQnn__Param__t.html#structQnn__Param__t"><span class="std std-ref">Qnn_Param_t</span></a> initializer macro. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_OPCONFIG_INIT">
+<span class="target" id="QnnTypes_8h_1a0520f80c13206e4dcfe2d146fff1b69a"></span><code class="sig-name descname">QNN_OPCONFIG_INIT</code> <p>{                             \</p>
+<p>    NULL,     /*name*/          \</p>
+<p>    NULL,     /*packageName*/   \</p>
+<p>    NULL,     /*typeName*/      \</p>
+<p>    0,        /*numOfParams*/   \</p>
+<p>    NULL,     /*params*/        \</p>
+<p>    0,        /*numOfInputs*/   \</p>
+<p>    NULL,     /*inputTensors*/  \</p>
+<p>    0,        /*numOfOutputs*/  \</p>
+<p>    NULL      /*outputTensors*/ \</p>
+<p>  }</p>
+<a class="headerlink" href="#c.QNN_OPCONFIG_INIT" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="structQnn__OpConfig__t.html#structQnn__OpConfig__t"><span class="std std-ref">Qnn_OpConfig_t</span></a> initializer macro. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Typedefs</p>
+<dl class="type">
+<dt id="_CPPv417Qnn_ErrorHandle_t">
+<span id="_CPPv317Qnn_ErrorHandle_t"></span><span id="_CPPv217Qnn_ErrorHandle_t"></span><span id="Qnn_ErrorHandle_t"></span><span class="target" id="QnnTypes_8h_1a8e21e7c6a7471103b59098ef81c28570"></span><em class="property">typedef </em>uint64_t <code class="sig-name descname">Qnn_ErrorHandle_t</code><a class="headerlink" href="#_CPPv417Qnn_ErrorHandle_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A typedef to indicate QNN API return handle. Return error codes from APIs are to be read out from the least significant 16 bits of the field. The higher order bits are reserved for internal tracking purposes. </p>
+</dd></dl>
+
+<dl class="type">
+<dt id="_CPPv423Qnn_ContextBinarySize_t">
+<span id="_CPPv323Qnn_ContextBinarySize_t"></span><span id="_CPPv223Qnn_ContextBinarySize_t"></span><span id="Qnn_ContextBinarySize_t"></span><span class="target" id="QnnTypes_8h_1a382641d7da31090bbd71ea1eb6718a13"></span><em class="property">typedef </em>uint32_t <code class="sig-name descname">Qnn_ContextBinarySize_t</code><a class="headerlink" href="#_CPPv423Qnn_ContextBinarySize_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A typedef to indicate context binary size. </p>
+</dd></dl>
+
+<dl class="type">
+<dt id="_CPPv422Qnn_TensorDataFormat_t">
+<span id="_CPPv322Qnn_TensorDataFormat_t"></span><span id="_CPPv222Qnn_TensorDataFormat_t"></span><span id="Qnn_TensorDataFormat_t"></span><span class="target" id="QnnTypes_8h_1afcbf8ca38a8d70ba1348d381163cd287"></span><em class="property">typedef </em>uint32_t <code class="sig-name descname">Qnn_TensorDataFormat_t</code><a class="headerlink" href="#_CPPv422Qnn_TensorDataFormat_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Implementation-defined data format identifier for tensors. Legal values and semantics are defined by QNN backends, the default format QNN_TENSOR_DATA_FORMAT_FLAT_BUFFER is supported by all backends. </p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Data format for intermediate tensors, i.e ones of type QNN_TENSOR_TYPE_NATIVE may not be honored by a backend, because it can choose to pick a data format that is more conducive for its execution. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="enum">
+<dt id="_CPPv414Qnn_DataType_t">
+<span id="_CPPv314Qnn_DataType_t"></span><span id="_CPPv214Qnn_DataType_t"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534"></span><em class="property">enum </em><code class="sig-name descname">Qnn_DataType_t</code><br /></dt>
+<dd><p>An enum which defines various data types. FIXED_XX types are targeted for data in tensors. UINT / INT types are targeted for scalar params. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt id="_CPPv418QNN_DATATYPE_INT_8">
+<span id="_CPPv318QNN_DATATYPE_INT_8"></span><span id="_CPPv218QNN_DATATYPE_INT_8"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a4b2c52fa776b473f0c5ee16a705ec095"></span><code class="sig-name descname">QNN_DATATYPE_INT_8</code> = 0x0008<br /></dt>
+<dd><p>8-bit integer type </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv419QNN_DATATYPE_INT_16">
+<span id="_CPPv319QNN_DATATYPE_INT_16"></span><span id="_CPPv219QNN_DATATYPE_INT_16"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a5300857ca6a6f53c36ef9c927e0b8977"></span><code class="sig-name descname">QNN_DATATYPE_INT_16</code> = 0x0016<br /></dt>
+<dd><p>16-bit integer type </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv419QNN_DATATYPE_INT_32">
+<span id="_CPPv319QNN_DATATYPE_INT_32"></span><span id="_CPPv219QNN_DATATYPE_INT_32"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a11a7d26d25dba683f759560700bc5e5e"></span><code class="sig-name descname">QNN_DATATYPE_INT_32</code> = 0x0032<br /></dt>
+<dd><p>32-bit integer type </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv419QNN_DATATYPE_INT_64">
+<span id="_CPPv319QNN_DATATYPE_INT_64"></span><span id="_CPPv219QNN_DATATYPE_INT_64"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a736a5f05a86dd09429be38683a7e316b"></span><code class="sig-name descname">QNN_DATATYPE_INT_64</code> = 0x0064<br /></dt>
+<dd><p>64-bit integer type </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv419QNN_DATATYPE_UINT_8">
+<span id="_CPPv319QNN_DATATYPE_UINT_8"></span><span id="_CPPv219QNN_DATATYPE_UINT_8"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a572464fc2b3a4600f1b98aa0be1c343a"></span><code class="sig-name descname">QNN_DATATYPE_UINT_8</code> = 0x0108<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv420QNN_DATATYPE_UINT_16">
+<span id="_CPPv320QNN_DATATYPE_UINT_16"></span><span id="_CPPv220QNN_DATATYPE_UINT_16"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a97d1554251482ff437ad6227e972f0ac"></span><code class="sig-name descname">QNN_DATATYPE_UINT_16</code> = 0x0116<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv420QNN_DATATYPE_UINT_32">
+<span id="_CPPv320QNN_DATATYPE_UINT_32"></span><span id="_CPPv220QNN_DATATYPE_UINT_32"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534aab08f4e4ca22b04cd7527b721115ee72"></span><code class="sig-name descname">QNN_DATATYPE_UINT_32</code> = 0x0132<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv420QNN_DATATYPE_UINT_64">
+<span id="_CPPv320QNN_DATATYPE_UINT_64"></span><span id="_CPPv220QNN_DATATYPE_UINT_64"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534ac2cd852bd0691722388a1049d9296313"></span><code class="sig-name descname">QNN_DATATYPE_UINT_64</code> = 0x0164<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv421QNN_DATATYPE_FLOAT_16">
+<span id="_CPPv321QNN_DATATYPE_FLOAT_16"></span><span id="_CPPv221QNN_DATATYPE_FLOAT_16"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a289489d301b7621dcda7c7323bbc7e40"></span><code class="sig-name descname">QNN_DATATYPE_FLOAT_16</code> = 0x0216<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv421QNN_DATATYPE_FLOAT_32">
+<span id="_CPPv321QNN_DATATYPE_FLOAT_32"></span><span id="_CPPv221QNN_DATATYPE_FLOAT_32"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534ae99980c5db58b27c0c69affb3e02ecc9"></span><code class="sig-name descname">QNN_DATATYPE_FLOAT_32</code> = 0x0232<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv427QNN_DATATYPE_SFIXED_POINT_8">
+<span id="_CPPv327QNN_DATATYPE_SFIXED_POINT_8"></span><span id="_CPPv227QNN_DATATYPE_SFIXED_POINT_8"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a68f7837e6adb0c5b1b2ad6d3acd776b9"></span><code class="sig-name descname">QNN_DATATYPE_SFIXED_POINT_8</code> = 0x0308<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv428QNN_DATATYPE_SFIXED_POINT_16">
+<span id="_CPPv328QNN_DATATYPE_SFIXED_POINT_16"></span><span id="_CPPv228QNN_DATATYPE_SFIXED_POINT_16"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a412cf015e5da0d5e4d79b27abe99ce21"></span><code class="sig-name descname">QNN_DATATYPE_SFIXED_POINT_16</code> = 0x0316<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv428QNN_DATATYPE_SFIXED_POINT_32">
+<span id="_CPPv328QNN_DATATYPE_SFIXED_POINT_32"></span><span id="_CPPv228QNN_DATATYPE_SFIXED_POINT_32"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a24a588d0212abfad7fc14f80beeb0a31"></span><code class="sig-name descname">QNN_DATATYPE_SFIXED_POINT_32</code> = 0x0332<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv427QNN_DATATYPE_UFIXED_POINT_8">
+<span id="_CPPv327QNN_DATATYPE_UFIXED_POINT_8"></span><span id="_CPPv227QNN_DATATYPE_UFIXED_POINT_8"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534aa2af5d60439ddcafab294789215cf1db"></span><code class="sig-name descname">QNN_DATATYPE_UFIXED_POINT_8</code> = 0x0408<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv428QNN_DATATYPE_UFIXED_POINT_16">
+<span id="_CPPv328QNN_DATATYPE_UFIXED_POINT_16"></span><span id="_CPPv228QNN_DATATYPE_UFIXED_POINT_16"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a1ac9d1322f226da8d8213bc6b6fa33fe"></span><code class="sig-name descname">QNN_DATATYPE_UFIXED_POINT_16</code> = 0x0416<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv428QNN_DATATYPE_UFIXED_POINT_32">
+<span id="_CPPv328QNN_DATATYPE_UFIXED_POINT_32"></span><span id="_CPPv228QNN_DATATYPE_UFIXED_POINT_32"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a0a85a35df919d9326fcbe249607771db"></span><code class="sig-name descname">QNN_DATATYPE_UFIXED_POINT_32</code> = 0x0432<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv419QNN_DATATYPE_BOOL_8">
+<span id="_CPPv319QNN_DATATYPE_BOOL_8"></span><span id="_CPPv219QNN_DATATYPE_BOOL_8"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534aef918d3c5069b71d562d4ef95d31823d"></span><code class="sig-name descname">QNN_DATATYPE_BOOL_8</code> = 0x0508<br /></dt>
+<dd><p>8-bit boolean type, 0 = false, any non-zero value = true </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv422QNN_DATATYPE_UNDEFINED">
+<span id="_CPPv322QNN_DATATYPE_UNDEFINED"></span><span id="_CPPv222QNN_DATATYPE_UNDEFINED"></span><span class="target" id="QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a02f7f519ec1f541dc1741ae473bb3e19"></span><code class="sig-name descname">QNN_DATATYPE_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="_CPPv415Qnn_Precision_t">
+<span id="_CPPv315Qnn_Precision_t"></span><span id="_CPPv215Qnn_Precision_t"></span><span class="target" id="QnnTypes_8h_1a191443d3820cd5f895cfa381148b4724"></span><em class="property">enum </em><code class="sig-name descname">Qnn_Precision_t</code><br /></dt>
+<dd><p>An enum which defines the different precision modes supported by QNN backends. A precision mode may be used to express the math type used in the implementation of an operation. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt id="_CPPv421QNN_PRECISION_FLOAT32">
+<span id="_CPPv321QNN_PRECISION_FLOAT32"></span><span id="_CPPv221QNN_PRECISION_FLOAT32"></span><span class="target" id="QnnTypes_8h_1a191443d3820cd5f895cfa381148b4724af9d379a3017e7332d5ffcd17e31a7267"></span><code class="sig-name descname">QNN_PRECISION_FLOAT32</code> = 0<br /></dt>
+<dd><p>32-bit Floating point precision. The format of the floating point value is left to backends to choose. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv421QNN_PRECISION_FLOAT16">
+<span id="_CPPv321QNN_PRECISION_FLOAT16"></span><span id="_CPPv221QNN_PRECISION_FLOAT16"></span><span class="target" id="QnnTypes_8h_1a191443d3820cd5f895cfa381148b4724afd4a73ff6dde38738eb6d92934b1c939"></span><code class="sig-name descname">QNN_PRECISION_FLOAT16</code> = 1<br /></dt>
+<dd><p>16-bit Floating point precision. The format of the floating point value is left to backends to choose. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv423QNN_PRECISION_UNDEFINED">
+<span id="_CPPv323QNN_PRECISION_UNDEFINED"></span><span id="_CPPv223QNN_PRECISION_UNDEFINED"></span><span class="target" id="QnnTypes_8h_1a191443d3820cd5f895cfa381148b4724a591f96cf23d1b451e1eaf72eae77bdfc"></span><code class="sig-name descname">QNN_PRECISION_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="_CPPv416Qnn_TensorType_t">
+<span id="_CPPv316Qnn_TensorType_t"></span><span id="_CPPv216Qnn_TensorType_t"></span><span class="target" id="QnnTypes_8h_1aedf2127d917e35605f466d7d02f28f25"></span><em class="property">enum </em><code class="sig-name descname">Qnn_TensorType_t</code><br /></dt>
+<dd><p>An enum to specify the tensor type, application accessible or native to QNN. </p>
+<p>Data on APP tensors are accessible to a client. Data on NATIVE tensors are not accessible to a client. Native tensors on a Qnn_GraphHandle_t are accessible only within a graph and could potentially be optimized by the backend. Native tensors on a Qnn_ContextHandle_t are accessible by nodes in any graph in the Context. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt id="_CPPv425QNN_TENSOR_TYPE_APP_WRITE">
+<span id="_CPPv325QNN_TENSOR_TYPE_APP_WRITE"></span><span id="_CPPv225QNN_TENSOR_TYPE_APP_WRITE"></span><span class="target" id="QnnTypes_8h_1aedf2127d917e35605f466d7d02f28f25ac7ae181ca77c40ab78468a777604b1e7"></span><code class="sig-name descname">QNN_TENSOR_TYPE_APP_WRITE</code> = 0<br /></dt>
+<dd><p>Application writeable tensor. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv424QNN_TENSOR_TYPE_APP_READ">
+<span id="_CPPv324QNN_TENSOR_TYPE_APP_READ"></span><span id="_CPPv224QNN_TENSOR_TYPE_APP_READ"></span><span class="target" id="QnnTypes_8h_1aedf2127d917e35605f466d7d02f28f25a2a28d2c2599e023d10d9b0581fd30e9f"></span><code class="sig-name descname">QNN_TENSOR_TYPE_APP_READ</code> = 1<br /></dt>
+<dd><p>Application readable tensor. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv429QNN_TENSOR_TYPE_APP_READWRITE">
+<span id="_CPPv329QNN_TENSOR_TYPE_APP_READWRITE"></span><span id="_CPPv229QNN_TENSOR_TYPE_APP_READWRITE"></span><span class="target" id="QnnTypes_8h_1aedf2127d917e35605f466d7d02f28f25afed3d4b2255c47acb760f7ce2ad4596a"></span><code class="sig-name descname">QNN_TENSOR_TYPE_APP_READWRITE</code> = 2<br /></dt>
+<dd><p>Tensor that can both be read and written by an application Used in scenarios that may include supplying an output tensor from one graph as the input to another graph. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv422QNN_TENSOR_TYPE_NATIVE">
+<span id="_CPPv322QNN_TENSOR_TYPE_NATIVE"></span><span id="_CPPv222QNN_TENSOR_TYPE_NATIVE"></span><span class="target" id="QnnTypes_8h_1aedf2127d917e35605f466d7d02f28f25a0b19df6a921b1ae2fe48eaaeebe36922"></span><code class="sig-name descname">QNN_TENSOR_TYPE_NATIVE</code> = 3<br /></dt>
+<dd><p>Tensor native to a Graph. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv422QNN_TENSOR_TYPE_STATIC">
+<span id="_CPPv322QNN_TENSOR_TYPE_STATIC"></span><span id="_CPPv222QNN_TENSOR_TYPE_STATIC"></span><span class="target" id="QnnTypes_8h_1aedf2127d917e35605f466d7d02f28f25a1990397dd6deb5d91f5faedca4849021"></span><code class="sig-name descname">QNN_TENSOR_TYPE_STATIC</code> = 4<br /></dt>
+<dd><p>Static data (doesn’t change during execution) </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv420QNN_TENSOR_TYPE_NULL">
+<span id="_CPPv320QNN_TENSOR_TYPE_NULL"></span><span id="_CPPv220QNN_TENSOR_TYPE_NULL"></span><span class="target" id="QnnTypes_8h_1aedf2127d917e35605f466d7d02f28f25ae170ed1689167650db583df91f667b9b"></span><code class="sig-name descname">QNN_TENSOR_TYPE_NULL</code> = 5<br /></dt>
+<dd><p>Tensor type NULL. <a class="reference internal" href="structQnn__Tensor__t.html#structQnn__Tensor__t"><span class="std std-ref">Qnn_Tensor_t</span></a> objects specified with this type will not carry any other information. Clients can set optional tensors with this type to avoid populating <a class="reference internal" href="structQnn__Tensor__t.html#structQnn__Tensor__t"><span class="std std-ref">Qnn_Tensor_t</span></a> objects with valid data. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv425QNN_TENSOR_TYPE_UNDEFINED">
+<span id="_CPPv325QNN_TENSOR_TYPE_UNDEFINED"></span><span id="_CPPv225QNN_TENSOR_TYPE_UNDEFINED"></span><span class="target" id="QnnTypes_8h_1aedf2127d917e35605f466d7d02f28f25a83dad0c8491119ee8e4f2a58601ca548"></span><code class="sig-name descname">QNN_TENSOR_TYPE_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="_CPPv415Qnn_ParamType_t">
+<span id="_CPPv315Qnn_ParamType_t"></span><span id="_CPPv215Qnn_ParamType_t"></span><span class="target" id="QnnTypes_8h_1acdd68cd5db631c0a2173cbb50036055e"></span><em class="property">enum </em><code class="sig-name descname">Qnn_ParamType_t</code><br /></dt>
+<dd><p>An enum to specify the parameter type : Scalar or Tensor. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt id="_CPPv420QNN_PARAMTYPE_SCALAR">
+<span id="_CPPv320QNN_PARAMTYPE_SCALAR"></span><span id="_CPPv220QNN_PARAMTYPE_SCALAR"></span><span class="target" id="QnnTypes_8h_1acdd68cd5db631c0a2173cbb50036055eadb4c2c16bcfea676108110399a4e2c8c"></span><code class="sig-name descname">QNN_PARAMTYPE_SCALAR</code> = 0<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv420QNN_PARAMTYPE_TENSOR">
+<span id="_CPPv320QNN_PARAMTYPE_TENSOR"></span><span id="_CPPv220QNN_PARAMTYPE_TENSOR"></span><span class="target" id="QnnTypes_8h_1acdd68cd5db631c0a2173cbb50036055eac1121da6c5b4dddb59cb71bf0caa43d7"></span><code class="sig-name descname">QNN_PARAMTYPE_TENSOR</code> = 1<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv423QNN_PARAMTYPE_UNDEFINED">
+<span id="_CPPv323QNN_PARAMTYPE_UNDEFINED"></span><span id="_CPPv223QNN_PARAMTYPE_UNDEFINED"></span><span class="target" id="QnnTypes_8h_1acdd68cd5db631c0a2173cbb50036055eaf249565e2ea05bccb934053c3d8c79aa"></span><code class="sig-name descname">QNN_PARAMTYPE_UNDEFINED</code> = 0xFFFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="_CPPv416Qnn_Definition_t">
+<span id="_CPPv316Qnn_Definition_t"></span><span id="_CPPv216Qnn_Definition_t"></span><span class="target" id="QnnTypes_8h_1abbf6fedef88292dcdd6cc156754d5e68"></span><em class="property">enum </em><code class="sig-name descname">Qnn_Definition_t</code><br /></dt>
+<dd><p>An enum to specify definition source for field(s) following this enum. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt id="_CPPv429QNN_DEFINITION_IMPL_GENERATED">
+<span id="_CPPv329QNN_DEFINITION_IMPL_GENERATED"></span><span id="_CPPv229QNN_DEFINITION_IMPL_GENERATED"></span><span class="target" id="QnnTypes_8h_1abbf6fedef88292dcdd6cc156754d5e68a0fd09b544773762c09793b0db33900ef"></span><code class="sig-name descname">QNN_DEFINITION_IMPL_GENERATED</code> = 0<br /></dt>
+<dd><p>Indicates backend implementation to update or decide. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv422QNN_DEFINITION_DEFINED">
+<span id="_CPPv322QNN_DEFINITION_DEFINED"></span><span id="_CPPv222QNN_DEFINITION_DEFINED"></span><span class="target" id="QnnTypes_8h_1abbf6fedef88292dcdd6cc156754d5e68a5f6292f5342a9cc6135bca265a762b83"></span><code class="sig-name descname">QNN_DEFINITION_DEFINED</code> = 1<br /></dt>
+<dd><p>Indicates that provided definition needs to be used. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv424QNN_DEFINITION_UNDEFINED">
+<span id="_CPPv324QNN_DEFINITION_UNDEFINED"></span><span id="_CPPv224QNN_DEFINITION_UNDEFINED"></span><span class="target" id="QnnTypes_8h_1abbf6fedef88292dcdd6cc156754d5e68a4e8dad0ffc41a0c09c94f13cacef9af7"></span><code class="sig-name descname">QNN_DEFINITION_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="_CPPv414Qnn_Priority_t">
+<span id="_CPPv314Qnn_Priority_t"></span><span id="_CPPv214Qnn_Priority_t"></span><span class="target" id="QnnTypes_8h_1a4394623faa5580a396f83dac19565e4d"></span><em class="property">enum </em><code class="sig-name descname">Qnn_Priority_t</code><br /></dt>
+<dd><p>An enum to specify a priority. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt id="_CPPv416QNN_PRIORITY_LOW">
+<span id="_CPPv316QNN_PRIORITY_LOW"></span><span id="_CPPv216QNN_PRIORITY_LOW"></span><span class="target" id="QnnTypes_8h_1a4394623faa5580a396f83dac19565e4da65906e14d92cbcf5f2cd72a9f16ead6c"></span><code class="sig-name descname">QNN_PRIORITY_LOW</code> = 0<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv419QNN_PRIORITY_NORMAL">
+<span id="_CPPv319QNN_PRIORITY_NORMAL"></span><span id="_CPPv219QNN_PRIORITY_NORMAL"></span><span class="target" id="QnnTypes_8h_1a4394623faa5580a396f83dac19565e4da81da8da01b009775f410b64a40d5286b"></span><code class="sig-name descname">QNN_PRIORITY_NORMAL</code> = 100<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv420QNN_PRIORITY_DEFAULT">
+<span id="_CPPv320QNN_PRIORITY_DEFAULT"></span><span id="_CPPv220QNN_PRIORITY_DEFAULT"></span><span class="target" id="QnnTypes_8h_1a4394623faa5580a396f83dac19565e4da1fc2b1d527a1379257bdff79e533ce80"></span><code class="sig-name descname">QNN_PRIORITY_DEFAULT</code> = <a class="reference internal" href="enum_QnnTypes_8h_1a4394623faa5580a396f83dac19565e4d.html#_CPPv419QNN_PRIORITY_NORMAL" title="QNN_PRIORITY_NORMAL">QNN_PRIORITY_NORMAL</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv417QNN_PRIORITY_HIGH">
+<span id="_CPPv317QNN_PRIORITY_HIGH"></span><span id="_CPPv217QNN_PRIORITY_HIGH"></span><span class="target" id="QnnTypes_8h_1a4394623faa5580a396f83dac19565e4da982c9c284c1a3a8d4b5f84566a4396c9"></span><code class="sig-name descname">QNN_PRIORITY_HIGH</code> = 200<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv422QNN_PRIORITY_UNDEFINED">
+<span id="_CPPv322QNN_PRIORITY_UNDEFINED"></span><span id="_CPPv222QNN_PRIORITY_UNDEFINED"></span><span class="target" id="QnnTypes_8h_1a4394623faa5580a396f83dac19565e4dae50e143f7ef4ab52f98382307d8c1e23"></span><code class="sig-name descname">QNN_PRIORITY_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="_CPPv425Qnn_ErrorReportingLevel_t">
+<span id="_CPPv325Qnn_ErrorReportingLevel_t"></span><span id="_CPPv225Qnn_ErrorReportingLevel_t"></span><span class="target" id="QnnTypes_8h_1ae75637f794bcff556c34b58ca1d04333"></span><em class="property">enum </em><code class="sig-name descname">Qnn_ErrorReportingLevel_t</code><br /></dt>
+<dd><p>An enum to describe reporting levels for the error handling API QNN_ERROR_REPORTING_LEVEL_BRIEF: get basic information about an error QNN_ERROR_REPORTING_LEVEL_DETAILED: get detailed information about an error in memory-based object forms. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt id="_CPPv431QNN_ERROR_REPORTING_LEVEL_BRIEF">
+<span id="_CPPv331QNN_ERROR_REPORTING_LEVEL_BRIEF"></span><span id="_CPPv231QNN_ERROR_REPORTING_LEVEL_BRIEF"></span><span class="target" id="QnnTypes_8h_1ae75637f794bcff556c34b58ca1d04333a1879433bc858b319c7791d478d2c99b3"></span><code class="sig-name descname">QNN_ERROR_REPORTING_LEVEL_BRIEF</code> = 0<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv434QNN_ERROR_REPORTING_LEVEL_DETAILED">
+<span id="_CPPv334QNN_ERROR_REPORTING_LEVEL_DETAILED"></span><span id="_CPPv234QNN_ERROR_REPORTING_LEVEL_DETAILED"></span><span class="target" id="QnnTypes_8h_1ae75637f794bcff556c34b58ca1d04333addc317ba957d0969c6fe71a208b2a741"></span><code class="sig-name descname">QNN_ERROR_REPORTING_LEVEL_DETAILED</code> = 1<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv435QNN_ERROR_REPORTING_LEVEL_UNDEFINED">
+<span id="_CPPv335QNN_ERROR_REPORTING_LEVEL_UNDEFINED"></span><span id="_CPPv235QNN_ERROR_REPORTING_LEVEL_UNDEFINED"></span><span class="target" id="QnnTypes_8h_1ae75637f794bcff556c34b58ca1d04333a2bac55dbf387610b558105c9def215c4"></span><code class="sig-name descname">QNN_ERROR_REPORTING_LEVEL_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="_CPPv426Qnn_QuantizationEncoding_t">
+<span id="_CPPv326Qnn_QuantizationEncoding_t"></span><span id="_CPPv226Qnn_QuantizationEncoding_t"></span><span class="target" id="QnnTypes_8h_1a913496b89f3a2f15d0d5cd2e5433a2ba"></span><em class="property">enum </em><code class="sig-name descname">Qnn_QuantizationEncoding_t</code><br /></dt>
+<dd><p>An enum to specify quantization encoding type structure. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt id="_CPPv438QNN_QUANTIZATION_ENCODING_SCALE_OFFSET">
+<span id="_CPPv338QNN_QUANTIZATION_ENCODING_SCALE_OFFSET"></span><span id="_CPPv238QNN_QUANTIZATION_ENCODING_SCALE_OFFSET"></span><span class="target" id="QnnTypes_8h_1a913496b89f3a2f15d0d5cd2e5433a2baa6aa93de04b1ef05480ce25cc667edaea"></span><code class="sig-name descname">QNN_QUANTIZATION_ENCODING_SCALE_OFFSET</code> = 0<br /></dt>
+<dd><p>Indicates <a class="reference internal" href="structQnn__ScaleOffset__t.html#structQnn__ScaleOffset__t"><span class="std std-ref">Qnn_ScaleOffset_t</span></a> encoding type. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv443QNN_QUANTIZATION_ENCODING_AXIS_SCALE_OFFSET">
+<span id="_CPPv343QNN_QUANTIZATION_ENCODING_AXIS_SCALE_OFFSET"></span><span id="_CPPv243QNN_QUANTIZATION_ENCODING_AXIS_SCALE_OFFSET"></span><span class="target" id="QnnTypes_8h_1a913496b89f3a2f15d0d5cd2e5433a2baa95739328ec5d985dd97455506b48ca16"></span><code class="sig-name descname">QNN_QUANTIZATION_ENCODING_AXIS_SCALE_OFFSET</code> = 1<br /></dt>
+<dd><p>Indicates <a class="reference internal" href="structQnn__AxisScaleOffset__t.html#structQnn__AxisScaleOffset__t"><span class="std std-ref">Qnn_AxisScaleOffset_t</span></a> encoding type. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv435QNN_QUANTIZATION_ENCODING_UNDEFINED">
+<span id="_CPPv335QNN_QUANTIZATION_ENCODING_UNDEFINED"></span><span id="_CPPv235QNN_QUANTIZATION_ENCODING_UNDEFINED"></span><span class="target" id="QnnTypes_8h_1a913496b89f3a2f15d0d5cd2e5433a2baa32ba7edbe651b2cda0646dd9c07fe01d"></span><code class="sig-name descname">QNN_QUANTIZATION_ENCODING_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="_CPPv419Qnn_TensorMemType_t">
+<span id="_CPPv319Qnn_TensorMemType_t"></span><span id="_CPPv219Qnn_TensorMemType_t"></span><span class="target" id="QnnTypes_8h_1a8aa5af24d0ef672c240438f6f1db1a00"></span><em class="property">enum </em><code class="sig-name descname">Qnn_TensorMemType_t</code><br /></dt>
+<dd><p>An enum specifying memory types of tensor data. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt id="_CPPv421QNN_TENSORMEMTYPE_RAW">
+<span id="_CPPv321QNN_TENSORMEMTYPE_RAW"></span><span id="_CPPv221QNN_TENSORMEMTYPE_RAW"></span><span class="target" id="QnnTypes_8h_1a8aa5af24d0ef672c240438f6f1db1a00a984f1e05d610e6cb2359c67724d5893e"></span><code class="sig-name descname">QNN_TENSORMEMTYPE_RAW</code> = 0<br /></dt>
+<dd><p>Raw memory pointer. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv427QNN_TENSORMEMTYPE_MEMHANDLE">
+<span id="_CPPv327QNN_TENSORMEMTYPE_MEMHANDLE"></span><span id="_CPPv227QNN_TENSORMEMTYPE_MEMHANDLE"></span><span class="target" id="QnnTypes_8h_1a8aa5af24d0ef672c240438f6f1db1a00a0bc626f777e01773e55893dd9764485f"></span><code class="sig-name descname">QNN_TENSORMEMTYPE_MEMHANDLE</code> = 1<br /></dt>
+<dd><p>Memory object, provide capability for memory sharing in between QNN accelerator backends. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv427QNN_TENSORMEMTYPE_UNDEFINED">
+<span id="_CPPv327QNN_TENSORMEMTYPE_UNDEFINED"></span><span id="_CPPv227QNN_TENSORMEMTYPE_UNDEFINED"></span><span class="target" id="QnnTypes_8h_1a8aa5af24d0ef672c240438f6f1db1a00a76608b2b3b4c26c5216a2ce826d5fbbe"></span><code class="sig-name descname">QNN_TENSORMEMTYPE_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<dl class="class">
+<dt id="_CPPv426Qnn_ErrorReportingConfig_t">
+<span id="_CPPv326Qnn_ErrorReportingConfig_t"></span><span id="_CPPv226Qnn_ErrorReportingConfig_t"></span><span id="Qnn_ErrorReportingConfig_t"></span><span class="target" id="structQnn__ErrorReportingConfig__t"></span><em class="property">struct </em><code class="sig-name descname">Qnn_ErrorReportingConfig_t</code><a class="headerlink" href="#_CPPv426Qnn_ErrorReportingConfig_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnTypes.h&gt;</em><p>A typedef describing error reporting configuration. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N26Qnn_ErrorReportingConfig_t14reportingLevelE">
+<span id="_CPPv3N26Qnn_ErrorReportingConfig_t14reportingLevelE"></span><span id="_CPPv2N26Qnn_ErrorReportingConfig_t14reportingLevelE"></span><span id="Qnn_ErrorReportingConfig_t::reportingLevel__Qnn_ErrorReportingLevel_t"></span><span class="target" id="structQnn__ErrorReportingConfig__t_1a88b413efcb6eebb3181d21542b568f7e"></span><a class="reference internal" href="enum_QnnTypes_8h_1ae75637f794bcff556c34b58ca1d04333.html#_CPPv425Qnn_ErrorReportingLevel_t" title="Qnn_ErrorReportingLevel_t">Qnn_ErrorReportingLevel_t</a> <code class="sig-name descname">reportingLevel</code><a class="headerlink" href="#_CPPv4N26Qnn_ErrorReportingConfig_t14reportingLevelE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Error reporting level. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N26Qnn_ErrorReportingConfig_t12storageLimitE">
+<span id="_CPPv3N26Qnn_ErrorReportingConfig_t12storageLimitE"></span><span id="_CPPv2N26Qnn_ErrorReportingConfig_t12storageLimitE"></span><span id="Qnn_ErrorReportingConfig_t::storageLimit__uint32_t"></span><span class="target" id="structQnn__ErrorReportingConfig__t_1ad51cb86352d721bb7aa17c0a6ddb14ac"></span>uint32_t <code class="sig-name descname">storageLimit</code><a class="headerlink" href="#_CPPv4N26Qnn_ErrorReportingConfig_t12storageLimitE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Amount of memory to be reserved for error information. Specified in KB. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv413Qnn_Version_t">
+<span id="_CPPv313Qnn_Version_t"></span><span id="_CPPv213Qnn_Version_t"></span><span id="Qnn_Version_t"></span><span class="target" id="structQnn__Version__t"></span><em class="property">struct </em><code class="sig-name descname">Qnn_Version_t</code><a class="headerlink" href="#_CPPv413Qnn_Version_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnTypes.h&gt;</em><p>A struct which is used to provide a version number using 3 values: major, minor, patch. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N13Qnn_Version_t5majorE">
+<span id="_CPPv3N13Qnn_Version_t5majorE"></span><span id="_CPPv2N13Qnn_Version_t5majorE"></span><span id="Qnn_Version_t::major__uint32_t"></span><span class="target" id="structQnn__Version__t_1ad47d69385d0fbde11be1f4222c4fc923"></span>uint32_t <code class="sig-name descname">major</code><a class="headerlink" href="#_CPPv4N13Qnn_Version_t5majorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N13Qnn_Version_t5minorE">
+<span id="_CPPv3N13Qnn_Version_t5minorE"></span><span id="_CPPv2N13Qnn_Version_t5minorE"></span><span id="Qnn_Version_t::minor__uint32_t"></span><span class="target" id="structQnn__Version__t_1a13f63a670dc961d74b805cfd94b77611"></span>uint32_t <code class="sig-name descname">minor</code><a class="headerlink" href="#_CPPv4N13Qnn_Version_t5minorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N13Qnn_Version_t5patchE">
+<span id="_CPPv3N13Qnn_Version_t5patchE"></span><span id="_CPPv2N13Qnn_Version_t5patchE"></span><span id="Qnn_Version_t::patch__uint32_t"></span><span class="target" id="structQnn__Version__t_1a21702e0e5c2fccf3fc3d48a0b5152174"></span>uint32_t <code class="sig-name descname">patch</code><a class="headerlink" href="#_CPPv4N13Qnn_Version_t5patchE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv416Qnn_ApiVersion_t">
+<span id="_CPPv316Qnn_ApiVersion_t"></span><span id="_CPPv216Qnn_ApiVersion_t"></span><span id="Qnn_ApiVersion_t"></span><span class="target" id="structQnn__ApiVersion__t"></span><em class="property">struct </em><code class="sig-name descname">Qnn_ApiVersion_t</code><a class="headerlink" href="#_CPPv416Qnn_ApiVersion_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnTypes.h&gt;</em><p>A struct used to provide the versions of both the core QNN API and any Backend Specific API. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N16Qnn_ApiVersion_t14coreApiVersionE">
+<span id="_CPPv3N16Qnn_ApiVersion_t14coreApiVersionE"></span><span id="_CPPv2N16Qnn_ApiVersion_t14coreApiVersionE"></span><span id="Qnn_ApiVersion_t::coreApiVersion__Qnn_Version_t"></span><span class="target" id="structQnn__ApiVersion__t_1afbae6781758c3e887cf1837697caac3c"></span><a class="reference internal" href="#_CPPv413Qnn_Version_t" title="Qnn_Version_t">Qnn_Version_t</a> <code class="sig-name descname">coreApiVersion</code><a class="headerlink" href="#_CPPv4N16Qnn_ApiVersion_t14coreApiVersionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Version of the QNN core API common to all backends. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N16Qnn_ApiVersion_t17backendApiVersionE">
+<span id="_CPPv3N16Qnn_ApiVersion_t17backendApiVersionE"></span><span id="_CPPv2N16Qnn_ApiVersion_t17backendApiVersionE"></span><span id="Qnn_ApiVersion_t::backendApiVersion__Qnn_Version_t"></span><span class="target" id="structQnn__ApiVersion__t_1a7e7f072ca08f060cd27f56e672cc05e0"></span><a class="reference internal" href="#_CPPv413Qnn_Version_t" title="Qnn_Version_t">Qnn_Version_t</a> <code class="sig-name descname">backendApiVersion</code><a class="headerlink" href="#_CPPv4N16Qnn_ApiVersion_t17backendApiVersionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Version of the backend-specific API. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv412Qnn_Scalar_t">
+<span id="_CPPv312Qnn_Scalar_t"></span><span id="_CPPv212Qnn_Scalar_t"></span><span id="Qnn_Scalar_t"></span><span class="target" id="structQnn__Scalar__t"></span><em class="property">struct </em><code class="sig-name descname">Qnn_Scalar_t</code><a class="headerlink" href="#_CPPv412Qnn_Scalar_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnTypes.h&gt;</em><p>A value representing an immutable value which configures a node. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Scalar_t8dataTypeE">
+<span id="_CPPv3N12Qnn_Scalar_t8dataTypeE"></span><span id="_CPPv2N12Qnn_Scalar_t8dataTypeE"></span><span id="Qnn_Scalar_t::dataType__Qnn_DataType_t"></span><span class="target" id="structQnn__Scalar__t_1adc27d8b0ab72d65c2e51bc58e9fe35b5"></span><a class="reference internal" href="enum_QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534.html#_CPPv414Qnn_DataType_t" title="Qnn_DataType_t">Qnn_DataType_t</a> <code class="sig-name descname">dataType</code><a class="headerlink" href="#_CPPv4N12Qnn_Scalar_t8dataTypeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="union">
+<dt id="_CPPv4N12Qnn_Scalar_t7unnamedE">
+<span id="_CPPv3N12Qnn_Scalar_t7unnamedE"></span><span id="_CPPv2N12Qnn_Scalar_t7unnamedE"></span><span class="target" id="unionQnn__Scalar__t_1_1unnamed"></span><em class="property">union </em><code class="sig-name descname">unnamed</code><a class="headerlink" href="#_CPPv4N12Qnn_Scalar_t7unnamedE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnTypes.h&gt;</em><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Scalar_t7unnamed10floatValueE">
+<span id="_CPPv3N12Qnn_Scalar_t7unnamed10floatValueE"></span><span id="_CPPv2N12Qnn_Scalar_t7unnamed10floatValueE"></span><span id="Qnn_Scalar_t::unnamed::floatValue__float"></span><span class="target" id="unionQnn__Scalar__t_1_1unnamed_1a14d8da23c5403962187d65eabc1cc756"></span>float <code class="sig-name descname">floatValue</code><a class="headerlink" href="#_CPPv4N12Qnn_Scalar_t7unnamed10floatValueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Scalar_t7unnamed11uint32ValueE">
+<span id="_CPPv3N12Qnn_Scalar_t7unnamed11uint32ValueE"></span><span id="_CPPv2N12Qnn_Scalar_t7unnamed11uint32ValueE"></span><span id="Qnn_Scalar_t::unnamed::uint32Value__uint32_t"></span><span class="target" id="unionQnn__Scalar__t_1_1unnamed_1a6af83db0867787819569efb780b23dde"></span>uint32_t <code class="sig-name descname">uint32Value</code><a class="headerlink" href="#_CPPv4N12Qnn_Scalar_t7unnamed11uint32ValueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Scalar_t7unnamed10int32ValueE">
+<span id="_CPPv3N12Qnn_Scalar_t7unnamed10int32ValueE"></span><span id="_CPPv2N12Qnn_Scalar_t7unnamed10int32ValueE"></span><span id="Qnn_Scalar_t::unnamed::int32Value__int32_t"></span><span class="target" id="unionQnn__Scalar__t_1_1unnamed_1a1c66236875fc97f538941408bac82211"></span>int32_t <code class="sig-name descname">int32Value</code><a class="headerlink" href="#_CPPv4N12Qnn_Scalar_t7unnamed10int32ValueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Scalar_t7unnamed11uint16ValueE">
+<span id="_CPPv3N12Qnn_Scalar_t7unnamed11uint16ValueE"></span><span id="_CPPv2N12Qnn_Scalar_t7unnamed11uint16ValueE"></span><span id="Qnn_Scalar_t::unnamed::uint16Value__uint16_t"></span><span class="target" id="unionQnn__Scalar__t_1_1unnamed_1a940ba5c3b563414b382c1c6e7ca8c1f4"></span>uint16_t <code class="sig-name descname">uint16Value</code><a class="headerlink" href="#_CPPv4N12Qnn_Scalar_t7unnamed11uint16ValueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Scalar_t7unnamed10int16ValueE">
+<span id="_CPPv3N12Qnn_Scalar_t7unnamed10int16ValueE"></span><span id="_CPPv2N12Qnn_Scalar_t7unnamed10int16ValueE"></span><span id="Qnn_Scalar_t::unnamed::int16Value__int16_t"></span><span class="target" id="unionQnn__Scalar__t_1_1unnamed_1aabace7c2afed7fcf1ebb3d8525482cfd"></span>int16_t <code class="sig-name descname">int16Value</code><a class="headerlink" href="#_CPPv4N12Qnn_Scalar_t7unnamed10int16ValueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Scalar_t7unnamed10uint8ValueE">
+<span id="_CPPv3N12Qnn_Scalar_t7unnamed10uint8ValueE"></span><span id="_CPPv2N12Qnn_Scalar_t7unnamed10uint8ValueE"></span><span id="Qnn_Scalar_t::unnamed::uint8Value__uint8_t"></span><span class="target" id="unionQnn__Scalar__t_1_1unnamed_1aefe5479657283d959468198060cf1131"></span>uint8_t <code class="sig-name descname">uint8Value</code><a class="headerlink" href="#_CPPv4N12Qnn_Scalar_t7unnamed10uint8ValueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Scalar_t7unnamed9int8ValueE">
+<span id="_CPPv3N12Qnn_Scalar_t7unnamed9int8ValueE"></span><span id="_CPPv2N12Qnn_Scalar_t7unnamed9int8ValueE"></span><span id="Qnn_Scalar_t::unnamed::int8Value__int8_t"></span><span class="target" id="unionQnn__Scalar__t_1_1unnamed_1a5822fda6d132f4ca52003a620b5f0b0c"></span>int8_t <code class="sig-name descname">int8Value</code><a class="headerlink" href="#_CPPv4N12Qnn_Scalar_t7unnamed9int8ValueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Scalar_t7unnamed10bool8ValueE">
+<span id="_CPPv3N12Qnn_Scalar_t7unnamed10bool8ValueE"></span><span id="_CPPv2N12Qnn_Scalar_t7unnamed10bool8ValueE"></span><span id="Qnn_Scalar_t::unnamed::bool8Value__uint8_t"></span><span class="target" id="unionQnn__Scalar__t_1_1unnamed_1a9a3dc9e4e9ad6e4b22d15a29ee1c3049"></span>uint8_t <code class="sig-name descname">bool8Value</code><a class="headerlink" href="#_CPPv4N12Qnn_Scalar_t7unnamed10bool8ValueE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv417Qnn_ScaleOffset_t">
+<span id="_CPPv317Qnn_ScaleOffset_t"></span><span id="_CPPv217Qnn_ScaleOffset_t"></span><span id="Qnn_ScaleOffset_t"></span><span class="target" id="structQnn__ScaleOffset__t"></span><em class="property">struct </em><code class="sig-name descname">Qnn_ScaleOffset_t</code><a class="headerlink" href="#_CPPv417Qnn_ScaleOffset_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnTypes.h&gt;</em><p>A struct to express quantization parameters as a positive scale with a zero offset. </p>
+<p>float_value = (quantized_value + offset) * scale </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N17Qnn_ScaleOffset_t5scaleE">
+<span id="_CPPv3N17Qnn_ScaleOffset_t5scaleE"></span><span id="_CPPv2N17Qnn_ScaleOffset_t5scaleE"></span><span id="Qnn_ScaleOffset_t::scale__float"></span><span class="target" id="structQnn__ScaleOffset__t_1a11feed5543f3ac7969e11c555654cb58"></span>float <code class="sig-name descname">scale</code><a class="headerlink" href="#_CPPv4N17Qnn_ScaleOffset_t5scaleE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N17Qnn_ScaleOffset_t6offsetE">
+<span id="_CPPv3N17Qnn_ScaleOffset_t6offsetE"></span><span id="_CPPv2N17Qnn_ScaleOffset_t6offsetE"></span><span id="Qnn_ScaleOffset_t::offset__int32_t"></span><span class="target" id="structQnn__ScaleOffset__t_1a4f44ce35a6a3372a55fe6a472627cbb7"></span>int32_t <code class="sig-name descname">offset</code><a class="headerlink" href="#_CPPv4N17Qnn_ScaleOffset_t6offsetE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv421Qnn_AxisScaleOffset_t">
+<span id="_CPPv321Qnn_AxisScaleOffset_t"></span><span id="_CPPv221Qnn_AxisScaleOffset_t"></span><span id="Qnn_AxisScaleOffset_t"></span><span class="target" id="structQnn__AxisScaleOffset__t"></span><em class="property">struct </em><code class="sig-name descname">Qnn_AxisScaleOffset_t</code><a class="headerlink" href="#_CPPv421Qnn_AxisScaleOffset_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnTypes.h&gt;</em><p>A struct to express per-axis quantization parameters as a scale with a zero offset. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N21Qnn_AxisScaleOffset_t4axisE">
+<span id="_CPPv3N21Qnn_AxisScaleOffset_t4axisE"></span><span id="_CPPv2N21Qnn_AxisScaleOffset_t4axisE"></span><span id="Qnn_AxisScaleOffset_t::axis__int32_t"></span><span class="target" id="structQnn__AxisScaleOffset__t_1acd27d2a5923cd4d78c35d6d52d365f01"></span>int32_t <code class="sig-name descname">axis</code><a class="headerlink" href="#_CPPv4N21Qnn_AxisScaleOffset_t4axisE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N21Qnn_AxisScaleOffset_t15numScaleOffsetsE">
+<span id="_CPPv3N21Qnn_AxisScaleOffset_t15numScaleOffsetsE"></span><span id="_CPPv2N21Qnn_AxisScaleOffset_t15numScaleOffsetsE"></span><span id="Qnn_AxisScaleOffset_t::numScaleOffsets__uint32_t"></span><span class="target" id="structQnn__AxisScaleOffset__t_1ab0e38291fbc13cd5e9039516e20f3f50"></span>uint32_t <code class="sig-name descname">numScaleOffsets</code><a class="headerlink" href="#_CPPv4N21Qnn_AxisScaleOffset_t15numScaleOffsetsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N21Qnn_AxisScaleOffset_t11scaleOffsetE">
+<span id="_CPPv3N21Qnn_AxisScaleOffset_t11scaleOffsetE"></span><span id="_CPPv2N21Qnn_AxisScaleOffset_t11scaleOffsetE"></span><span id="Qnn_AxisScaleOffset_t::scaleOffset__Qnn_ScaleOffset_tP"></span><span class="target" id="structQnn__AxisScaleOffset__t_1a092e282e19b477c7c2b976e304797295"></span><a class="reference internal" href="#_CPPv417Qnn_ScaleOffset_t" title="Qnn_ScaleOffset_t">Qnn_ScaleOffset_t</a> *<code class="sig-name descname">scaleOffset</code><a class="headerlink" href="#_CPPv4N21Qnn_AxisScaleOffset_t11scaleOffsetE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv420Qnn_QuantizeParams_t">
+<span id="_CPPv320Qnn_QuantizeParams_t"></span><span id="_CPPv220Qnn_QuantizeParams_t"></span><span id="Qnn_QuantizeParams_t"></span><span class="target" id="structQnn__QuantizeParams__t"></span><em class="property">struct </em><code class="sig-name descname">Qnn_QuantizeParams_t</code><a class="headerlink" href="#_CPPv420Qnn_QuantizeParams_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnTypes.h&gt;</em><p>A struct which defines the quantization parameters, and union of supported quantization encoding structs. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N20Qnn_QuantizeParams_t18encodingDefinitionE">
+<span id="_CPPv3N20Qnn_QuantizeParams_t18encodingDefinitionE"></span><span id="_CPPv2N20Qnn_QuantizeParams_t18encodingDefinitionE"></span><span id="Qnn_QuantizeParams_t::encodingDefinition__Qnn_Definition_t"></span><span class="target" id="structQnn__QuantizeParams__t_1a42b29e0ac98689e8a5eedde2deaa997b"></span><a class="reference internal" href="enum_QnnTypes_8h_1abbf6fedef88292dcdd6cc156754d5e68.html#_CPPv416Qnn_Definition_t" title="Qnn_Definition_t">Qnn_Definition_t</a> <code class="sig-name descname">encodingDefinition</code><a class="headerlink" href="#_CPPv4N20Qnn_QuantizeParams_t18encodingDefinitionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N20Qnn_QuantizeParams_t20quantizationEncodingE">
+<span id="_CPPv3N20Qnn_QuantizeParams_t20quantizationEncodingE"></span><span id="_CPPv2N20Qnn_QuantizeParams_t20quantizationEncodingE"></span><span id="Qnn_QuantizeParams_t::quantizationEncoding__Qnn_QuantizationEncoding_t"></span><span class="target" id="structQnn__QuantizeParams__t_1a04e48102524d2e918175f1cbfd411482"></span><a class="reference internal" href="enum_QnnTypes_8h_1a913496b89f3a2f15d0d5cd2e5433a2ba.html#_CPPv426Qnn_QuantizationEncoding_t" title="Qnn_QuantizationEncoding_t">Qnn_QuantizationEncoding_t</a> <code class="sig-name descname">quantizationEncoding</code><a class="headerlink" href="#_CPPv4N20Qnn_QuantizeParams_t20quantizationEncodingE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Quantization encoding type identifying quantization encoding structure to use. </p>
+</dd></dl>
+
+</div>
+<dl class="union">
+<dt id="_CPPv4N20Qnn_QuantizeParams_t7unnamedE">
+<span id="_CPPv3N20Qnn_QuantizeParams_t7unnamedE"></span><span id="_CPPv2N20Qnn_QuantizeParams_t7unnamedE"></span><span class="target" id="unionQnn__QuantizeParams__t_1_1unnamed"></span><em class="property">union </em><code class="sig-name descname">unnamed</code><a class="headerlink" href="#_CPPv4N20Qnn_QuantizeParams_t7unnamedE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnTypes.h&gt;</em><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N20Qnn_QuantizeParams_t7unnamed19scaleOffsetEncodingE">
+<span id="_CPPv3N20Qnn_QuantizeParams_t7unnamed19scaleOffsetEncodingE"></span><span id="_CPPv2N20Qnn_QuantizeParams_t7unnamed19scaleOffsetEncodingE"></span><span id="Qnn_QuantizeParams_t::unnamed::scaleOffsetEncoding__Qnn_ScaleOffset_t"></span><span class="target" id="unionQnn__QuantizeParams__t_1_1unnamed_1a67eb1ec56d48a321fe88fe5359e7374d"></span><a class="reference internal" href="#_CPPv417Qnn_ScaleOffset_t" title="Qnn_ScaleOffset_t">Qnn_ScaleOffset_t</a> <code class="sig-name descname">scaleOffsetEncoding</code><a class="headerlink" href="#_CPPv4N20Qnn_QuantizeParams_t7unnamed19scaleOffsetEncodingE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N20Qnn_QuantizeParams_t7unnamed23axisScaleOffsetEncodingE">
+<span id="_CPPv3N20Qnn_QuantizeParams_t7unnamed23axisScaleOffsetEncodingE"></span><span id="_CPPv2N20Qnn_QuantizeParams_t7unnamed23axisScaleOffsetEncodingE"></span><span id="Qnn_QuantizeParams_t::unnamed::axisScaleOffsetEncoding__Qnn_AxisScaleOffset_t"></span><span class="target" id="unionQnn__QuantizeParams__t_1_1unnamed_1a2485f6581aca62cdce68351bd0baf1e5"></span><a class="reference internal" href="#_CPPv421Qnn_AxisScaleOffset_t" title="Qnn_AxisScaleOffset_t">Qnn_AxisScaleOffset_t</a> <code class="sig-name descname">axisScaleOffsetEncoding</code><a class="headerlink" href="#_CPPv4N20Qnn_QuantizeParams_t7unnamed23axisScaleOffsetEncodingE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv418Qnn_ClientBuffer_t">
+<span id="_CPPv318Qnn_ClientBuffer_t"></span><span id="_CPPv218Qnn_ClientBuffer_t"></span><span id="Qnn_ClientBuffer_t"></span><span class="target" id="structQnn__ClientBuffer__t"></span><em class="property">struct </em><code class="sig-name descname">Qnn_ClientBuffer_t</code><a class="headerlink" href="#_CPPv418Qnn_ClientBuffer_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnTypes.h&gt;</em><p>A struct which defines a memory buffer. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N18Qnn_ClientBuffer_t4dataE">
+<span id="_CPPv3N18Qnn_ClientBuffer_t4dataE"></span><span id="_CPPv2N18Qnn_ClientBuffer_t4dataE"></span><span id="Qnn_ClientBuffer_t::data__voidP"></span><span class="target" id="structQnn__ClientBuffer__t_1a2a997b5e8d4c50b2b8194c348fcdf31d"></span>void *<code class="sig-name descname">data</code><a class="headerlink" href="#_CPPv4N18Qnn_ClientBuffer_t4dataE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>app-accessible data pointer, provided by app. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N18Qnn_ClientBuffer_t8dataSizeE">
+<span id="_CPPv3N18Qnn_ClientBuffer_t8dataSizeE"></span><span id="_CPPv2N18Qnn_ClientBuffer_t8dataSizeE"></span><span id="Qnn_ClientBuffer_t::dataSize__uint32_t"></span><span class="target" id="structQnn__ClientBuffer__t_1a7d18572da52ac6e4f8509a48826b9072"></span>uint32_t <code class="sig-name descname">dataSize</code><a class="headerlink" href="#_CPPv4N18Qnn_ClientBuffer_t8dataSizeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>size of buffer, in bytes, pointed to by data. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv412Qnn_Tensor_t">
+<span id="_CPPv312Qnn_Tensor_t"></span><span id="_CPPv212Qnn_Tensor_t"></span><span id="Qnn_Tensor_t"></span><span class="target" id="structQnn__Tensor__t"></span><em class="property">struct </em><code class="sig-name descname">Qnn_Tensor_t</code><a class="headerlink" href="#_CPPv412Qnn_Tensor_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnTypes.h&gt;</em><p>A struct which describes the properties of a tensor. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t2idE">
+<span id="_CPPv3N12Qnn_Tensor_t2idE"></span><span id="_CPPv2N12Qnn_Tensor_t2idE"></span><span id="Qnn_Tensor_t::id__uint32_t"></span><span class="target" id="structQnn__Tensor__t_1a96f4feac4e1ff74eb213a3a4fd404790"></span>uint32_t <code class="sig-name descname">id</code><a class="headerlink" href="#_CPPv4N12Qnn_Tensor_t2idE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unique integer identifier for a tensor. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t4typeE">
+<span id="_CPPv3N12Qnn_Tensor_t4typeE"></span><span id="_CPPv2N12Qnn_Tensor_t4typeE"></span><span id="Qnn_Tensor_t::type__Qnn_TensorType_t"></span><span class="target" id="structQnn__Tensor__t_1ae8d3393a842365fed5576ad4876f2e44"></span><a class="reference internal" href="enum_QnnTypes_8h_1aedf2127d917e35605f466d7d02f28f25.html#_CPPv416Qnn_TensorType_t" title="Qnn_TensorType_t">Qnn_TensorType_t</a> <code class="sig-name descname">type</code><a class="headerlink" href="#_CPPv4N12Qnn_Tensor_t4typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tensor type (Activation vs Static; User-provided vs native, etc) </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t10dataFormatE">
+<span id="_CPPv3N12Qnn_Tensor_t10dataFormatE"></span><span id="_CPPv2N12Qnn_Tensor_t10dataFormatE"></span><span id="Qnn_Tensor_t::dataFormat__Qnn_TensorDataFormat_t"></span><span class="target" id="structQnn__Tensor__t_1a12a0d8ba5bf90caedea3dca398270384"></span><a class="reference internal" href="#_CPPv422Qnn_TensorDataFormat_t" title="Qnn_TensorDataFormat_t">Qnn_TensorDataFormat_t</a> <code class="sig-name descname">dataFormat</code><a class="headerlink" href="#_CPPv4N12Qnn_Tensor_t10dataFormatE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tensor data formatting in memory (refer to definition type for info) </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t8dataTypeE">
+<span id="_CPPv3N12Qnn_Tensor_t8dataTypeE"></span><span id="_CPPv2N12Qnn_Tensor_t8dataTypeE"></span><span id="Qnn_Tensor_t::dataType__Qnn_DataType_t"></span><span class="target" id="structQnn__Tensor__t_1aab0f60fd6dd5c07736888d4c7d1451af"></span><a class="reference internal" href="enum_QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534.html#_CPPv414Qnn_DataType_t" title="Qnn_DataType_t">Qnn_DataType_t</a> <code class="sig-name descname">dataType</code><a class="headerlink" href="#_CPPv4N12Qnn_Tensor_t8dataTypeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tensor data type (e.g: UINT8, FLOAT) </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t14quantizeParamsE">
+<span id="_CPPv3N12Qnn_Tensor_t14quantizeParamsE"></span><span id="_CPPv2N12Qnn_Tensor_t14quantizeParamsE"></span><span id="Qnn_Tensor_t::quantizeParams__Qnn_QuantizeParams_t"></span><span class="target" id="structQnn__Tensor__t_1a3e0a6265d5bd0e47b331a2594325008d"></span><a class="reference internal" href="#_CPPv420Qnn_QuantizeParams_t" title="Qnn_QuantizeParams_t">Qnn_QuantizeParams_t</a> <code class="sig-name descname">quantizeParams</code><a class="headerlink" href="#_CPPv4N12Qnn_Tensor_t14quantizeParamsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tensor quantization params. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t4rankE">
+<span id="_CPPv3N12Qnn_Tensor_t4rankE"></span><span id="_CPPv2N12Qnn_Tensor_t4rankE"></span><span id="Qnn_Tensor_t::rank__uint32_t"></span><span class="target" id="structQnn__Tensor__t_1adc5933d49fd3c818895e35e7fe76ad6a"></span>uint32_t <code class="sig-name descname">rank</code><a class="headerlink" href="#_CPPv4N12Qnn_Tensor_t4rankE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Rank of both max and current dimensions. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t13maxDimensionsE">
+<span id="_CPPv3N12Qnn_Tensor_t13maxDimensionsE"></span><span id="_CPPv2N12Qnn_Tensor_t13maxDimensionsE"></span><span id="Qnn_Tensor_t::maxDimensions__uint32_tP"></span><span class="target" id="structQnn__Tensor__t_1aaef8976bd8afcb81aab75d0cd5bc4790"></span>uint32_t *<code class="sig-name descname">maxDimensions</code><a class="headerlink" href="#_CPPv4N12Qnn_Tensor_t13maxDimensionsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Maximum tensor dimensions; Size is rank. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t17currentDimensionsE">
+<span id="_CPPv3N12Qnn_Tensor_t17currentDimensionsE"></span><span id="_CPPv2N12Qnn_Tensor_t17currentDimensionsE"></span><span id="Qnn_Tensor_t::currentDimensions__uint32_tP"></span><span class="target" id="structQnn__Tensor__t_1a73e804e2294bdfe66d5c8f1b89bff5a5"></span>uint32_t *<code class="sig-name descname">currentDimensions</code><a class="headerlink" href="#_CPPv4N12Qnn_Tensor_t17currentDimensionsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Current tensor dimensions; Size is rank. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t7memTypeE">
+<span id="_CPPv3N12Qnn_Tensor_t7memTypeE"></span><span id="_CPPv2N12Qnn_Tensor_t7memTypeE"></span><span id="Qnn_Tensor_t::memType__Qnn_TensorMemType_t"></span><span class="target" id="structQnn__Tensor__t_1a7f8c69a656416cb2dca99ce407a1d7e8"></span><a class="reference internal" href="enum_QnnTypes_8h_1a8aa5af24d0ef672c240438f6f1db1a00.html#_CPPv419Qnn_TensorMemType_t" title="Qnn_TensorMemType_t">Qnn_TensorMemType_t</a> <code class="sig-name descname">memType</code><a class="headerlink" href="#_CPPv4N12Qnn_Tensor_t7memTypeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tensor memory type. </p>
+</dd></dl>
+
+</div>
+<dl class="union">
+<dt id="_CPPv4N12Qnn_Tensor_t7unnamedE">
+<span id="_CPPv3N12Qnn_Tensor_t7unnamedE"></span><span id="_CPPv2N12Qnn_Tensor_t7unnamedE"></span><span class="target" id="unionQnn__Tensor__t_1_1unnamed"></span><em class="property">union </em><code class="sig-name descname">unnamed</code><a class="headerlink" href="#_CPPv4N12Qnn_Tensor_t7unnamedE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnTypes.h&gt;</em><p>Actual data contained in the tensor. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t7unnamed9clientBufE">
+<span id="_CPPv3N12Qnn_Tensor_t7unnamed9clientBufE"></span><span id="_CPPv2N12Qnn_Tensor_t7unnamed9clientBufE"></span><span id="Qnn_Tensor_t::unnamed::clientBuf__Qnn_ClientBuffer_t"></span><span class="target" id="unionQnn__Tensor__t_1_1unnamed_1aa334d7da6bf8c2b0d2208beb2d2fa690"></span><a class="reference internal" href="#_CPPv418Qnn_ClientBuffer_t" title="Qnn_ClientBuffer_t">Qnn_ClientBuffer_t</a> <code class="sig-name descname">clientBuf</code><a class="headerlink" href="#_CPPv4N12Qnn_Tensor_t7unnamed9clientBufE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tensor data provided by client as a pointer to raw memory. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N12Qnn_Tensor_t7unnamed9memHandleE">
+<span id="_CPPv3N12Qnn_Tensor_t7unnamed9memHandleE"></span><span id="_CPPv2N12Qnn_Tensor_t7unnamed9memHandleE"></span><span id="Qnn_Tensor_t::unnamed::memHandle__Qnn_MemHandle_t"></span><span class="target" id="unionQnn__Tensor__t_1_1unnamed_1aacdf6d32c61cb7b47f2da983f0a0ef81"></span><a class="reference internal" href="file_include_QnnCommon.h.html#_CPPv415Qnn_MemHandle_t" title="Qnn_MemHandle_t">Qnn_MemHandle_t</a> <code class="sig-name descname">memHandle</code><a class="headerlink" href="#_CPPv4N12Qnn_Tensor_t7unnamed9memHandleE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tensor data shared via a memory handle. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv411Qnn_Param_t">
+<span id="_CPPv311Qnn_Param_t"></span><span id="_CPPv211Qnn_Param_t"></span><span id="Qnn_Param_t"></span><span class="target" id="structQnn__Param__t"></span><em class="property">struct </em><code class="sig-name descname">Qnn_Param_t</code><a class="headerlink" href="#_CPPv411Qnn_Param_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnTypes.h&gt;</em><p>A struct which defines a parameter - a union of scalar and tensor parameters. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N11Qnn_Param_t9paramTypeE">
+<span id="_CPPv3N11Qnn_Param_t9paramTypeE"></span><span id="_CPPv2N11Qnn_Param_t9paramTypeE"></span><span id="Qnn_Param_t::paramType__Qnn_ParamType_t"></span><span class="target" id="structQnn__Param__t_1aa79a9ac065ee34d26c7d78ce357d9c49"></span><a class="reference internal" href="enum_QnnTypes_8h_1acdd68cd5db631c0a2173cbb50036055e.html#_CPPv415Qnn_ParamType_t" title="Qnn_ParamType_t">Qnn_ParamType_t</a> <code class="sig-name descname">paramType</code><a class="headerlink" href="#_CPPv4N11Qnn_Param_t9paramTypeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Parameter type: scalar or tensor. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N11Qnn_Param_t4nameE">
+<span id="_CPPv3N11Qnn_Param_t4nameE"></span><span id="_CPPv2N11Qnn_Param_t4nameE"></span><span id="Qnn_Param_t::name__cCP"></span><span class="target" id="structQnn__Param__t_1a8e45e70128270ab1d777b4656aa636cd"></span><em class="property">const</em> char *<code class="sig-name descname">name</code><a class="headerlink" href="#_CPPv4N11Qnn_Param_t4nameE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Name of the parameter. </p>
+</dd></dl>
+
+</div>
+<dl class="union">
+<dt id="_CPPv4N11Qnn_Param_t7unnamedE">
+<span id="_CPPv3N11Qnn_Param_t7unnamedE"></span><span id="_CPPv2N11Qnn_Param_t7unnamedE"></span><span class="target" id="unionQnn__Param__t_1_1unnamed"></span><em class="property">union </em><code class="sig-name descname">unnamed</code><a class="headerlink" href="#_CPPv4N11Qnn_Param_t7unnamedE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnTypes.h&gt;</em><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N11Qnn_Param_t7unnamed11scalarParamE">
+<span id="_CPPv3N11Qnn_Param_t7unnamed11scalarParamE"></span><span id="_CPPv2N11Qnn_Param_t7unnamed11scalarParamE"></span><span id="Qnn_Param_t::unnamed::scalarParam__Qnn_Scalar_t"></span><span class="target" id="unionQnn__Param__t_1_1unnamed_1a07723fa9fbee29dc27026163e80a7fc2"></span><a class="reference internal" href="#_CPPv412Qnn_Scalar_t" title="Qnn_Scalar_t">Qnn_Scalar_t</a> <code class="sig-name descname">scalarParam</code><a class="headerlink" href="#_CPPv4N11Qnn_Param_t7unnamed11scalarParamE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Scalar parameter specification. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N11Qnn_Param_t7unnamed11tensorParamE">
+<span id="_CPPv3N11Qnn_Param_t7unnamed11tensorParamE"></span><span id="_CPPv2N11Qnn_Param_t7unnamed11tensorParamE"></span><span id="Qnn_Param_t::unnamed::tensorParam__Qnn_Tensor_t"></span><span class="target" id="unionQnn__Param__t_1_1unnamed_1ad96bc10672d3e62a96c5d89f31be6022"></span><a class="reference internal" href="#_CPPv412Qnn_Tensor_t" title="Qnn_Tensor_t">Qnn_Tensor_t</a> <code class="sig-name descname">tensorParam</code><a class="headerlink" href="#_CPPv4N11Qnn_Param_t7unnamed11tensorParamE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tensor parameter specification; tensors referred to must be STATIC. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv414Qnn_OpConfig_t">
+<span id="_CPPv314Qnn_OpConfig_t"></span><span id="_CPPv214Qnn_OpConfig_t"></span><span id="Qnn_OpConfig_t"></span><span class="target" id="structQnn__OpConfig__t"></span><em class="property">struct </em><code class="sig-name descname">Qnn_OpConfig_t</code><a class="headerlink" href="#_CPPv414Qnn_OpConfig_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnTypes.h&gt;</em><p>This struct defines the configuration for a single operation. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N14Qnn_OpConfig_t4nameE">
+<span id="_CPPv3N14Qnn_OpConfig_t4nameE"></span><span id="_CPPv2N14Qnn_OpConfig_t4nameE"></span><span id="Qnn_OpConfig_t::name__cCP"></span><span class="target" id="structQnn__OpConfig__t_1ad7ddf22a25bb78d98735848490bd4921"></span><em class="property">const</em> char *<code class="sig-name descname">name</code><a class="headerlink" href="#_CPPv4N14Qnn_OpConfig_t4nameE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A human-readable name for the operation instance. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N14Qnn_OpConfig_t11packageNameE">
+<span id="_CPPv3N14Qnn_OpConfig_t11packageNameE"></span><span id="_CPPv2N14Qnn_OpConfig_t11packageNameE"></span><span id="Qnn_OpConfig_t::packageName__cCP"></span><span class="target" id="structQnn__OpConfig__t_1adc4065d5cc2373c41a0d1099c9cf3677"></span><em class="property">const</em> char *<code class="sig-name descname">packageName</code><a class="headerlink" href="#_CPPv4N14Qnn_OpConfig_t11packageNameE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The name of the operation package to which this operation’s type belongs. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N14Qnn_OpConfig_t8typeNameE">
+<span id="_CPPv3N14Qnn_OpConfig_t8typeNameE"></span><span id="_CPPv2N14Qnn_OpConfig_t8typeNameE"></span><span id="Qnn_OpConfig_t::typeName__cCP"></span><span class="target" id="structQnn__OpConfig__t_1a0c661671f4df20c97e38b6af0955ba80"></span><em class="property">const</em> char *<code class="sig-name descname">typeName</code><a class="headerlink" href="#_CPPv4N14Qnn_OpConfig_t8typeNameE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The name of operation type, e.g. Conv2D. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N14Qnn_OpConfig_t11numOfParamsE">
+<span id="_CPPv3N14Qnn_OpConfig_t11numOfParamsE"></span><span id="_CPPv2N14Qnn_OpConfig_t11numOfParamsE"></span><span id="Qnn_OpConfig_t::numOfParams__uint32_t"></span><span class="target" id="structQnn__OpConfig__t_1a9adce15288e2fb477a27d7a7a6e9e8d1"></span>uint32_t <code class="sig-name descname">numOfParams</code><a class="headerlink" href="#_CPPv4N14Qnn_OpConfig_t11numOfParamsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The number of static parameters provided in the params array. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N14Qnn_OpConfig_t6paramsE">
+<span id="_CPPv3N14Qnn_OpConfig_t6paramsE"></span><span id="_CPPv2N14Qnn_OpConfig_t6paramsE"></span><span id="Qnn_OpConfig_t::params__Qnn_Param_tP"></span><span class="target" id="structQnn__OpConfig__t_1a2192d682c1207967721f5d534519910d"></span><a class="reference internal" href="#_CPPv411Qnn_Param_t" title="Qnn_Param_t">Qnn_Param_t</a> *<code class="sig-name descname">params</code><a class="headerlink" href="#_CPPv4N14Qnn_OpConfig_t6paramsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Array of operation parameters (each can be scalar or tensor) </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N14Qnn_OpConfig_t11numOfInputsE">
+<span id="_CPPv3N14Qnn_OpConfig_t11numOfInputsE"></span><span id="_CPPv2N14Qnn_OpConfig_t11numOfInputsE"></span><span id="Qnn_OpConfig_t::numOfInputs__uint32_t"></span><span class="target" id="structQnn__OpConfig__t_1a6f1268343a44e2f0c7f13f3d9ff86740"></span>uint32_t <code class="sig-name descname">numOfInputs</code><a class="headerlink" href="#_CPPv4N14Qnn_OpConfig_t11numOfInputsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The number of input tensors. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N14Qnn_OpConfig_t12inputTensorsE">
+<span id="_CPPv3N14Qnn_OpConfig_t12inputTensorsE"></span><span id="_CPPv2N14Qnn_OpConfig_t12inputTensorsE"></span><span id="Qnn_OpConfig_t::inputTensors__Qnn_Tensor_tP"></span><span class="target" id="structQnn__OpConfig__t_1ad64c1413c604dbf792de16c3e616f853"></span><a class="reference internal" href="#_CPPv412Qnn_Tensor_t" title="Qnn_Tensor_t">Qnn_Tensor_t</a> *<code class="sig-name descname">inputTensors</code><a class="headerlink" href="#_CPPv4N14Qnn_OpConfig_t12inputTensorsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Array of input tensors. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N14Qnn_OpConfig_t12numOfOutputsE">
+<span id="_CPPv3N14Qnn_OpConfig_t12numOfOutputsE"></span><span id="_CPPv2N14Qnn_OpConfig_t12numOfOutputsE"></span><span id="Qnn_OpConfig_t::numOfOutputs__uint32_t"></span><span class="target" id="structQnn__OpConfig__t_1aaa31fa166eea5278072600332488112f"></span>uint32_t <code class="sig-name descname">numOfOutputs</code><a class="headerlink" href="#_CPPv4N14Qnn_OpConfig_t12numOfOutputsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The number of output tensors. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N14Qnn_OpConfig_t13outputTensorsE">
+<span id="_CPPv3N14Qnn_OpConfig_t13outputTensorsE"></span><span id="_CPPv2N14Qnn_OpConfig_t13outputTensorsE"></span><span id="Qnn_OpConfig_t::outputTensors__Qnn_Tensor_tP"></span><span class="target" id="structQnn__OpConfig__t_1a5d003beb01fe0159771efccf535c1f8f"></span><a class="reference internal" href="#_CPPv412Qnn_Tensor_t" title="Qnn_Tensor_t">Qnn_Tensor_t</a> *<code class="sig-name descname">outputTensors</code><a class="headerlink" href="#_CPPv4N14Qnn_OpConfig_t13outputTensorsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Array of output tensors. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

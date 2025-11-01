@@ -1,0 +1,68 @@
+/*=============================================================================*/
+
+/*  Copyright (c) 2020-2021 Qualcomm Technologies, Inc.*/
+/*  All Rights Reserved.*/
+/*  Confidential and Proprietary - Qualcomm Technologies, Inc.*/
+
+/*=============================================================================*/
+
+/* Display content in entire screen available*/
+.wy-nav-content {
+    max-width: 100% !important;
+}
+
+/* Center text in table headers*/
+.wy-table-responsive table th{
+    text-align: center !important;
+}
+
+.wy-table-responsive table td, .wy-table-responsive table th{
+    white-space: normal !important;
+}
+
+/* If a table overflows from screen, display a scroll bar*/
+.wy-table-responsive {
+    overflow: auto !important;
+}
+
+.rst-content .function dt{
+    display: block !important;
+    overflow: auto !important;
+    max-width: fit-content !important;
+}
+
+.rst-content .simple dt{
+    display: table !important;
+}
+
+.rst-content .type dt code.descname, .rst-content .class .member dt code.descname{
+    padding-left: 8px !important;
+}
+
+/*Workaround to remove injected name from "Doxyfile.in PREDEFINED" for unnamed unions in documentation*/
+.rst-content .class .union dt code.descname, .rst-content .class .union dd em{
+    display: none !important;
+}
+
+.rst-content .class .union dd div dt code.descname{
+    display: inline !important;
+}
+/*End of Workaround*/
+
+.rst-content .docutils.literal.notranslate, .rst-content .docutils.literal.notranslate span.pre{
+    background: none !important;
+    border: none !important;
+    color: black !important;
+    font-family: Courier, monospace !important;
+    font-size: 100% !important;
+}
+
+/*Define Colors*/
+
+.red {
+    color:red;
+}
+
+.green {
+    color:green;
+}

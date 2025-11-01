@@ -1,0 +1,573 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>File QnnMem.h &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quantization.html">Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>File QnnMem.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="file-qnnmem-h">
+<span id="file-include-qnnmem-h"></span><h1>File QnnMem.h<a class="headerlink" href="#file-qnnmem-h" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="dir_include.html#dir-include"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">include</span></code>)</p>
+<p>Memory registration component API.</p>
+<div class="contents local topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-include-qnnmem-h" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">include/QnnMem.h</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#detailed-description" id="id2">Detailed Description</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id3">Includes</a></p></li>
+<li><p><a class="reference internal" href="#included-by" id="id4">Included By</a></p></li>
+<li><p><a class="reference internal" href="#classes" id="id5">Classes</a></p></li>
+<li><p><a class="reference internal" href="#enums" id="id6">Enums</a></p></li>
+<li><p><a class="reference internal" href="#functions" id="id7">Functions</a></p></li>
+<li><p><a class="reference internal" href="#defines" id="id8">Defines</a></p></li>
+<li><p><a class="reference internal" href="#unions" id="id9">Unions</a></p></li>
+<li><p><a class="reference internal" href="#full-file-listing" id="id10">Full File Listing</a></p></li>
+</ul>
+</div>
+<div class="section" id="definition-include-qnnmem-h">
+<h2>Definition (<code class="docutils literal notranslate"><span class="pre">include/QnnMem.h</span></code>)<a class="headerlink" href="#definition-include-qnnmem-h" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="program_listing_file_include_QnnMem.h.html">Program Listing for File QnnMem.h</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="detailed-description">
+<h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
+<p>Requires Backend to be initialized. Provides means to register externally allocated memory with a backend.</p>
+</div>
+<div class="section" id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">QnnCommon.h</span></code> (<a class="reference internal" href="file_include_QnnCommon.h.html#file-include-qnncommon-h"><span class="std std-ref">File QnnCommon.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QnnTypes.h</span></code> (<a class="reference internal" href="file_include_QnnTypes.h.html#file-include-qnntypes-h"><span class="std std-ref">File QnnTypes.h</span></a>)</p></li>
+</ul>
+</div>
+<div class="section" id="included-by">
+<h2>Included By<a class="headerlink" href="#included-by" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="file_include_QnnInterface.h.html#file-include-qnninterface-h"><span class="std std-ref">File QnnInterface.h</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="structQnn__MemDescriptor__t.html#exhale-struct-structqnn-memdescriptor-t"><span class="std std-ref">Struct Qnn_MemDescriptor_t</span></a></p></li>
+<li><p><a class="reference internal" href="structQnn__MemIonInfo__t.html#exhale-struct-structqnn-memioninfo-t"><span class="std std-ref">Struct Qnn_MemIonInfo_t</span></a></p></li>
+<li><p><a class="reference internal" href="structQnn__MemShape__t.html#exhale-struct-structqnn-memshape-t"><span class="std std-ref">Struct Qnn_MemShape_t</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="enums">
+<h2>Enums<a class="headerlink" href="#enums" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="enum_QnnMem_8h_1ab5f34c4a6c8b1f544072bb49739d2a89.html#exhale-enum-qnnmem-8h-1ab5f34c4a6c8b1f544072bb49739d2a89"><span class="std std-ref">Enum Qnn_MemType_t</span></a></p></li>
+<li><p><a class="reference internal" href="enum_QnnMem_8h_1aba96bd8d1d9f2ccb5425a20a2eb44f8a.html#exhale-enum-qnnmem-8h-1aba96bd8d1d9f2ccb5425a20a2eb44f8a"><span class="std std-ref">Enum QnnMem_Error_t</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="function_QnnMem_8h_1a1354a27ccbab91de176aa5e67d5efcec.html#exhale-function-qnnmem-8h-1a1354a27ccbab91de176aa5e67d5efcec"><span class="std std-ref">Function QnnMem_deRegister</span></a></p></li>
+<li><p><a class="reference internal" href="function_QnnMem_8h_1a1e28cdef53117b24c85c3fe74e608a1a.html#exhale-function-qnnmem-8h-1a1e28cdef53117b24c85c3fe74e608a1a"><span class="std std-ref">Function QnnMem_register</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="defines">
+<h2>Defines<a class="headerlink" href="#defines" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="define_QnnMem_8h_1acc4f898f92c9231441d08398b8e1efd0.html#exhale-define-qnnmem-8h-1acc4f898f92c9231441d08398b8e1efd0"><span class="std std-ref">Define QNN_MEM_DESCRIPTOR_INIT</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnMem_8h_1a10138c9d70ceeef5cf5a80a35662153e.html#exhale-define-qnnmem-8h-1a10138c9d70ceeef5cf5a80a35662153e"><span class="std std-ref">Define QNN_MEM_INVALID_FD</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnMem_8h_1ae6b4614a7748a8e13edd4d1f59e6f922.html#exhale-define-qnnmem-8h-1ae6b4614a7748a8e13edd4d1f59e6f922"><span class="std std-ref">Define QNN_MEM_ION_INFO_INIT</span></a></p></li>
+<li><p><a class="reference internal" href="define_QnnMem_8h_1a109ebbb59da54ddf9a938dd05c3096d6.html#exhale-define-qnnmem-8h-1a109ebbb59da54ddf9a938dd05c3096d6"><span class="std std-ref">Define QNN_MEM_SHAPE_INIT</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="unions">
+<h2>Unions<a class="headerlink" href="#unions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="unionQnn__MemDescriptor__t_1_1unnamed.html#exhale-union-unionqnn-memdescriptor-t-1-1unnamed"><span class="std std-ref">Union Qnn_MemDescriptor_t::unnamed</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="full-file-listing">
+<h2>Full File Listing<a class="headerlink" href="#full-file-listing" title="Permalink to this headline">¶</a></h2>
+<p>Memory registration component API. </p>
+<p>Requires Backend to be initialized. Provides means to register externally allocated memory with a backend. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="macro">
+<dt id="c.QNN_MEM_INVALID_FD">
+<span class="target" id="QnnMem_8h_1a10138c9d70ceeef5cf5a80a35662153e"></span><code class="sig-name descname">QNN_MEM_INVALID_FD</code> -1<a class="headerlink" href="#c.QNN_MEM_INVALID_FD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invalid memory file descriptor value. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_MEM_SHAPE_INIT">
+<span class="target" id="QnnMem_8h_1a109ebbb59da54ddf9a938dd05c3096d6"></span><code class="sig-name descname">QNN_MEM_SHAPE_INIT</code> <p>{                           \</p>
+<p>    0,        /*numDim*/      \</p>
+<p>    NULL,     /*dimSize*/     \</p>
+<p>    NULL      /*shapeConfig*/ \</p>
+<p>  }</p>
+<a class="headerlink" href="#c.QNN_MEM_SHAPE_INIT" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="structQnn__MemShape__t.html#structQnn__MemShape__t"><span class="std std-ref">Qnn_MemShape_t</span></a> initializer macro. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_MEM_ION_INFO_INIT">
+<span class="target" id="QnnMem_8h_1ae6b4614a7748a8e13edd4d1f59e6f922"></span><code class="sig-name descname">QNN_MEM_ION_INFO_INIT</code> { <a class="reference internal" href="#QnnMem_8h_1a10138c9d70ceeef5cf5a80a35662153e"><span class="std std-ref">QNN_MEM_INVALID_FD</span></a> /*fd*/ }<a class="headerlink" href="#c.QNN_MEM_ION_INFO_INIT" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="structQnn__MemIonInfo__t.html#structQnn__MemIonInfo__t"><span class="std std-ref">Qnn_MemIonInfo_t</span></a> initializer macro. </p>
+</dd></dl>
+
+<dl class="macro">
+<dt id="c.QNN_MEM_DESCRIPTOR_INIT">
+<span class="target" id="QnnMem_8h_1acc4f898f92c9231441d08398b8e1efd0"></span><code class="sig-name descname">QNN_MEM_DESCRIPTOR_INIT</code> <p>{                                      \</p>
+<a class="reference internal" href="#QnnMem_8h_1a109ebbb59da54ddf9a938dd05c3096d6"><span class="std std-ref">QNN_MEM_SHAPE_INIT</span></a><p>,     /*memShape*/ \</p>
+<a class="reference internal" href="file_include_QnnTypes.h.html#QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534a02f7f519ec1f541dc1741ae473bb3e19"><span class="std std-ref">QNN_DATATYPE_UNDEFINED</span></a><p>, /*dataType*/ \</p>
+<a class="reference internal" href="#QnnMem_8h_1ab5f34c4a6c8b1f544072bb49739d2a89a496347f23c5a71dd1ed3181c656b8f33"><span class="std std-ref">QNN_MEM_TYPE_UNDEFINED</span></a><p>, /*memType*/  \</p>
+<p>    {                                    \</p>
+<a class="reference internal" href="#QnnMem_8h_1ae6b4614a7748a8e13edd4d1f59e6f922"><span class="std std-ref">QNN_MEM_ION_INFO_INIT</span></a><p> /*ionInfo*/  \</p>
+<p>    }                                    \</p>
+<p>  }</p>
+<a class="headerlink" href="#c.QNN_MEM_DESCRIPTOR_INIT" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="structQnn__MemDescriptor__t.html#structQnn__MemDescriptor__t"><span class="std std-ref">Qnn_MemDescriptor_t</span></a> initializer macro. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="enum">
+<dt id="_CPPv414QnnMem_Error_t">
+<span id="_CPPv314QnnMem_Error_t"></span><span id="_CPPv214QnnMem_Error_t"></span><span class="target" id="QnnMem_8h_1aba96bd8d1d9f2ccb5425a20a2eb44f8a"></span><em class="property">enum </em><code class="sig-name descname">QnnMem_Error_t</code><br /></dt>
+<dd><p>QNN Mem(ory) API result / error codes. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt id="_CPPv417QNN_MEM_MIN_ERROR">
+<span id="_CPPv317QNN_MEM_MIN_ERROR"></span><span id="_CPPv217QNN_MEM_MIN_ERROR"></span><span class="target" id="QnnMem_8h_1aba96bd8d1d9f2ccb5425a20a2eb44f8aa9a054e55aa60aae2b9e5804f8bf98dab"></span><code class="sig-name descname">QNN_MEM_MIN_ERROR</code> = 8000<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv416QNN_MEM_NO_ERROR">
+<span id="_CPPv316QNN_MEM_NO_ERROR"></span><span id="_CPPv216QNN_MEM_NO_ERROR"></span><span class="target" id="QnnMem_8h_1aba96bd8d1d9f2ccb5425a20a2eb44f8aa1c8254546ca29f55117f04c519ce012b"></span><code class="sig-name descname">QNN_MEM_NO_ERROR</code> = 0<br /></dt>
+<dd><p>Qnn Memory success. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv427QNN_MEM_ERROR_NOT_SUPPORTED">
+<span id="_CPPv327QNN_MEM_ERROR_NOT_SUPPORTED"></span><span id="_CPPv227QNN_MEM_ERROR_NOT_SUPPORTED"></span><span class="target" id="QnnMem_8h_1aba96bd8d1d9f2ccb5425a20a2eb44f8aa03c0ad04fabe53e11ef964791143fc4c"></span><code class="sig-name descname">QNN_MEM_ERROR_NOT_SUPPORTED</code> = <a class="reference internal" href="enum_QnnCommon_8h_1a0748b07ec67bb3f82022cc1984f1253a.html#_CPPv430QNN_COMMON_ERROR_NOT_SUPPORTED" title="QNN_COMMON_ERROR_NOT_SUPPORTED">QNN_COMMON_ERROR_NOT_SUPPORTED</a><br /></dt>
+<dd><p>Backend does not support requested functionality. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv430QNN_MEM_ERROR_INVALID_ARGUMENT">
+<span id="_CPPv330QNN_MEM_ERROR_INVALID_ARGUMENT"></span><span id="_CPPv230QNN_MEM_ERROR_INVALID_ARGUMENT"></span><span class="target" id="QnnMem_8h_1aba96bd8d1d9f2ccb5425a20a2eb44f8aa144d8daa3b18b28a3bf7bad3e9c76bc5"></span><code class="sig-name descname">QNN_MEM_ERROR_INVALID_ARGUMENT</code> = 8000 + 0<br /></dt>
+<dd><p>Invalid function argument. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv428QNN_MEM_ERROR_INVALID_HANDLE">
+<span id="_CPPv328QNN_MEM_ERROR_INVALID_HANDLE"></span><span id="_CPPv228QNN_MEM_ERROR_INVALID_HANDLE"></span><span class="target" id="QnnMem_8h_1aba96bd8d1d9f2ccb5425a20a2eb44f8aa88a2029de682ba71431e8d6096c884e6"></span><code class="sig-name descname">QNN_MEM_ERROR_INVALID_HANDLE</code> = 8000 + 1<br /></dt>
+<dd><p>Invalid memory handle. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv432QNN_MEM_ERROR_ALREADY_REGISTERED">
+<span id="_CPPv332QNN_MEM_ERROR_ALREADY_REGISTERED"></span><span id="_CPPv232QNN_MEM_ERROR_ALREADY_REGISTERED"></span><span class="target" id="QnnMem_8h_1aba96bd8d1d9f2ccb5425a20a2eb44f8aa5a792efca9e73b1e284b46dacd5c47eb"></span><code class="sig-name descname">QNN_MEM_ERROR_ALREADY_REGISTERED</code> = 8000 + 2<br /></dt>
+<dd><p>Provided memory has already been registered. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv421QNN_MEM_ERROR_MAPPING">
+<span id="_CPPv321QNN_MEM_ERROR_MAPPING"></span><span id="_CPPv221QNN_MEM_ERROR_MAPPING"></span><span class="target" id="QnnMem_8h_1aba96bd8d1d9f2ccb5425a20a2eb44f8aaf5a54474b0fba8c7560472c8b1b3a9ef"></span><code class="sig-name descname">QNN_MEM_ERROR_MAPPING</code> = 8000 + 3<br /></dt>
+<dd><p>Error in memory mapping. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv427QNN_MEM_ERROR_INVALID_SHAPE">
+<span id="_CPPv327QNN_MEM_ERROR_INVALID_SHAPE"></span><span id="_CPPv227QNN_MEM_ERROR_INVALID_SHAPE"></span><span class="target" id="QnnMem_8h_1aba96bd8d1d9f2ccb5425a20a2eb44f8aa5441599686b7b30682f1d7b9f4ff6075"></span><code class="sig-name descname">QNN_MEM_ERROR_INVALID_SHAPE</code> = 8000 + 4<br /></dt>
+<dd><p>Invalid memory shape based on a backend’s memory restrictions (e.g. alignment incompatibility) </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv433QNN_MEM_ERROR_UNSUPPORTED_MEMTYPE">
+<span id="_CPPv333QNN_MEM_ERROR_UNSUPPORTED_MEMTYPE"></span><span id="_CPPv233QNN_MEM_ERROR_UNSUPPORTED_MEMTYPE"></span><span class="target" id="QnnMem_8h_1aba96bd8d1d9f2ccb5425a20a2eb44f8aa29be8073472dd086aa26ac926b1fca16"></span><code class="sig-name descname">QNN_MEM_ERROR_UNSUPPORTED_MEMTYPE</code> = 8000 + 5<br /></dt>
+<dd><p>Backend does not support requested memory type. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv417QNN_MEM_MAX_ERROR">
+<span id="_CPPv317QNN_MEM_MAX_ERROR"></span><span id="_CPPv217QNN_MEM_MAX_ERROR"></span><span class="target" id="QnnMem_8h_1aba96bd8d1d9f2ccb5425a20a2eb44f8aabab92c332f1f5bbcb58dba15391dbe9b"></span><code class="sig-name descname">QNN_MEM_MAX_ERROR</code> = 8999<br /></dt>
+<dd></dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv423QNN_MEM_ERROR_UNDEFINED">
+<span id="_CPPv323QNN_MEM_ERROR_UNDEFINED"></span><span id="_CPPv223QNN_MEM_ERROR_UNDEFINED"></span><span class="target" id="QnnMem_8h_1aba96bd8d1d9f2ccb5425a20a2eb44f8aa3b7ae668ea94487a1b27702edf8b3314"></span><code class="sig-name descname">QNN_MEM_ERROR_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="enum">
+<dt id="_CPPv413Qnn_MemType_t">
+<span id="_CPPv313Qnn_MemType_t"></span><span id="_CPPv213Qnn_MemType_t"></span><span class="target" id="QnnMem_8h_1ab5f34c4a6c8b1f544072bb49739d2a89"></span><em class="property">enum </em><code class="sig-name descname">Qnn_MemType_t</code><br /></dt>
+<dd><p>An enumeration of memory types which may be used to provide data for a QNN tensor. </p>
+<p><em>Values:</em></p>
+<dl class="enumerator">
+<dt id="_CPPv416QNN_MEM_TYPE_ION">
+<span id="_CPPv316QNN_MEM_TYPE_ION"></span><span id="_CPPv216QNN_MEM_TYPE_ION"></span><span class="target" id="QnnMem_8h_1ab5f34c4a6c8b1f544072bb49739d2a89a75dc84a8b1c062e00863d640d9e9608d"></span><code class="sig-name descname">QNN_MEM_TYPE_ION</code> = 1<br /></dt>
+<dd><p>Memory allocated by ION manager. The ION allocator is only available on Android devices, so ION memory can only be registered with Backend libraries built for Android. </p>
+</dd></dl>
+
+<dl class="enumerator">
+<dt id="_CPPv422QNN_MEM_TYPE_UNDEFINED">
+<span id="_CPPv322QNN_MEM_TYPE_UNDEFINED"></span><span id="_CPPv222QNN_MEM_TYPE_UNDEFINED"></span><span class="target" id="QnnMem_8h_1ab5f34c4a6c8b1f544072bb49739d2a89a496347f23c5a71dd1ed3181c656b8f33"></span><code class="sig-name descname">QNN_MEM_TYPE_UNDEFINED</code> = 0x7FFFFFFF<br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="function">
+<dt id="_CPPv415QnnMem_registerPK19Qnn_MemDescriptor_t8uint32_tP15Qnn_MemHandle_t">
+<span id="_CPPv315QnnMem_registerPK19Qnn_MemDescriptor_t8uint32_tP15Qnn_MemHandle_t"></span><span id="_CPPv215QnnMem_registerPK19Qnn_MemDescriptor_t8uint32_tP15Qnn_MemHandle_t"></span><span id="QnnMem_register__Qnn_MemDescriptor_tCP.uint32_t.Qnn_MemHandle_tP"></span><span class="target" id="QnnMem_8h_1a1e28cdef53117b24c85c3fe74e608a1a"></span><a class="reference internal" href="file_include_QnnTypes.h.html#_CPPv417Qnn_ErrorHandle_t" title="Qnn_ErrorHandle_t">Qnn_ErrorHandle_t</a> <code class="sig-name descname">QnnMem_register</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv419Qnn_MemDescriptor_t" title="Qnn_MemDescriptor_t">Qnn_MemDescriptor_t</a> *<em>memDescriptors</em>, uint32_t <em>numDescriptors</em>, <a class="reference internal" href="file_include_QnnCommon.h.html#_CPPv415Qnn_MemHandle_t" title="Qnn_MemHandle_t">Qnn_MemHandle_t</a> *<em>memHandles</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415QnnMem_registerPK19Qnn_MemDescriptor_t8uint32_tP15Qnn_MemHandle_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Register existing memory to memory handle. Used to instruct QNN to use this memory directly. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">memDescriptors</span></code>: Array of memory descriptors to be registered</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numDescriptors</span></code>: Number of memory descriptors in the array</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">memHandles</span></code>: Array of allocated memory handles, length is <em>numDescriptors</em>. Same shape as <em>memDescriptors</em> (i.e. memHandles[n] corresponds to memDescriptors[n])</p></li>
+</ul>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>memHandles parameter: Array memory is owned by the client. Array size must be at least <em>numDescriptors</em>*sizeof(Qnn_MemHandle_t). The array will be initialized to NULL by the backend. Upon failure, no memory will be registered and the <em>memHandles</em> array will remain NULL.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Error code:<ul class="simple">
+<li><p>QNN_SUCCESS: memory was successfully registered</p></li>
+<li><p>QNN_COMMON_ERROR_BACKEND_NOT_INITIALIZED: backend not initialized</p></li>
+<li><p>QNN_MEM_ERROR_NOT_SUPPORTED: backend does not support this API</p></li>
+<li><p>QNN_MEM_ERROR_ALREADY_REGISTERED: memory has already been registered</p></li>
+<li><p>QNN_MEM_ERROR_UNSUPPORTED_MEMTYPE: backend does not support a memType specified within <em>memDescriptors</em></p></li>
+<li><p>QNN_MEM_ERROR_MAPPING: failed to map between memory file descriptor and memory address</p></li>
+<li><p>QNN_MEM_ERROR_INVALID_ARGUMENT: NULL array ptr or invalid memory descriptor</p></li>
+<li><p>QNN_MEM_ERROR_INVALID_SHAPE: backend does not support a memShape specified within <em>memDescriptors</em> </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv417QnnMem_deRegisterPK15Qnn_MemHandle_t8uint32_t">
+<span id="_CPPv317QnnMem_deRegisterPK15Qnn_MemHandle_t8uint32_t"></span><span id="_CPPv217QnnMem_deRegisterPK15Qnn_MemHandle_t8uint32_t"></span><span id="QnnMem_deRegister__Qnn_MemHandle_tCP.uint32_t"></span><span class="target" id="QnnMem_8h_1a1354a27ccbab91de176aa5e67d5efcec"></span><a class="reference internal" href="file_include_QnnTypes.h.html#_CPPv417Qnn_ErrorHandle_t" title="Qnn_ErrorHandle_t">Qnn_ErrorHandle_t</a> <code class="sig-name descname">QnnMem_deRegister</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="file_include_QnnCommon.h.html#_CPPv415Qnn_MemHandle_t" title="Qnn_MemHandle_t">Qnn_MemHandle_t</a> *<em>memHandles</em>, uint32_t <em>numHandles</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417QnnMem_deRegisterPK15Qnn_MemHandle_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Deregister a memory which was registered via QnnMem_register and invalidates memHandle for the given backend. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">memHandles</span></code>: Array of memory handles to be deregistered</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">numHandles</span></code>: Number of memory handles in the array</p></li>
+</ul>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>memHandles parameter: Upon failure, all valid handles within <em>memHandles</em> will still be deregistered.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Error code:<ul class="simple">
+<li><p>QNN_SUCCESS: memory was successfully deregistered</p></li>
+<li><p>QNN_COMMON_ERROR_BACKEND_NOT_INITIALIZED: backend not initialized</p></li>
+<li><p>QNN_MEM_ERROR_NOT_SUPPORTED: backend does not support this API</p></li>
+<li><p>QNN_MEM_ERROR_INVALID_ARGUMENT: <em>memHandles</em> is NULL</p></li>
+<li><p>QNN_MEM_ERROR_INVALID_HANDLE: a handle within <em>memHandles</em> is NULL/invalid </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<dl class="class">
+<dt id="_CPPv414Qnn_MemShape_t">
+<span id="_CPPv314Qnn_MemShape_t"></span><span id="_CPPv214Qnn_MemShape_t"></span><span id="Qnn_MemShape_t"></span><span class="target" id="structQnn__MemShape__t"></span><em class="property">struct </em><code class="sig-name descname">Qnn_MemShape_t</code><a class="headerlink" href="#_CPPv414Qnn_MemShape_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnMem.h&gt;</em><p>A struct which describes the shape of memory. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N14Qnn_MemShape_t6numDimE">
+<span id="_CPPv3N14Qnn_MemShape_t6numDimE"></span><span id="_CPPv2N14Qnn_MemShape_t6numDimE"></span><span id="Qnn_MemShape_t::numDim__uint32_t"></span><span class="target" id="structQnn__MemShape__t_1a11eef13aae17655ca17ca4c48856cc19"></span>uint32_t <code class="sig-name descname">numDim</code><a class="headerlink" href="#_CPPv4N14Qnn_MemShape_t6numDimE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Number of dimensions. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N14Qnn_MemShape_t7dimSizeE">
+<span id="_CPPv3N14Qnn_MemShape_t7dimSizeE"></span><span id="_CPPv2N14Qnn_MemShape_t7dimSizeE"></span><span id="Qnn_MemShape_t::dimSize__uint32_tP"></span><span class="target" id="structQnn__MemShape__t_1a3931afb40936983159911991b7a11ccb"></span>uint32_t *<code class="sig-name descname">dimSize</code><a class="headerlink" href="#_CPPv4N14Qnn_MemShape_t7dimSizeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Array holding size of each dimension. Size of array is = numDim. </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N14Qnn_MemShape_t11shapeConfigE">
+<span id="_CPPv3N14Qnn_MemShape_t11shapeConfigE"></span><span id="_CPPv2N14Qnn_MemShape_t11shapeConfigE"></span><span id="Qnn_MemShape_t::shapeConfig__cCP"></span><span class="target" id="structQnn__MemShape__t_1ace26a8055324362690900f2871946139"></span><em class="property">const</em> char *<code class="sig-name descname">shapeConfig</code><a class="headerlink" href="#_CPPv4N14Qnn_MemShape_t11shapeConfigE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Additional configuration in string, for extensibility. Allowed to be NULL. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv416Qnn_MemIonInfo_t">
+<span id="_CPPv316Qnn_MemIonInfo_t"></span><span id="_CPPv216Qnn_MemIonInfo_t"></span><span id="Qnn_MemIonInfo_t"></span><span class="target" id="structQnn__MemIonInfo__t"></span><em class="property">struct </em><code class="sig-name descname">Qnn_MemIonInfo_t</code><a class="headerlink" href="#_CPPv416Qnn_MemIonInfo_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnMem.h&gt;</em><p>a struct which includes ION related information </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N16Qnn_MemIonInfo_t2fdE">
+<span id="_CPPv3N16Qnn_MemIonInfo_t2fdE"></span><span id="_CPPv2N16Qnn_MemIonInfo_t2fdE"></span><span id="Qnn_MemIonInfo_t::fd__int32_t"></span><span class="target" id="structQnn__MemIonInfo__t_1a8d9e13e17e230d9368839ad6dbc8e06c"></span>int32_t <code class="sig-name descname">fd</code><a class="headerlink" href="#_CPPv4N16Qnn_MemIonInfo_t2fdE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>file descriptor for memory, must be set to QNN_MEM_INVALID_FD if not applicable </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="_CPPv419Qnn_MemDescriptor_t">
+<span id="_CPPv319Qnn_MemDescriptor_t"></span><span id="_CPPv219Qnn_MemDescriptor_t"></span><span id="Qnn_MemDescriptor_t"></span><span class="target" id="structQnn__MemDescriptor__t"></span><em class="property">struct </em><code class="sig-name descname">Qnn_MemDescriptor_t</code><a class="headerlink" href="#_CPPv419Qnn_MemDescriptor_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnMem.h&gt;</em><p>A struct which describes memory params. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N19Qnn_MemDescriptor_t8memShapeE">
+<span id="_CPPv3N19Qnn_MemDescriptor_t8memShapeE"></span><span id="_CPPv2N19Qnn_MemDescriptor_t8memShapeE"></span><span id="Qnn_MemDescriptor_t::memShape__Qnn_MemShape_t"></span><span class="target" id="structQnn__MemDescriptor__t_1aa6b1bc6cda26806718cd181bfc4ed0ed"></span><a class="reference internal" href="#_CPPv414Qnn_MemShape_t" title="Qnn_MemShape_t">Qnn_MemShape_t</a> <code class="sig-name descname">memShape</code><a class="headerlink" href="#_CPPv4N19Qnn_MemDescriptor_t8memShapeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>memory shape </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N19Qnn_MemDescriptor_t8dataTypeE">
+<span id="_CPPv3N19Qnn_MemDescriptor_t8dataTypeE"></span><span id="_CPPv2N19Qnn_MemDescriptor_t8dataTypeE"></span><span id="Qnn_MemDescriptor_t::dataType__Qnn_DataType_t"></span><span class="target" id="structQnn__MemDescriptor__t_1a713a98ea8ea9584ad0ad01243fecf448"></span><a class="reference internal" href="enum_QnnTypes_8h_1a8bda296c6c8a3148f764dcbdb5b8f534.html#_CPPv414Qnn_DataType_t" title="Qnn_DataType_t">Qnn_DataType_t</a> <code class="sig-name descname">dataType</code><a class="headerlink" href="#_CPPv4N19Qnn_MemDescriptor_t8dataTypeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>memory data type </p>
+</dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N19Qnn_MemDescriptor_t7memTypeE">
+<span id="_CPPv3N19Qnn_MemDescriptor_t7memTypeE"></span><span id="_CPPv2N19Qnn_MemDescriptor_t7memTypeE"></span><span id="Qnn_MemDescriptor_t::memType__Qnn_MemType_t"></span><span class="target" id="structQnn__MemDescriptor__t_1aa15c20654b75ab28220021cbb8894afb"></span><a class="reference internal" href="enum_QnnMem_8h_1ab5f34c4a6c8b1f544072bb49739d2a89.html#_CPPv413Qnn_MemType_t" title="Qnn_MemType_t">Qnn_MemType_t</a> <code class="sig-name descname">memType</code><a class="headerlink" href="#_CPPv4N19Qnn_MemDescriptor_t7memTypeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>memory type </p>
+</dd></dl>
+
+</div>
+<dl class="union">
+<dt id="_CPPv4N19Qnn_MemDescriptor_t7unnamedE">
+<span id="_CPPv3N19Qnn_MemDescriptor_t7unnamedE"></span><span id="_CPPv2N19Qnn_MemDescriptor_t7unnamedE"></span><span class="target" id="unionQnn__MemDescriptor__t_1_1unnamed"></span><em class="property">union </em><code class="sig-name descname">unnamed</code><a class="headerlink" href="#_CPPv4N19Qnn_MemDescriptor_t7unnamedE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;QnnMem.h&gt;</em><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv4N19Qnn_MemDescriptor_t7unnamed7ionInfoE">
+<span id="_CPPv3N19Qnn_MemDescriptor_t7unnamed7ionInfoE"></span><span id="_CPPv2N19Qnn_MemDescriptor_t7unnamed7ionInfoE"></span><span id="Qnn_MemDescriptor_t::unnamed::ionInfo__Qnn_MemIonInfo_t"></span><span class="target" id="unionQnn__MemDescriptor__t_1_1unnamed_1ace2d6e28d85412f3ab7364151ef6846f"></span><a class="reference internal" href="#_CPPv416Qnn_MemIonInfo_t" title="Qnn_MemIonInfo_t">Qnn_MemIonInfo_t</a> <code class="sig-name descname">ionInfo</code><a class="headerlink" href="#_CPPv4N19Qnn_MemDescriptor_t7unnamed7ionInfoE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

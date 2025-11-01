@@ -1,0 +1,589 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>API Revision History &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="QNN CPU API Revision History" href="cpu/cpu_api_version_history.html" />
+    <link rel="prev" title="Recommended Practices" href="api_usage_guidelines.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantization.html">Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_usage_guidelines.html">Usage Guidelines</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Version History</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpu/cpu_api_version_history.html">CPU Version History</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsp/dsp_api_version_history.html">DSP Version History</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gpu/gpu_api_version_history.html">GPU Version History</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hta/hta_api_version_history.html">HTA Version History</a></li>
+<li class="toctree-l3"><a class="reference internal" href="htp/htp_api_version_history.html">HTP Version History</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#operation-definitions">Operation Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#c">C</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="api.html">API</a> &raquo;</li>
+        
+      <li>API Revision History</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api-revision-history">
+<h1>API Revision History<a class="headerlink" href="#api-revision-history" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpu/cpu_api_version_history.html">CPU Version History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsp/dsp_api_version_history.html">DSP Version History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu/gpu_api_version_history.html">GPU Version History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hta/hta_api_version_history.html">HTA Version History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="htp/htp_api_version_history.html">HTP Version History</a></li>
+</ul>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 11%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Version</p></th>
+<th class="head"><p>SDK Version</p></th>
+<th class="head"><p>Date of submission</p></th>
+<th class="head"><p>Type of Change</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td rowspan="2"><p>1.12.0</p></td>
+<td rowspan="2"><p>1.15.0</p></td>
+<td rowspan="2"><p>June 7, 2022</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>None.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>Added GatherElements op definition.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.12.0</p></td>
+<td rowspan="2"><p>1.14.0</p></td>
+<td rowspan="2"><p>May 11, 2022</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>None.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>Added Resize op definition.</p></li>
+<li><p>LSTM: Add optional outputs.</p></li>
+<li><p>L2Pool2d, PoolAvg2d, MaxPool2d: Fix issue with incorrect rank for pooling op stride
+params and enforce value to be greater than zero.</p></li>
+<li><p>ScatterNd: Allow duplicate indices when reduction param in NONE.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.12.0</p></td>
+<td rowspan="2"><p>1.13.0</p></td>
+<td rowspan="2"><p>Apr 11, 2022</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>None.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>Added beta and threshold params to ElementWiseSoftplus</p></li>
+<li><p>Added GatherNd op definition.</p></li>
+<li><p>Added PoolAvg3d op definition.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.12.0</p></td>
+<td rowspan="2"><p>1.12.0</p></td>
+<td rowspan="2"><p>March 9, 2022</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>Converted models must be recompiled.</p></li>
+<li><p>Added QnnContext_createFromBinaryWithConfig.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>Added Conv3d op definition.</p></li>
+<li><p>Added CumulativeSum op definition.</p></li>
+<li><p>Added ElementWiseAtan op definition.</p></li>
+<li><p>Added ElementWiseSoftplus op definition.</p></li>
+<li><p>Added TransposeConv3d op definition.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.11.0</p></td>
+<td rowspan="2"><p>1.11.0</p></td>
+<td rowspan="2"><p>February 7, 2022</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>Added Qnn_ContextBinarySize_t typedef used in context caching APIs.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>PoolAvg2d / PoolMax2d: Added optional rounding_mode param.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.10.0</p></td>
+<td rowspan="2"><p>1.10.0</p></td>
+<td rowspan="2"><p>January 12, 2022</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>None.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>DepthToSpace: Added optional mode param.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.9.0</p></td>
+<td rowspan="2"><p>1.9.0</p></td>
+<td rowspan="2"><p>December 24, 2021</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>QnnSystemContext: Introduce reflection API that provides info about contents of QNN
+context binaries, which can be utilized during execution of pre-cached
+contexts.</p></li>
+<li><p>QnnLog: Promote log level VERBOSE ahead of DEBUG. DEBUG logs are now reserved for
+internal debugging, and setting level to DEBUG provides no more info than
+VERBOSE logs.</p></li>
+<li><p>QnnCommon: Add new error error code QNN_COMMON_ERROR_SYSTEM_COMMUNICATION to indicate
+HW-related failures that render all contexts and graphs invalid. Apps will
+require resetting QNN objects constructed thus far to resume proper
+functioning.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>New Ops: ScatterND</p></li>
+<li><p>ElementWiseRSqrt: Clarify handling of negative elements in that the op behavior is
+undefined.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.8.0</p></td>
+<td rowspan="2"><p>1.8.0</p></td>
+<td rowspan="2"><p>November 08, 2021</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>QnnGraph: Clarify that nodes must be added in dependency order.</p></li>
+<li><p>QnnGraph: Added new error code in QnnGraph_addNode to report dependency order enforcement</p></li>
+<li><p>QnnGraph: Clarify that tensor IDs must be unique in the context the tensor is created.</p></li>
+<li><p>QnnGraph: Clarify that tensor IDs used in an offline-prepared context binary must match
+to those created at runtime for execution</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>Matmul: Allow broadcasting on input operands.</p></li>
+<li><p>New Ops: NV12toRGB</p></li>
+<li><p>ElementWise: Clarify handling of tensors with different ranks for ElementWise ops.</p></li>
+<li><p>Convert: Remove Quantization constraints on convert op.</p></li>
+<li><p>FullyConnected: Added optional keep_dims param.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.7.0</p></td>
+<td rowspan="2"><p>1.7.2</p></td>
+<td rowspan="2"><p>October 31, 2021</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>QnnGraph: Introduce new error code in QnnGraph_execute to report invalid tensor inputs.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>ALL: Deprecate use of notation ‘any datatype’ for tensors used in some ops.
+Replaced with ‘backend specific’ to indicate that BEs decide what they support.</p></li>
+<li><p>StridedSlice: Update begin in ‘ranges’ param to be strictly non-negative.</p></li>
+<li><p>ElementwiseSquaredDifference: Add new op for element-wise squared difference.</p></li>
+<li><p>BatchNorm: Relax op def to permit N-dimensional inputs, subject to BE support.</p></li>
+<li><p>InstanceNorm: Relax op def to permit N-dimensional inputs, subject to BE support.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.5.0</p></td>
+<td rowspan="2"><p>1.6.0</p></td>
+<td rowspan="2"><p>September 30, 2021</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>ALL: Direct access to QNN component API is now suppressed. Users have to access them
+strictly through QnnInterface.</p></li>
+<li><p>QnnMem: Introducing component header with APIs to register externally allocated memory.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>StridedSlice: Capture expectations in corner cases; describe hierarchy of applying params</p></li>
+<li><p>StridedSlice: Fix bug with validation when end range is negative.</p></li>
+<li><p>InstanceNorm: Add new optional param ‘normalized_variance’.</p></li>
+<li><p>ElementwiseCos: Add new op for element-wise cosine.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.4.1</p></td>
+<td rowspan="2"><p>1.5.0</p></td>
+<td rowspan="2"><p>August 31, 2021</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>QnnGraph: Clarify that graphs with zero nodes are invalid, and will fail finalize step.</p></li>
+<li><p>QnnGraph: Clarify that graphs cannot have optional input or output tensors.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>LSTM: Clarify that peephole weights are specified as 1D vector because they are
+essentially diagonal matrices.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.4.0</p></td>
+<td rowspan="2"><p>1.4.2</p></td>
+<td rowspan="2"><p>July 21, 2021</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>QnnCommon: QnnSdkBuild.h, which was previously included in QnnCommon.h has been moved out</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>None</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.3.0</p></td>
+<td rowspan="2"><p>1.3.0</p></td>
+<td rowspan="2"><p>June 30, 2021</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>QnnOpPackage: Remove support for QnnOpPackage_ImplementationV1_3_t.
+Custom op packages created with older versions need to upgrade to V1.4.</p></li>
+<li><p>QnnTypes: Add new enum for expressing precision types.</p></li>
+<li><p>QnnProfile: Remove support for deprecated profile types. Use corresponding ‘units’.</p></li>
+<li><p>QnnProfile: Add new profiling unit: COUNT</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>DetectionOutput: Clarify that o/p box coordinates are normalized to [0, 1]
+and not absolute coordinates.</p></li>
+<li><p>StridedSlice: Add new param ‘new_axes_mask’.</p></li>
+<li><p>Transpose: Allow op to have rank-1 inputs.</p></li>
+<li><p>Slice: Fix range for ‘split_index’ to go up to rank of input tensor.</p></li>
+<li><p>L2Norm: Add vector equivalent of axis as new param called ‘axes’.</p></li>
+<li><p>Convert: Allow mixed precision modes by accepting i/p and o/p tensors with equal or
+proportional scales and offsets.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.2.0</p></td>
+<td rowspan="2"><p>1.2.0</p></td>
+<td rowspan="2"><p>May 31, 2021</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>QnnGraph: Clarified expectations on several API arguments and usage.
+Execute API can handle null inputs for fully static graphs.
+Execute API matches tensor info through ID and uses previously provided info.
+Graphs can contain ‘unconsumed tensors’ that don’t feed into any other node.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>ConvTranspose: Add new param output_padding to op definition.</p></li>
+<li><p>ElementwiseExp: Add data type extensions to support fixed point runtimes.</p></li>
+<li><p>New Ops: ElementWiseFloorDiv, ElementWiseFloorRound, ElementWiseFloorCeil,
+Gelu, UnPack, OneHot, LayerNorm</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.1.0</p></td>
+<td rowspan="2"><p>1.1.0</p></td>
+<td rowspan="2"><p>April 30, 2021</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>Renamed Qnn_NotifyFunc_t to Qnn_NotifyFn_t (for naming compliance).
+Considered backwards compatible as this type is not used/supported yet.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>Topk: Added support for INT32 datatype in indices output.</p></li>
+<li><p>Correlation1D: Fixed output tensor shape definition. No change in BE behavior.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.0.0</p></td>
+<td rowspan="2"><p>1.0.0</p></td>
+<td rowspan="2"><p>April 02, 2021</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>QnnInterface: Introduce concept of exposing QNN APIs through ‘providers’.</p></li>
+<li><p>Backends register their API interface as provider for users to access instead of direct
+access to direct APIs that shall be deprecated in a future release.</p></li>
+<li><p>All APIs: Mark raw usage as deprecated; users need to access them through QnnInterface</p></li>
+<li><p>All APIs: Introduce helper macros for safe initialization of QNN data structures.</p></li>
+<li><p>QnnError.h: Remove this header from SDK, though it can still be used internally</p></li>
+<li><p>QnnCommon: Introduce error codes reserved for saver tool</p></li>
+<li><p>QnnProperty: Remove deprecated property keys from API header</p></li>
+<li><p>QnnGraph: Add caveats to tensor handling in graph execute</p></li>
+<li><p>QnnTypes: Add clarity to usage of error codes in API error handles</p></li>
+<li><p>QnnOpPackage.h: Simplify packageInfo in QnnOpPackage_Info_t to be a single pointer</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>Gather: Change data type for indices to INT32 to match source framework definitions</p></li>
+<li><p>DetectionOutput: Fix dims of anchor positions to include batch</p></li>
+<li><p>LSTM: Enforce data dype for LSTM params to FLOAT32</p></li>
+<li><p>DepthWiseConv2D: Update def to state that channel_out can be a multiple of channel_in</p></li>
+<li><p>Pack: Axis param can have max value equal to rank of input tensor.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cpu/cpu_api_version_history.html" class="btn btn-neutral float-right" title="QNN CPU API Revision History" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_usage_guidelines.html" class="btn btn-neutral float-left" title="Recommended Practices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

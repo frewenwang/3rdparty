@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Recommended Practices &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Revision History" href="api_version_history.html" />
+    <link rel="prev" title="API Overview" href="api_overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantization.html">Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api_overview.html">Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Usage Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-qnninterface-to-access-qnn-apis">Using QnnInterface to access QNN APIs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-initializer-macros-for-struct-data-types">Using Initializer Macros for struct data types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reading-error-codes-properly-from-qnn-api">Reading error codes properly from QNN API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#allocating-external-memory-to-register-with-a-backend">Allocating external memory to register with a backend</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_version_history.html">Version History</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#operation-definitions">Operation Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#c">C</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="api.html">API</a> &raquo;</li>
+        
+      <li>Recommended Practices</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="recommended-practices">
+<h1>Recommended Practices<a class="headerlink" href="#recommended-practices" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="using-qnninterface-to-access-qnn-apis">
+<h2>Using QnnInterface to access QNN APIs<a class="headerlink" href="#using-qnninterface-to-access-qnn-apis" title="Permalink to this headline">¶</a></h2>
+<p>QNN Interface is an abstraction that combines all component APIs and provides a single unified
+interface to the user. This provides a major convenience to users to operate with a fixed set of
+API hooks through the interface, instead of relying on dynamic symbol lookup using dlsym() calls.</p>
+<p>QNN Interface API is made available to users using what are referred to as ‘API providers’.
+API providers are based on the publisher-subscriber paradigm with which backends publish
+access points to APIs they support, and clients subscribe to them dynamically.
+<a class="reference internal" href="../api-rst/structQnnInterface__t.html#exhale-struct-structqnninterface-t"><span class="std std-ref">QnnInterface_t</span></a> demonstrates the central unit
+that holds information about the provider - its name, the backend that publishes it and
+the collection of APIs it supports as function pointers. Client code should invoke
+<a class="reference internal" href="../api-rst/function_QnnInterface_8h_1aa939c0a7b3b029554f214219961392a2.html#exhale-function-qnninterface-8h-1aa939c0a7b3b029554f214219961392a2"><span class="std std-ref">QnnInterface_getProviders()</span></a>
+in order to query all the providers that are available on the system, and access individual
+component APIs through them.</p>
+</div>
+<div class="section" id="using-initializer-macros-for-struct-data-types">
+<h2>Using Initializer Macros for struct data types<a class="headerlink" href="#using-initializer-macros-for-struct-data-types" title="Permalink to this headline">¶</a></h2>
+<p>Initializer macros defined for <code class="docutils literal notranslate"><span class="pre">struct</span></code> data types in API headers have the recommended default
+values initialized for various fields. It is recommended that clients use these macros when
+declaring data structure variables to avoid depending on compiler defaults, which may vary by
+platform or architecture.</p>
+<p>The code snippet below shows a sample usage of initializing <a class="reference internal" href="../api-rst/structQnn__Tensor__t.html#exhale-struct-structqnn-tensor-t"><span class="std std-ref">Qnn_Tensor_t</span></a>
+using init macro <a class="reference internal" href="../api-rst/define_QnnTypes_8h_1a101cd9953298300882fbb6f7050c7335.html#exhale-define-qnntypes-8h-1a101cd9953298300882fbb6f7050c7335"><span class="std std-ref">QNN_TENSOR_INIT</span></a></p>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// Default initialization using init macro</span>
+<span class="n">Qnn_Tensor_t</span><span class="w"> </span><span class="n">tensor</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">QNN_TENSOR_INIT</span><span class="p">;</span><span class="w"></span>
+
+<span class="c1">// Update fields with context-specific values</span>
+<span class="n">tensor</span><span class="p">.</span><span class="n">id</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w"></span>
+<span class="n">tensor</span><span class="p">.</span><span class="n">type</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="n">QNN_TENSOR_TYPE_APP_WRITE</span><span class="p">;</span><span class="w"></span>
+<span class="n">tensor</span><span class="p">.</span><span class="n">dataType</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="n">QNN_DATATYPE_FLOAT_32</span><span class="p">;</span><span class="w"></span>
+<span class="n">tensor</span><span class="p">.</span><span class="n">rank</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="n">rank</span><span class="p">;</span><span class="w"></span>
+<span class="n">tensor</span><span class="p">.</span><span class="n">maxDimensions</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">dimensions</span><span class="p">;</span><span class="w"></span>
+<span class="n">tensor</span><span class="p">.</span><span class="n">currentDimensions</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">dimensions</span><span class="p">;</span><span class="w"></span>
+<span class="n">tensor</span><span class="p">.</span><span class="n">clientBuf</span><span class="p">.</span><span class="n">data</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">;</span><span class="w"></span>
+<span class="n">tensor</span><span class="p">.</span><span class="n">clientBuf</span><span class="p">.</span><span class="n">dataSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">numElements</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="reading-error-codes-properly-from-qnn-api">
+<h2>Reading error codes properly from QNN API<a class="headerlink" href="#reading-error-codes-properly-from-qnn-api" title="Permalink to this headline">¶</a></h2>
+<p>QNN APIs return error codes cast into
+<a class="reference internal" href="../api-rst/typedef_QnnTypes_8h_1a8e21e7c6a7471103b59098ef81c28570.html#exhale-typedef-qnntypes-8h-1a8e21e7c6a7471103b59098ef81c28570"><span class="std std-ref">Qnn_ErrorHandle_t</span></a>.
+However, users must note from the description of the field that the actual error codes
+are to be read out from the least significant 16 bits of this 64-bit handle. Users may
+use the simple macro
+<a class="reference internal" href="../api-rst/define_QnnTypes_8h_1a858eb9083d3c3ad2f65dbe687cddea56.html#exhale-define-qnntypes-8h-1a858eb9083d3c3ad2f65dbe687cddea56"><span class="std std-ref">QNN_GET_ERROR_HANDLE</span></a>
+in order to extract just the return code when desired.
+Successful invocation from every single QNN API returns
+<a class="reference internal" href="../api-rst/define_QnnCommon_8h_1af3d413884b927f4afd7a1222ab0f6620.html#exhale-define-qnncommon-8h-1af3d413884b927f4afd7a1222ab0f6620"><span class="std std-ref">QNN_SUCCESS</span></a>
+which is mapped to 0; therefore no additional processing is required in this case.</p>
+</div>
+<div class="section" id="allocating-external-memory-to-register-with-a-backend">
+<h2>Allocating external memory to register with a backend<a class="headerlink" href="#allocating-external-memory-to-register-with-a-backend" title="Permalink to this headline">¶</a></h2>
+<p>QNN APIs defined in <a class="reference internal" href="../api-rst/file_include_QnnMem.h.html#file-include-qnnmem-h"><span class="std std-ref">QnnMem.h</span></a> provide a mechanism to register
+externally allocated memory with a backend. Data passed via shared memory can be read from directly,
+allowing for ‘zero-copy’ inference, unlike data passed via raw pointer which generally may be
+copied before graph execution.</p>
+<p>Currently ION is the only external memory type supported by QNN. ION is only available on Android
+platforms. One of the methods to allocate ION memory is via the RPCMem framework provided by the
+Hexagon SDK. Specifically, the following RPCMem APIs are required:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rpcmem_alloc()</span></code> to allocate ION memory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rpcmem_to_fd()</span></code> to obtain a file descriptor that refers to this allocated memory, which can be
+registered with a backend via <a class="reference internal" href="../api-rst/function_QnnMem_8h_1a1e28cdef53117b24c85c3fe74e608a1a.html#exhale-function-qnnmem-8h-1a1e28cdef53117b24c85c3fe74e608a1a"><span class="std std-ref">QnnMem_register()</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rpcmem_free()</span></code> to free the allocated memory</p></li>
+</ul>
+</div></blockquote>
+<p>Refer to Hexagon SDK documentation for more information about RPCMem.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api_version_history.html" class="btn btn-neutral float-right" title="API Revision History" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api_overview.html" class="btn btn-neutral float-left" title="API Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

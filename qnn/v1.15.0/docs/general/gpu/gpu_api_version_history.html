@@ -1,0 +1,485 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>QNN GPU API Revision History &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="QNN HTA API Revision History" href="../hta/hta_api_version_history.html" />
+    <link rel="prev" title="QNN DSP API Revision History" href="../dsp/dsp_api_version_history.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantization.html">Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../api_overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_usage_guidelines.html">Usage Guidelines</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api_version_history.html">Version History</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../cpu/cpu_api_version_history.html">CPU Version History</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsp/dsp_api_version_history.html">DSP Version History</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">GPU Version History</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hta/hta_api_version_history.html">HTA Version History</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../htp/htp_api_version_history.html">HTP Version History</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#operation-definitions">Operation Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#c">C</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../api.html">API</a> &raquo;</li>
+        
+          <li><a href="../api_version_history.html">API Revision History</a> &raquo;</li>
+        
+      <li>QNN GPU API Revision History</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="qnn-gpu-api-revision-history">
+<h1>QNN GPU API Revision History<a class="headerlink" href="#qnn-gpu-api-revision-history" title="Permalink to this headline">¶</a></h1>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 20%" />
+<col style="width: 10%" />
+<col style="width: 56%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>QNN GPU API Version</p></th>
+<th class="head"><p>Introduced in QNN SDK Version</p></th>
+<th class="head"><p>Type of Change</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2.5.0</p></td>
+<td><p>1.15.0</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>QnnGpuContext.h: Move GPU kernel repo to QNN Context</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p>2.4.0</p></td>
+<td rowspan="2"><p>1.14.0</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>QnnGpuOpPackage.h: Support tensor type constraints in super node</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>Relaxing BatchNorm Validator rank condition to support rank in [1,4].</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p>2.3.0</p></td>
+<td rowspan="2"><p>1.13.0</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>QnnGpuContext.h: Support GL buffers.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>Support Concat operation with rank = 1 and input dimensions &gt; 16384.</p></li>
+<li><p>Support axis = 0 for rank = 4 input in Split operation.</p></li>
+<li><p>Added support for Nv12ToRgb Operation.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p>2.2.0</p></td>
+<td rowspan="2"><p>1.9.0</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>QnnGpuOpPackage.h: Support memory object offsets and layouts.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>Support INT32 in ElementwiseAdd Op [broadcast only]</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p>2.1.0</p></td>
+<td rowspan="2"><p>1.8.0</p></td>
+<td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>Added support for LayerNorm Operation.</p></li>
+<li><p>Added support for UnPack Operation.</p></li>
+<li><p>Added support for DetectionOutput Operation.</p></li>
+<li><p>Added support for SquaredDifference Operation.</p></li>
+<li><p>Added half_pixel_centers param support for ResizeNearestNeighbor Operation</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>QnnGpuContext.h: Initial release. Added performance hint controls.</p></li>
+<li><p>QnnContext.h: Support QnnContext_setConfig.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p>2.0.0</p></td>
+<td rowspan="2"><p>1.7.2</p></td>
+<td><p>API Updates</p></td>
+<td><ul class="simple">
+<li><p>QnnGpuOpPackage.h: Super node optimization.</p></li>
+<li><p>QnnGpuGraph.h: Removed deprecated precision modes.</p></li>
+<li><p>QnnGpuOpPackage.h: Update op pkg interface to use null-terminated arrays of pointers.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>Support ElementWiseCos.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>1.5.0</p></td>
+<td><p>1.6.0</p></td>
+<td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>TransposeConv2d support output_padding param.</p></li>
+<li><p>Reshape support INT32 input and output.</p></li>
+<li><p>Fix issue when Cast operation has input dims larger than 32768.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>1.4.0</p></td>
+<td><p>1.5.0</p></td>
+<td><p>OpDef Updates</p></td>
+<td><ul>
+<li><p>Added Half Pixel Centers param support for Resize Operation.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>This param is included only for ResizeBilinear Operation.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p>1.3.0</p></td>
+<td rowspan="2"><p>1.4.2</p></td>
+<td><p>API Updates</p></td>
+<td><ul>
+<li><p>QnnGpuOpPackage.h: Updated QnnGpu_DeviceProperties_t</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Added maximum height, width, and depth fields for Image2dArray memory objects.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>OpDef Updates</p></td>
+<td><ul class="simple">
+<li><p>Support added for ElementWiseRound.</p></li>
+<li><p>Relax constraint on Concat axis param to axis &gt;= N - 4.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>1.2.0</p></td>
+<td><p>1.3.0</p></td>
+<td><p>API Updates</p></td>
+<td><ul>
+<li><p>QnnGpuGraph.h: Added disableQueueRecording field to QnnGpuGraph_CustomConfig_t</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Provide an option to disable the recordable command queue feature.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>1.1.0</p></td>
+<td rowspan="2"><p>1.1.0</p></td>
+<td><p>API Updates</p></td>
+<td><ul>
+<li><p>QnnGpuGraph.h: Deprecated and added precision modes</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Deprecated QNN_GPU_PRECISION_FULL_FLOAT</p></li>
+<li><p>Deprecated QNN_GPU_PRECISION_HALF_FLOAT</p></li>
+<li><p>Deprecated QNN_GPU_PRECISION_DEFAULT</p></li>
+<li><p>Added QNN_GPU_PRECISION_FP32 (equivalent to QNN_GPU_PRECISION_FULL_FLOAT)</p></li>
+<li><p>Added QNN_GPU_PRECISION_FP16 (equivalent to QNN_GPU_PRECISION_HALF_FLOAT)</p></li>
+<li><p>Added QNN_GPU_PRECISION_USER_PROVIDED (equivalent to QNN_GPU_PRECISION_DEFAULT)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>QnnGpuOpPackage.h: Add tierName field to QnnGpu_DeviceProperties_t</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Provides the GPU tier (e.g. 660). Requires rebuild of 3rd party op packages.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>QnnGpuOpPackage.h: Add sdkApiVersion field to QnnGpuOpPackage_GlobalInfrastructure_t</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Provide QNN API and QNN GPU API versions to op packages</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>OpDef Updates</p></td>
+<td><ul>
+<li><p>Cast</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Added QNN_DATATYPE_UINT_32 support for in[0] and out[0]</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Dequantize</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Bugfix for incorrect fixed point in[0] data types</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Pad</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Added support for EDGE scheme param</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Transpose</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Added support for in[0] 5-D shape</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>1.0.0</p></td>
+<td><p>1.0.0</p></td>
+<td></td>
+<td><ul class="simple">
+<li><p>Initial release</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../hta/hta_api_version_history.html" class="btn btn-neutral float-right" title="QNN HTA API Revision History" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../dsp/dsp_api_version_history.html" class="btn btn-neutral float-left" title="QNN DSP API Revision History" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

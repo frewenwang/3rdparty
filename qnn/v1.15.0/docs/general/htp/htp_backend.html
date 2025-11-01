@@ -1,0 +1,481 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HTP &mdash; QNN v1.15.0.220706112757_38277 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/custom_css.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="HTP Core Headers for Op Packages" href="../../HTP/htp_core_headers.html" />
+    <link rel="prev" title="DSP" href="../dsp/dsp_backend.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> QNN
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v1.15.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../backend.html">Backend</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../backend.html#backend-specific-pages">Backend Specific Pages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../dsp/dsp_backend.html">DSP</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">HTP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#api-specializations">API Specializations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#op-writing-guidelines">Op Writing Guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hta/hta_backend.html">HTA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cpu/cpu_backend.html">CPU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gpu/gpu_backend.html">GPU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../saver/saver_backend.html">Saver</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../op_packages.html">Op Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../converters.html">Converters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quantization.html">Quantization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../benchmarking.html">Benchmarking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">QNN</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../backend.html">Backend</a> &raquo;</li>
+        
+      <li>HTP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="htp">
+<h1>HTP<a class="headerlink" href="#htp" title="Permalink to this headline">¶</a></h1>
+<p>This section provides information specific to QNN HTP backend.</p>
+<div class="section" id="api-specializations">
+<h2>API Specializations<a class="headerlink" href="#api-specializations" title="Permalink to this headline">¶</a></h2>
+<p>This section contains information related to API specialization for the HTP backend. All QNN HTP
+backend specialization is available under <code class="docutils literal notranslate"><span class="pre">&lt;QNN_SDK_ROOT&gt;/include/HTP/</span></code> directory.</p>
+<p>The current version of the QNN HTP backend API is:</p>
+<dl class="macro">
+<dt>
+<code class="sig-name descname">QNN_HTP_API_VERSION_MAJOR</code> 3</dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt>
+<code class="sig-name descname">QNN_HTP_API_VERSION_MINOR</code> 10</dt>
+<dd></dd></dl>
+
+<dl class="macro">
+<dt>
+<code class="sig-name descname">QNN_HTP_API_VERSION_PATCH</code> 0</dt>
+<dd></dd></dl>
+
+<div class="section" id="usage-expectations">
+<h3>Usage Expectations<a class="headerlink" href="#usage-expectations" title="Permalink to this headline">¶</a></h3>
+<p>1. The sequence of calls to
+<a class="reference internal" href="../../api-rst/function_QnnGraph_8h_1a1c6363e459cb7092356572f5af1c952b.html#exhale-function-qnngraph-8h-1a1c6363e459cb7092356572f5af1c952b"><span class="std std-ref">QnnGraph_addNode()</span></a>
+to build the QNN model should be done in the node dependency order.</p>
+<ol class="arabic" start="2">
+<li><p>The QnnBackend_registerOpPackage takes in an optional parameter called ‘target’.
+<a class="reference internal" href="../../api-rst/function_QnnBackend_8h_1ad6de6b0ec83bdb8085d7a7319009da60.html#exhale-function-qnnbackend-8h-1ad6de6b0ec83bdb8085d7a7319009da60"><span class="std std-ref">QnnBackend_registerOpPackage()</span></a>
+Given below are the acceptable values for ‘target’</p>
+<blockquote>
+<div><ul>
+<li><p>“CPU”   - for both linux x86 and ARM op packages</p></li>
+<li><p>“HTP”   - for op package that gets loaded on the HTP.</p></li>
+<li><p>nullptr</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>For ARM and HTP prepare - Registers the HTP op package</p></li>
+<li><p>For linux x86           - Registers the linux x86 op package</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="qnn-htp-supported-operations">
+<h3>QNN HTP Supported Operations<a class="headerlink" href="#qnn-htp-supported-operations" title="Permalink to this headline">¶</a></h3>
+<p>QNN HTP supports running quantized 8-bit and quantized 16-bit networks on all Qualcomm SoCs.
+List of operations supported by QNN HTP Quant runtime can be seen under Backend Support HTP column in
+<a class="reference internal" href="../../OpDef/SupportedOps.html#supported-operations"><span class="std std-ref">Supported Operations</span></a></p>
+<p>QNN HTP supports running float32 networks using float16 math on select Qualcomm SoCs.
+If the QNN SDK supports QNN HTP Float, the list of operations supported by HTP Float runtime
+can be seen under Backend Support HTP_FP16 column in <a class="reference internal" href="../../OpDef/SupportedOps.html#supported-operations"><span class="std std-ref">Supported Operations</span></a></p>
+<p>For the QNN SDK that does support QNN HTP Float, please note that even though HTP and HTP_FP16 are
+listed under separate columns in <a class="reference internal" href="../../OpDef/SupportedOps.html#supported-operations"><span class="std std-ref">Supported Operations</span></a> they are a
+single “logical” backend. On select SoCs, QNN HTP backend library supports both quantized and float networks.
+The separate columns is done to distinguish the different supported operations list for
+quantized and float QNN HTP runtimes.</p>
+</div>
+<div class="section" id="qnn-htp-backend-api">
+<h3>QNN HTP Backend API<a class="headerlink" href="#qnn-htp-backend-api" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../../api-rst/file_include_HTP_QnnDspBackend.h.html#file-include-htp-qnndspbackend-h"><span class="std std-ref">File QnnDspBackend.h</span></a> is the backend specialization header that goes along with
+<a class="reference internal" href="../../api-rst/file_include_QnnBackend.h.html#file-include-qnnbackend-h"><span class="std std-ref">File QnnBackend.h</span></a>. This header file allows clients to configure the backend to
+cater to specific use-cases.</p>
+<p class="centered" id="htp-backend-feature-table">
+<strong><strong>QNN HTP Backend Config Options</strong></strong></p><table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option Name</p></th>
+<th class="head"><p>Option Description</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>When to use</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>QNN_DSP_BACKEND_CONFIG_OPTION_FOLD_RELU_ACTIVATION_INTO_CONV_OFF</p></td>
+<td><p>For any graph where a Convolution or Convolution like operation is followed by Relu or ReluMinMax,
+the relu is folded into the Convolution operation</p></td>
+<td><p>always fold</p></td>
+<td><p>Clients that cannot guarantee that the quantization parameters of the Relu output
+exactly reflect the range of the data after the Relu should set this flag. This
+will come at the cost of performance, but perserve the requested quantization encodings.</p></td>
+</tr>
+<tr class="row-odd"><td><p>QNN_DSP_BACKEND_CONFIG_OPTION_SHORT_DEPTH_CONV_ON_HMX_OFF</p></td>
+<td><p>Run all Convolution operations using HMX instructions</p></td>
+<td><p>always use HMX instructions</p></td>
+<td><p>Clients that have graphs where weights are not symmetric and have Convolution
+with short depths should set this flag to guarantee accurate results</p></td>
+</tr>
+<tr class="row-even"><td><p>QNN_DSP_BACKEND_CONFIG_OPTION_USE_SIGNED_PROCESS_DOMAIN</p></td>
+<td><p>Enable signed process domain. In order to use this flag, client need also sign dsp image
+and push it on target</p></td>
+<td><p>unsigned process domain</p></td>
+<td><p>Client use signed process domain. Check Hexagon SDK document for more detail.</p></td>
+</tr>
+<tr class="row-odd"><td><p>QNN_DSP_BACKEND_CONFIG_OPTION_ARCH</p></td>
+<td><p>Config target Dsp Backend Arch to values defined in QnnDspBackend_DspArch_t in offline prepare case</p></td>
+<td><p>QNN_DSP_BACKEND_DSP_ARCH_NONE</p></td>
+<td><p>Client use offline prepare to generate binary blob</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="qnn-htp-performance-infrastructure-api">
+<h3>QNN HTP Performance Infrastructure API<a class="headerlink" href="#qnn-htp-performance-infrastructure-api" title="Permalink to this headline">¶</a></h3>
+<p>Clients can invoke
+<a class="reference internal" href="../../api-rst/function_QnnBackend_8h_1ad7d08d5f1e05a5a2919fb27a3a366d67.html#exhale-function-qnnbackend-8h-1ad7d08d5f1e05a5a2919fb27a3a366d67"><span class="std std-ref">QnnBackend_getPerfInfrastructure</span></a>
+after loading the QNN HTP library and then invoke methods that are available in
+<a class="reference internal" href="../../api-rst/file_include_HTP_QnnDspPerfInfrastructure.h.html#file-include-htp-qnndspperfinfrastructure-h"><span class="std std-ref">File QnnDspPerfInfrastructure.h</span></a>. These APIs allow a client to control CPU and
+HTP accelerator’s system settings for performance purpose.
+A few use-cases are:</p>
+<ol class="arabic simple">
+<li><p>Set up a voting policy by controlling the core clocks and voltage corners.</p></li>
+<li><p>Set up DCVS modes to achieve different performance settings as applicable to a use-case.</p></li>
+<li><p>Configure memory-related settings to prepare a graph for a specific target. For example, a
+client may set a VTCM size of 2MB to cache a context and retrieve on a target
+that has only 2MB VTCM memory.</p></li>
+<li><p>Set up a specific RPC Control Latency per session to control CPU low power modes and reduce CPU
+wake-up latency impact on FastRPC. Latency critical applications recommended to vote for greater
+than 0 and less than 200 us; moderate latency requirement can vote for more than 200 us or by
+default 0 us without specific setting needed.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Setting up number of threads for accelerator is not supported.</p>
+<p>QNN Perf infrastructure maps directly to fast RPC features on CPU side, and on HTP side maps to
+HAP_Power DCVS v3. For detailed configuration of voltage corners and DCVS modes, please refer to
+Hexagon SDK documentation on HAP_power_set API.</p>
+</div>
+</div>
+<div class="section" id="qnn-htp-precision">
+<h3>QNN HTP Precision<a class="headerlink" href="#qnn-htp-precision" title="Permalink to this headline">¶</a></h3>
+<p>QNN HTP can support running float32 graphs on select Qualcomm SoCs. The client is expected to set up
+the QNN graph with float32 tensors and QNN HTP accelerator will finalize and execute the QNN graph
+using float16 math.</p>
+<p>QNN HTP Clients attempting to run float32 graphs should invoke
+<a class="reference internal" href="../../api-rst/function_QnnGraph_8h_1acef7b5c50463d8b02bb4abd769ae5ea9.html#exhale-function-qnngraph-8h-1acef7b5c50463d8b02bb4abd769ae5ea9"><span class="std std-ref">QnnGraph_create()</span></a> with a
+<a class="reference internal" href="../../api-rst/structQnnGraph__Config__t.html#exhale-struct-structqnngraph-config-t"><span class="std std-ref">Struct QnnGraph_Config_t</span></a> which will include a
+<a class="reference internal" href="../../api-rst/structQnnDspGraph__CustomConfig__t.html#exhale-struct-structqnndspgraph-customconfig-t"><span class="std std-ref">Struct QnnDspGraph_CustomConfig_t</span></a> with a config to set a
+<a class="reference internal" href="../../api-rst/enum_QnnTypes_8h_1a191443d3820cd5f895cfa381148b4724.html#exhale-enum-qnntypes-8h-1a191443d3820cd5f895cfa381148b4724"><span class="std std-ref">Enum Qnn_Precision_t</span></a>.
+The precision value expected to be set is QNN_PRECISION_FLOAT16.</p>
+<p>A client usage would look like below:</p>
+<div class="highlight-c notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="w"> </span><span class="n">QnnDspGraph_CustomConfig_t</span><span class="w"> </span><span class="n">customConfig</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="n">customConfig</span><span class="p">.</span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QNN_DSP_GRAPH_CONFIG_OPTION_PRECISION</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="n">customConfig</span><span class="p">.</span><span class="n">precision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QNN_PRECISION_FLOAT16</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="n">QnnGraph_Config_t</span><span class="w"> </span><span class="n">graphConfig</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="n">graphConfig</span><span class="p">.</span><span class="n">option</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">QNN_GRAPH_CONFIG_OPTION_CUSTOM</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="n">graphConfig</span><span class="p">.</span><span class="n">customConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">customConfig</span><span class="p">;</span><span class="w"></span>
+
+<span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">QnnGraph_Config_t</span><span class="o">*</span><span class="w"> </span><span class="n">pGraphConfig</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="o">&amp;</span><span class="n">graphConfig</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">};</span><span class="w"></span>
+</pre></div>
+</td></tr></table></div>
+<p>When precision value is set to QNN_PRECISION_FLOAT16, QNN HTP backend will convert user provided float32 inputs
+in <a class="reference internal" href="../../api-rst/function_QnnGraph_8h_1a3ea05f42a9295f9a74a2e3a0cdd64228.html#exhale-function-qnngraph-8h-1a3ea05f42a9295f9a74a2e3a0cdd64228"><span class="std std-ref">QnnGraph_execute()</span></a> to float16 and
+execute the graph with float16 math. The final output is provided to user as float32 outputs.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Setting precision value to QNN_PRECISION_FLOAT32 is not supported by QNN HTP.</p>
+<p>If no precision value is set, QNN HTP backend assumes that the client expects to run quantized network.</p>
+</div>
+</div>
+<div class="section" id="qnn-htp-profiling">
+<h3>QNN HTP Profiling<a class="headerlink" href="#qnn-htp-profiling" title="Permalink to this headline">¶</a></h3>
+<p>Detailed profiling report provides per op profiling result by cycle counts instead of time in microsecs.
+There is no direct conversion method from cycle count to microsecs because of the parallelized execution
+of Ops. Hence it is recommended to use the per layer cycle timings as a reference to compare/measure the
+relative performance to know which of them are using lower/higher cycles to finish the execution.</p>
+</div>
+</div>
+<div class="section" id="op-writing-guidelines">
+<h2>Op Writing Guidelines<a class="headerlink" href="#op-writing-guidelines" title="Permalink to this headline">¶</a></h2>
+<p>This section serves as a guide for user to develop custom operations for graphs that can be run on
+the HTP backend. It also includes examples which will help user to become familiar with the
+different aspects of the HTP core software.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../HTP/htp_core_headers.html">HTP Core Headers for Op Packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/htp_core_headers.html#htp-core-headers-usage">HTP Core Headers Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../HTP/implementing_ops.html">Implementing Ops</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/implementing_ops.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/implementing_ops.html#writing-a-new-op">Writing a New Op</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/implementing_ops.html#steps-for-implementing-an-op">Steps for Implementing an Op</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/implementing_ops.html#considerations-for-transformations">Considerations for Transformations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/implementing_ops.html#tiling-as-graph-transformations">Tiling as Graph Transformations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/implementing_ops.html#tips-for-optimization">Tips for Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../HTP/optimization_grammar.html">Optimization Grammar</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/optimization_grammar.html#lexical">Lexical</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/optimization_grammar.html#general">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/optimization_grammar.html#top-level">Top Level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/optimization_grammar.html#match">Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/optimization_grammar.html#constraint">Constraint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/optimization_grammar.html#replacement">Replacement</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../HTP/relu_example.html">QNN HTP Op Package - Relu Op Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/relu_example.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/relu_example.html#writing-relu-op">Writing Relu Op</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/relu_example.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../HTP/relu_fp16_example.html">QNN HTP-FP16 Op Package - Relu Op Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/relu_fp16_example.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/relu_fp16_example.html#writing-relu-op-with-htp-fp16">Writing Relu Op with HTP-FP16</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../HTP/scheduling_and_allocation.html">Scheduling and Allocation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../HTP/scratch_buffer.html">Allocate Memory for Scratch Buffers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../HTP/tensors_and_memory_layout.html">Tensors and Memory Layout</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/tensors_and_memory_layout.html#details-about-memory-layout">Details about Memory Layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/tensors_and_memory_layout.html#details-about-tensors">Details about Tensors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../HTP/writing_op_package.html">Writing QNN HTP Op Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/writing_op_package.html#api-s-in-qnnoppackage-h">API’s in QnnOpPackage.h</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/writing_op_package.html#htp-headers">HTP Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/writing_op_package.html#htp-macros">HTP Macros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../HTP/writing_op_package.html#compilation">Compilation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../HTP/htp_core_headers.html" class="btn btn-neutral float-right" title="HTP Core Headers for Op Packages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../dsp/dsp_backend.html" class="btn btn-neutral float-left" title="DSP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020-2022, Qualcomm Technologies, Inc.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
