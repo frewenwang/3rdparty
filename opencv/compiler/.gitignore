@@ -2,3 +2,4 @@
 *.zip
 opencv-*/
 build/
+src/

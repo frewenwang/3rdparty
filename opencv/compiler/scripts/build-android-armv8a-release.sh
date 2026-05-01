@@ -5,37 +5,53 @@
 
 TARGET_NAME="opencv"
 TARGET_VERSION="4.11.0"
-DIR_INSTALL="../../../lib/v4.11.0"
+DIR_INSTALL="./lib/v$TARGET_VERSION"
+BASH_PATH="./src"
 
 # 进行下载和解压的资源的名称
 # 下载路径：https://github.com/opencv/opencv/archive/refs/tags/4.11.0.zip
-TARGET_URL="https://github.com/$TARGET_NAME/$TARGET_NAME/archive/refs/tags/$TARGET_VERSION.zip"
-TARGET_DL_ZIP="$TARGET_NAME-$TARGET_VERSION.zip"
-TARGET_DL_DIR="$TARGET_NAME-$TARGET_VERSION"
+URL_TARGET_ZIP="https://github.com/$TARGET_NAME/$TARGET_NAME/archive/refs/tags/$TARGET_VERSION.zip"
+URL_TARGET_CONTRIB_ZIP="https://github.com/opencv/opencv_contrib/archive/refs/tags/$TARGET_VERSION.zip"
 
 
-# 先删除原来下载的产出，以及产出解压的路径
-#rm -rf "$TARGET_DL_ZIP"
-#rm -rf "$TARGET_DL_DIR"
+ZIP_OPENCV="$BASH_PATH/opencv-$TARGET_VERSION.zip"
+ZIP_OPENCV_CONTRIB="$BASH_PATH/opencv_contrib-$TARGET_VERSION.zip"
+
+TARGET_DL_DIR="$BASH_PATH/$TARGET_NAME-$TARGET_VERSION"
+TARGET_CONTRIB_DL_DIR="$BASH_PATH/opencv_contrib-$TARGET_VERSION/modules"
 
 
 #如果zip文件不存在。则进行下载
-if [ ! -e "$TARGET_DL_ZIP" ]; then
-    echo "[===Compiler===] start download $TARGET_URL"
-    wget -O "$TARGET_DL_ZIP" "$TARGET_URL"
+if [ ! -e "$ZIP_OPENCV" ]; then
+    echo "[===Compiler===] start download $URL_TARGET_ZIP"
+    wget -O "$ZIP_OPENCV" "$URL_TARGET_ZIP"
 else
-  echo "[===Compiler===] $TARGET_DL_ZIP File exists. Ignore Download!!!"
+  echo "[===Compiler===] '$ZIP_OPENCV' File exists. Ignore Download!!!"
 fi
+if [ ! -e "$ZIP_OPENCV_CONTRIB" ]; then
+    echo "[===Compiler===] start download $URL_TARGET_CONTRIB_ZIP"
+    wget -O "$ZIP_OPENCV_CONTRIB" "$URL_TARGET_CONTRIB_ZIP"
+else
+  echo "[===Compiler===] $ZIP_OPENCV_CONTRIB File exists. Ignore Download!!!"
+fi
+echo "[===Compiler===] target download success !!!"
 
 # 如果解压目录不存在，则进行解压
 if [ ! -d "$TARGET_DL_DIR" ]; then
-    echo "[===Compiler===] $TARGET_DL_DIR not exist and start unzip $TARGET_DL_ZIP"
-    unzip -q "$TARGET_DL_ZIP"
+    echo "[===Compiler===] $TARGET_DL_DIR not exist and start unzip:$ZIP_OPENCV"
+    unzip -q "$ZIP_OPENCV" -d "$BASH_PATH"
 else
   echo "[===Compiler===] $TARGET_DL_DIR Dir exists. Ignore unzip!!!"
 fi
+if [ ! -d "$TARGET_CONTRIB_DL_DIR" ]; then
+    echo "[===Compiler===] $TARGET_CONTRIB_DL_DIR not exist and start unzip:$ZIP_OPENCV_CONTRIB"
+    unzip -q "$ZIP_OPENCV_CONTRIB" -d "$BASH_PATH"
+else
+  echo "[===Compiler===] $TARGET_CONTRIB_DL_DIR Dir exists. Ignore unzip!!!"
+fi
+echo "[===Compiler===] target unzip success !!!"
 
-echo "[===Compiler===] target download success !!!"
+
 
 #shellcheck disable=SC2046
-./build.sh  -t  2 -r  -n  "$TARGET_NAME" -v "$TARGET_VERSION" -a $(cat ./cmake_args/options.txt)  -i  "$DIR_INSTALL"
+./build.sh  -t  2 -r  -n  "$TARGET_NAME" -v "$TARGET_VERSION" -a $(cat ./cmake_args/common_options.txt)  -i  "$DIR_INSTALL"
