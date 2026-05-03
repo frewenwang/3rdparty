@@ -1,0 +1,168 @@
+# 宿主平台 CMake 配置说明
+
+## 配置文件: host_options.txt
+
+此配置文件针对 macOS 和 Linux 桌面平台优化，提供：
+- 完整的功能集
+- 最佳的开发体验
+- 所有可用模块的支持
+
+### 核心构建设置
+
+```
+# 构建配置
+-DBUILD_SHARED_LIBS=ON             # 动态链接库（便于调试和开发）
+```
+
+### 图像格式支持（完整）
+
+```
+# 启用所有图像格式支持
+-DBUILD_JPEG=ON                    # JPEG 支持
+-DBUILD_PNG=ON                     # PNG 支持
+-DBUILD_TIFF=ON                    # TIFF 支持
+-DBUILD_WEBP=ON                    # WebP 支持
+-DBUILD_OPENEXR=ON                 # OpenEXR HDR 图像支持
+-DBUILD_JASPER=ON                  # JPEG-2000 支持
+-DBUILD_OPENJPEG=ON                # 开源 JPEG 支持
+```
+
+### 视频和相机支持
+
+```
+# 启用视频处理支持
+-DWITH_FFMPEG=ON                   # FFmpeg 视频编解码
+-DWITH_GSTREAMER=ON                # GStreamer 多媒体框架
+
+# 平台特定视频支持
+-DWITH_AVFOUNDATION=ON            # macOS 视频捕获框架
+-DWITH_GTK=ON                     # Linux GTK 图形界面
+-DWITH_V4L=ON                     # Linux Video4Linux
+```
+
+### 并行处理支持
+
+```
+# 启用并行处理
+-DWITH_TBB=ON                      # Intel TBB 并行库
+-DWITH_OPENMP=ON                   # OpenMP 并行支持
+```
+
+### 硬件加速
+
+```
+# 启用硬件加速支持
+-DWITH_OPENCL=ON                   # OpenCL 通用计算
+-DWITH_OPENCL_SVM=ON              # OpenCL 共享虚拟内存
+-DWITH_IPP=ON                     # Intel IPP 性能库
+```
+
+### 完整模块支持
+
+```
+# 启用所有 OpenCV 模块
+-DBUILD_opencv_world=ON           # 构建所有模块到单个库
+```
+
+### 开发功能
+
+```
+# 启用开发相关功能
+-DBUILD_TESTS=ON                   # 构建单元测试
+-DBUILD_PERF_TESTS=ON             # 构建性能测试
+-DBUILD_EXAMPLES=ON               # 构建示例程序
+-DBUILD_DOCS=ON                   # 构建文档
+```
+
+### 语言绑定
+
+```
+# 启用语言绑定支持
+-DBUILD_opencv_python3=ON         # Python 3 绑定
+-DBUILD_opencv_java=ON            # Java 绑定
+```
+
+### 额外功能
+
+```
+# 启用额外功能支持
+-DWITH_PROTOBUF=ON                # Protocol Buffers 支持
+-DWITH_EIGEN=ON                   # Eigen 线性代数库
+-DWITH_QUIRC=ON                   # QR 码检测库
+```
+
+## 使用场景
+
+### 开发环境
+- 完整的功能集便于开发和测试
+- 所有示例和测试都可以运行
+- 支持多种语言绑定
+
+### 研究环境
+- 可以使用所有 OpenCV 功能
+- 便于原型设计和算法测试
+- 完整的文档和示例支持
+
+### 生产环境部署
+- 可能需要根据具体需求精简配置
+- 考虑禁用不需要的模块以减小体积
+- 可能需要调整优化级别
+
+## 性能考虑
+
+### 编译时间
+- 完整配置会增加编译时间（可能 30-60 分钟）
+- 考虑使用 ccache 加速重复编译
+- 可以使用 `-j` 参数并行编译
+
+### 磁盘空间
+- 完整构建需要 5-10GB 磁盘空间
+- 构建目录包含中间文件和所有模块
+
+### 运行时性能
+- 动态链接库提供良好的模块化
+- 硬件加速选项可显著提高性能
+- 并行处理支持多核 CPU
+
+## 自定义配置
+
+### 减少构建体积
+```bash
+# 只构建核心模块
+./build.sh -a "-DBUILD_opencv_world=OFF -DBUILD_TESTS=OFF"
+```
+
+### 添加 CUDA 支持
+```bash
+# 启用 CUDA 加速（如果可用）
+./build.sh -a "-DWITH_CUDA=ON -DWITH_CUDNN=ON"
+```
+
+### 交叉编译准备
+```bash
+# 为交叉编译禁用特定功能
+./build.sh -a "-DBUILD_TESTS=OFF -DBUILD_EXAMPLES=OFF"
+```
+
+## 故障排除
+
+### 编译错误
+- 确保安装了所有必需的开发库
+- 检查 CMake 版本是否足够新
+- 查看详细的编译日志
+
+### 链接错误
+- 确保所有依赖库都正确安装
+- 检查库路径设置
+- 验证编译器兼容性
+
+### 运行时错误
+- 确保动态库路径正确设置
+- 检查依赖库的可用性
+- 验证硬件加速驱动
+
+## 参考资源
+
+- [OpenCV 官方文档](https://docs.opencv.org/)
+- [CMake 构建选项文档](https://docs.opencv.org/master/db/d05/tutorial_config_reference.html)
+- [平台特定构建指南](https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html)

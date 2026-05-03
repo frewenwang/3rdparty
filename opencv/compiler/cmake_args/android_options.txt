@@ -1,0 +1,57 @@
+# Android-specific CMake options for OpenCV - FULL CONFIGURATION
+# This configuration enables the maximum number of modules for Android
+
+# Disable Java and Android-specific features that may cause issues
+-DBUILD_JAVA=OFF
+-DBUILD_ANDROID_PROJECTS=OFF
+-DBUILD_ANDROID_EXAMPLES=OFF
+-DBUILD_FAT_JAVA_LIB=OFF
+-DBUILD_ANDROID_SERVICE=OFF
+
+# Disable platform-specific features not needed on Android
+-DWITH_AVFOUNDATION=OFF
+-DWITH_GTK=OFF
+-DWITH_V4L=OFF
+-DWITH_IPP=OFF
+-DWITH_VA=OFF
+-DWITH_VA_INTEL=OFF
+-DWITH_HPX=OFF
+
+# Enable Android-specific features
+-DWITH_ANDROID_MEDIANDK=ON
+
+# Optimize for mobile platforms (static libraries)
+-DBUILD_SHARED_LIBS=OFF
+-DBUILD_PERF_TESTS=OFF
+-DBUILD_TESTS=OFF
+-DBUILD_DOCS=OFF
+-DBUILD_EXAMPLES=OFF
+
+# Enable all image format support
+-DBUILD_JPEG=ON
+-DBUILD_PNG=ON
+-DBUILD_TIFF=ON
+-DBUILD_WEBP=ON
+
+# Enable ALL available OpenCV modules for maximum functionality
+-DBUILD_opencv_core=ON
+-DBUILD_opencv_imgproc=ON
+-DBUILD_opencv_imgcodecs=ON
+-DBUILD_opencv_videoio=ON
+-DBUILD_opencv_highgui=OFF  # Not suitable for Android
+
+# Enable additional modules
+-DBUILD_opencv_calib3d=ON
+-DBUILD_opencv_features2d=ON
+-DBUILD_opencv_flann=ON
+-DBUILD_opencv_ml=ON
+-DBUILD_opencv_objdetect=ON
+-DBUILD_opencv_photo=ON
+
+# Enable advanced modules
+-DBUILD_opencv_dnn=ON          # Deep Neural Networks
+-DBUILD_opencv_video=ON        # Video analysis
+-DBUILD_opencv_stitching=ON    # Image stitching
+
+# Note: GAPI is disabled as it's experimental and may cause build issues
+-DBUILD_opencv_gapi=OFF

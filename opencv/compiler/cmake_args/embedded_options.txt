@@ -1,0 +1,66 @@
+# Embedded platforms (QNX, AX620A) CMake options for OpenCV
+
+# Optimize for embedded/mobile platforms
+-DBUILD_SHARED_LIBS=OFF
+
+# Minimal image format support for size optimization
+-DBUILD_JPEG=ON
+-DBUILD_PNG=ON
+-DBUILD_TIFF=OFF
+-DBUILD_WEBP=OFF
+-DBUILD_OPENEXR=OFF
+-DBUILD_JASPER=OFF
+-DBUILD_OPENJPEG=OFF
+
+# Disable video support for embedded platforms
+-DWITH_FFMPEG=OFF
+-DWITH_GSTREAMER=OFF
+-DWITH_AVFOUNDATION=OFF
+-DWITH_GTK=OFF
+-DWITH_V4L=OFF
+
+# Minimal parallel processing
+-DWITH_TBB=OFF
+-DWITH_OPENMP=OFF
+
+# Disable hardware acceleration that may not be available
+-DWITH_OPENCL=OFF
+-DWITH_OPENCL_SVM=OFF
+-DWITH_IPP=OFF
+-DWITH_VULKAN=OFF
+
+# Core modules only
+-DBUILD_opencv_core=ON
+-DBUILD_opencv_imgproc=ON
+-DBUILD_opencv_imgcodecs=ON
+-DBUILD_opencv_videoio=OFF
+-DBUILD_opencv_highgui=OFF
+
+# Selective additional modules
+-DBUILD_opencv_calib3d=OFF
+-DBUILD_opencv_features2d=ON
+-DBUILD_opencv_flann=ON
+-DBUILD_opencv_ml=OFF
+-DBUILD_opencv_objdetect=ON
+
+# Disable heavy modules
+-DBUILD_opencv_dnn=OFF
+-DBUILD_opencv_gapi=OFF
+-DBUILD_opencv_stitching=OFF
+-DBUILD_opencv_video=OFF
+-DBUILD_opencv_world=OFF
+
+# Disable development features for size
+-DBUILD_TESTS=OFF
+-DBUILD_PERF_TESTS=OFF
+-DBUILD_EXAMPLES=OFF
+-DBUILD_DOCS=OFF
+
+# Disable language bindings
+-DBUILD_opencv_python3=OFF
+-DBUILD_opencv_java=OFF
+-DBUILD_opencv_objc=OFF
+
+# Size optimizations
+-DENABLE_PRECOMPILED_HEADERS=OFF
+-DENABLE_FAST_MATH=ON

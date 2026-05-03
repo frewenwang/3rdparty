@@ -1,25 +1,23 @@
 #!/usr/bin/env bash
 
-# 注意此脚本需要在build.sh所在的目录下进行执行。
-# sh ./scripts/build-mac-x86_64-release.sh
-
+# 优化后的ARM64编译脚本，支持自定义选项文件控制
 TARGET_NAME="opencv"
 TARGET_VERSION="4.11.0"
-DIR_INSTALL="./lib/v$TARGET_VERSION"
-BASH_PATH="./src"
+DIR_INSTALL="../../../lib/v$TARGET_VERSION"
+BASH_PATH="./"
+
+# 设置正确的NDK路径
+export ANDROID_NDK_HOME="/Users/frewen/Library/AAura/Android/sdk/ndk/26.3.11579264"
 
 # 进行下载和解压的资源的名称
-# 下载路径：https://github.com/opencv/opencv/archive/refs/tags/4.11.0.zip
 URL_TARGET_ZIP="https://github.com/$TARGET_NAME/$TARGET_NAME/archive/refs/tags/$TARGET_VERSION.zip"
 URL_TARGET_CONTRIB_ZIP="https://github.com/opencv/opencv_contrib/archive/refs/tags/$TARGET_VERSION.zip"
-
 
 ZIP_OPENCV="$BASH_PATH/opencv-$TARGET_VERSION.zip"
 ZIP_OPENCV_CONTRIB="$BASH_PATH/opencv_contrib-$TARGET_VERSION.zip"
 
 TARGET_DL_DIR="$BASH_PATH/$TARGET_NAME-$TARGET_VERSION"
 TARGET_CONTRIB_DL_DIR="$BASH_PATH/opencv_contrib-$TARGET_VERSION/modules"
-
 
 #如果zip文件不存在。则进行下载
 if [ ! -e "$ZIP_OPENCV" ]; then
@@ -51,7 +49,13 @@ else
 fi
 echo "[===Compiler===] target unzip success !!!"
 
+# Android arm64-v8a的专用CMake参数
+CMAKE_EXTRA_ARGS="-DANDROID_ABI=arm64-v8a -DANDROID_PLATFORM=android-21 -DBUILD_JAVA=OFF -DBUILD_ANDROID_PROJECTS=OFF -DBUILD_ANDROID_EXAMPLES=OFF"
 
-
-#shellcheck disable=SC2046
-./build.sh  -t  2 -r  -n  "$TARGET_NAME" -v "$TARGET_VERSION" -a $(cat ./cmake_args/common_options.txt)  -i  "$DIR_INSTALL"
+# 使用完整配置的Android选项文件
+# 包含最大数量的OpenCV模块
+./build.sh  -t  2 -r  -n  "$TARGET_NAME" -v "$TARGET_VERSION" \
+    --platform-options "./cmake_args/android_options.txt" \
+    --common-options "" \
+    -a "$CMAKE_EXTRA_ARGS" \
+    -i  "$DIR_INSTALL"

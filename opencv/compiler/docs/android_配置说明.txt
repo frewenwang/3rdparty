@@ -1,0 +1,110 @@
+# Android 平台 CMake 配置说明
+
+## 配置文件: android_options.txt
+
+此配置文件专门为 Android 平台优化，主要关注：
+- 减小库文件大小
+- 优化移动设备性能
+- 禁用不必要的桌面功能
+
+### 核心优化设置
+
+```
+# 禁用 Java 和 Android 特定功能
+-DBUILD_JAVA=OFF                    # 禁用 Java 绑定
+-DBUILD_ANDROID_PROJECTS=OFF        # 禁用 Android 项目
+-DBUILD_ANDROID_EXAMPLES=OFF        # 禁用 Android 示例
+-DBUILD_FAT_JAVA_LIB=OFF           # 禁用 Java 胖库
+-DBUILD_ANDROID_SERVICE=OFF        # 禁用 Android 服务
+```
+
+### 平台特定禁用
+
+```
+# 禁用 Android 上不需要的桌面特定功能
+-DWITH_AVFOUNDATION=OFF            # macOS 视频框架（Android 不需要）
+-DWITH_GTK=OFF                     # GTK 图形界面（Android 不需要）
+-DWITH_V4L=OFF                     # Video4Linux（Android 不需要）
+```
+
+### 启用 Android 特定功能
+
+```
+# 启用 Android 特定功能
+-DWITH_ANDROID_MEDIANDK=ON         # Android 媒体 NDK 支持
+```
+
+### 构建优化
+
+```
+# 为移动平台优化
+-DBUILD_SHARED_LIBS=OFF            # 静态链接（减小体积）
+-DBUILD_PERF_TESTS=OFF             # 禁用性能测试
+-DBUILD_TESTS=OFF                  # 禁用单元测试
+-DBUILD_DOCS=OFF                   # 禁用文档生成
+-DBUILD_EXAMPLES=OFF               # 禁用示例
+```
+
+### 图像格式支持
+
+```
+# 启用必要的图像格式支持
+-DBUILD_JPEG=ON                    # JPEG 支持（必需）
+-DBUILD_PNG=ON                     # PNG 支持（必需）
+-DBUILD_TIFF=ON                    # TIFF 支持（可选）
+-DBUILD_WEBP=ON                    # WebP 支持（可选）
+```
+
+### OpenCV 模块配置
+
+```
+# 启用核心 OpenCV 模块
+-DBUILD_opencv_core=ON             # 核心模块（必需）
+-DBUILD_opencv_imgproc=ON          # 图像处理（必需）
+-DBUILD_opencv_imgcodecs=ON        # 图像编解码（必需）
+-DBUILD_opencv_videoio=ON          # 视频 I/O（可选）
+-DBUILD_opencv_highgui=OFF         # 高级 GUI（Android 不需要）
+
+# 可选的额外模块
+-DBUILD_opencv_calib3d=ON          # 相机标定和 3D 重建
+-DBUILD_opencv_features2d=ON       # 2D 特征处理
+-DBUILD_opencv_flann=ON            # 快速近似最近邻
+-DBUILD_opencv_ml=ON               # 机器学习
+-DBUILD_opencv_objdetect=ON        # 目标检测
+
+# 为移动优化禁用的重型模块
+-DBUILD_opencv_dnn=OFF             # 深度学习（体积大，性能要求高）
+-DBUILD_opencv_gapi=OFF            # 图形 API（复杂，体积大）
+-DBUILD_opencv_stitching=OFF       # 图像拼接（计算密集）
+-DBUILD_opencv_video=OFF           # 视频分析（可选）
+```
+
+## 使用建议
+
+### 移动应用开发
+- 保持当前配置以获得最佳性能和最小体积
+- 仅启用应用实际需要的模块
+
+### 计算机视觉研究
+- 可能需要启用 `BUILD_opencv_dnn=ON` 以支持深度学习
+- 可能需要启用 `BUILD_opencv_video=ON` 以支持视频处理
+
+### 性能关键应用
+- 考虑启用 `WITH_TBB=ON` 以支持并行处理（如果目标设备支持）
+- 保持 `BUILD_SHARED_LIBS=OFF` 以减少运行时依赖
+
+## 常见问题
+
+### Q: 为什么禁用这么多模块？
+A: 为了减小 APK 大小和提高启动性能。Android 应用对包大小敏感。
+
+### Q: 如何添加额外的 OpenCV 模块？
+A: 在构建命令中添加相应的 `-DBUILD_opencv_xxx=ON` 参数。
+
+### Q: 为什么使用静态链接？
+A: 静态链接简化了部署，减少了运行时依赖，并可能提供更好的性能。
+
+## 参考
+
+- [OpenCV Android 文档](https://docs.opencv.org/master/d9/df8/tutorial_root.html)
+- [Android NDK 文档](https://developer.android.com/ndk/guides/cmake)

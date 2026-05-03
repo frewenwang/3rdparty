@@ -54,4 +54,4 @@ echo "[===Compiler===] target unzip success !!!"
 
 
 #shellcheck disable=SC2046
-./build.sh  -t  0 -r  -n  "$TARGET_NAME" -v "$TARGET_VERSION" -a $(cat ./cmake_args/common_options.txt)  -i  "$DIR_INSTALL"
+./build.sh  -t  2 -r  -n  "$TARGET_NAME" -v "$TARGET_VERSION" -a $(cat ./cmake_args/common_options.txt)  -i  "$DIR_INSTALL"
