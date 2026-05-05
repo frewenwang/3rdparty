@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /Users/frewen/01.WorkSpace/AuraKaleidos/FantasyCXX -type f -name \"*.md\" -o -name \"*.txt\" -o -name \"CMakeLists.txt\" -o -name \"build.sh\" -o -name \".clang-format\" | head -20)",
+      "Read(//Users/frewen/01.WorkSpace/AuraKaleidos/FantasyCXX/**)"
+    ],
+    "additionalDirectories": [
+      "/Users/frewen/01.WorkSpace/AuraKaleidos/FantasyCXX"
+    ]
+  }
+}
